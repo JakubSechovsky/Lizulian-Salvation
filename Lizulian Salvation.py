@@ -194,7 +194,7 @@ class Enemy:
         trophy.clear()
 
     def take(self):
-        if self.name == "boss":
+        if self.name == "Lizul":
             x = self.perfectAI()
         elif me.diff == "1":
             x = self.randomAI()
@@ -237,8 +237,9 @@ def load_json():
             hostile_locs[atts["loc"]] = new_enm
     with open(r"C:\Users\Jakub\Desktop\Lizulian Salvation\locs.json") as locs_file:
         locs = json.load(locs_file)
+        a = ["mess"]
         for loc in locs:
-            if loc == "mess":
+            if loc in a:
                 pass
             else:
                 inf = locs[loc]
@@ -274,7 +275,6 @@ def choose_difficulty(Me):
         repr_mess(40, "p")
         me.run = True
     elif me.diff == "3":
-        player_inv["gold coin"] += 0
         repr_mess(41, "p")
         me.run = True
     else:
@@ -304,7 +304,7 @@ def fight_input(enemy, me):
 
 
 def user_input(Me):
-    tlk = {"market":locs_list["market"], "alchemist":locs_list["alchemist"], "chiefhut":locs_list["chiefhut"]}
+    tlk = ["market", "chiefhut", "alchemist"]
     locs = {"house":locs_list["house"], "village":locs_list["village"], "lake":locs_list["lake"], "forest":locs_list["forest"], "fields":locs_list["fields"], "mine":locs_list["mine"], "market":locs_list["market"], "alchemist":locs_list["alchemist"], "chiefhut":locs_list["chiefhut"]}
     if me.loc in tlk:
         me.talking = True
@@ -340,8 +340,6 @@ locs_list = {"house":[], "village":[], "lake":[], "forest":[], "fields":[], "min
 npcs_for_loc = {"chiefhut":[], "market":[], "alchemist":[]}
 
 player_inv = return_char("me", "inventory")
-
-boss_list = []
 
 load_json()
 username = input("\nChoose your name:\n>")
