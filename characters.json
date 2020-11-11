@@ -1,0 +1,34 @@
+{
+    "me":{
+        "max_health":100,
+        "health":100,
+        "level":1,
+        "loc":"house",
+        "diff":"",
+        "run":false,
+        "fighting":false,
+        "talking":false,
+        "n":21,
+        "min_take":1,
+        "max_take":3,
+        "inventory":{
+            "gold coin":0,
+            "apple":0,
+            "pear":1,
+            "wolf pelt":0,
+            "worm fang":0,
+            "snake tongue":0,
+            "spider web":0,
+            "per ardua":0
+            }
+        },
+    "alchemist":{
+        "loc":"alchemist"
+    },
+    "merchant":{
+        "loc":"market"
+    },
+    "chief":{
+        "loc":"chiefhut"
+    }
+}
