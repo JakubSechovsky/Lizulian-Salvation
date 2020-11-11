@@ -236,13 +236,13 @@ def load_json():
             new_enm = Enemy(atts["loc"], atts["loot"], atts["name"], atts["chance"], atts["harm"])
             hostile_locs[atts["loc"]] = new_enm
     with open(r"C:\Users\Jakub\Desktop\Lizulian Salvation\locs.json") as locs_file:
-        locs = json.load(locs_file)
+        locations = json.load(locs_file)
         a = ["mess"]
-        for loc in locs:
+        for loc in locations:
             if loc in a:
                 pass
             else:
-                inf = locs[loc]
+                inf = locations[loc]
                 new_loc = Location(inf["counter"], inf["place"], inf["opts"])
                 locs_list[inf["place"]] = new_loc
     with open(r"C:\Users\Jakub\Desktop\Lizulian Salvation\characters.json") as npcs_file:
@@ -302,18 +302,16 @@ def fight_input(enemy, me):
         me.fighting = False
         me.n = 21
 
-
-def user_input(Me):
+def user_input(Me, locs_list):
     tlk = ["market", "chiefhut", "alchemist"]
-    locs = {"house":locs_list["house"], "village":locs_list["village"], "lake":locs_list["lake"], "forest":locs_list["forest"], "fields":locs_list["fields"], "mine":locs_list["mine"], "market":locs_list["market"], "alchemist":locs_list["alchemist"], "chiefhut":locs_list["chiefhut"]}
     if me.loc in tlk:
         me.talking = True
         while me.talking:
             me.talk()
         repr_loc("mess", me.loc, "p")
-    elif locs.get(me.loc).counter == 1:
+    elif locs_list.get(me.loc).counter == 1:
         repr_loc("mess", me.loc, "p")
-        locs.get(me.loc).counter += 1
+        locs_list.get(me.loc).counter += 1
     elif me.loc in hostile_locs:
         ran = random.randint(1, 100)
         if ran < hostile_locs[me.loc].chance:
@@ -323,7 +321,7 @@ def user_input(Me):
     if x in keys and not me.fighting and not me.talking:
         keys[x]()
     elif x == "chooseloc":
-        me.choose_loc(locs)
+        me.choose_loc(locs_list)
     else:
         repr_mess(46, "p")
 
@@ -350,7 +348,7 @@ while me.run:
     if me.health <= 0:
         repr_mess(43, "p")
         me.run = False
-    user_input(Me)
+    user_input(Me, locs_list)
 
 if not me.run:
     repr_mess(44, "p")
