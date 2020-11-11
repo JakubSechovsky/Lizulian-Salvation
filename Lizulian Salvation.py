@@ -353,17 +353,3 @@ npcs_for_loc = {"chiefhut":[], "market":[], "alchemist":[]}
 player_inv = return_char("me", "inventory")
 
 main(Me, locs_list)
-
-# load_json()
-# username = input("\nChoose your name:\n>")
-# choose_difficulty(Me)
-# print_intro()
-
-# while me.run:
-#     if me.health <= 0:
-#         repr_mess(43, "p")
-#         me.run = False
-#     user_input(Me, locs_list)
-
-# if not me.run:
-#     repr_mess(44, "p")
