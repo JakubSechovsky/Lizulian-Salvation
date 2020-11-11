@@ -255,7 +255,7 @@ def load_json():
                 new_npc = NPC(quals["loc"])
                 npcs_for_loc[quals["loc"]] = new_npc
 
-def print_intro():
+def print_intro(username):
     for i in range(1, 10):
         if i == 1:
             print(repr_mess(i, "r").format(username))
@@ -280,7 +280,7 @@ def choose_difficulty(Me):
     else:
         choose_difficulty(Me)
 
-def fight_input(enemy, me):
+def fight_input(enemy, me, username):
     me.fighting = True
     print(repr_mess(30, "r").format(username, enemy.name))
     on_turn = 1
@@ -302,7 +302,7 @@ def fight_input(enemy, me):
         me.fighting = False
         me.n = 21
 
-def user_input(Me, locs_list):
+def user_input(Me, locs_list, username):
     tlk = ["market", "chiefhut", "alchemist"]
     if me.loc in tlk:
         me.talking = True
@@ -315,7 +315,7 @@ def user_input(Me, locs_list):
     elif me.loc in hostile_locs:
         ran = random.randint(1, 100)
         if ran < hostile_locs[me.loc].chance:
-            fight_input(hostile_locs[me.loc], me)
+            fight_input(hostile_locs[me.loc], me, username)
     x = input("> ")
     keys = {"avalocs":me.print_ava_locs, "combat":me.print_combat, "i":me.print_inv, "health":me.print_health, "heal":me.heal, "exit":me.exit, "h":me.print_hint}
     if x in keys and not me.fighting and not me.talking:
@@ -324,6 +324,19 @@ def user_input(Me, locs_list):
         me.choose_loc(locs_list)
     else:
         repr_mess(46, "p")
+
+def main(Me, locs_list):
+    load_json()
+    username = input("\nChoose your name:\n>")
+    choose_difficulty(Me)
+    print_intro(username)
+    while me.run:
+        if me.health <= 0:
+            repr_mess(43, "p")
+            me.run = False
+        user_input(Me, locs_list, username)
+    if not me.run:
+        repr_mess(44, "p")
 
 apple = Items(1, 10, 20, 20, "apple")
 pear = Items(1, 5, 10, 10, "pear")
@@ -339,16 +352,18 @@ npcs_for_loc = {"chiefhut":[], "market":[], "alchemist":[]}
 
 player_inv = return_char("me", "inventory")
 
-load_json()
-username = input("\nChoose your name:\n>")
-choose_difficulty(Me)
-print_intro()
+main(Me, locs_list)
 
-while me.run:
-    if me.health <= 0:
-        repr_mess(43, "p")
-        me.run = False
-    user_input(Me, locs_list)
+# load_json()
+# username = input("\nChoose your name:\n>")
+# choose_difficulty(Me)
+# print_intro()
 
-if not me.run:
-    repr_mess(44, "p")
+# while me.run:
+#     if me.health <= 0:
+#         repr_mess(43, "p")
+#         me.run = False
+#     user_input(Me, locs_list)
+
+# if not me.run:
+#     repr_mess(44, "p")
