@@ -19,16 +19,28 @@
             "worm fang":0,
             "snake tongue":0,
             "spider web":0,
-            "per ardua":0
+            "Shard of Alberimus":0,
+            "Zandalar's staff":0
             }
         },
     "alchemist":{
-        "loc":"alchemist"
+        "loc":"alchemist",
+        "talked_to1":false,
+        "talked_to2":false,
+        "inv":{
+            "wolf pelt":0,
+            "worm fang":0,
+            "snake tongue":0,
+            "spider web":0,
+            "Shard of Alberimus":1
+        }
     },
-    "merchant":{
-        "loc":"market"
-    },
-    "chief":{
-        "loc":"chiefhut"
+    "Alberimus":{
+        "loc":"",
+        "talked_to1":false,
+        "talked_to2":null,
+        "inv":{
+            "Zandalar's staff":1
+        }
     }
 }

@@ -10,8 +10,11 @@ class Location:
         self.opts = opts
 
 class NPC:
-    def __init__(self, loc):
+    def __init__(self, loc, inv, talked_to1, talked_to2):
         self.loc = loc
+        self.inv = inv
+        self.talked_to1 = talked_to1
+        self.talked_to2 = talked_to2
 
 class Items:
     def __init__(self, weight, sellval, buyval, healval, name):
@@ -96,8 +99,13 @@ class Me:
         y = input("Type in the exact name of the location you want to go to: \n>")
         if not y == "mess" and y in locs_list[me.loc].opts:
             if y in locs:
-                locs.get(y).counter = 1
-                me.loc = locs.get(me.loc).opts.get(y)
+                if y == "alchemist" and npcs_for_loc["alchemist"].talked_to2:
+                    me.loc = "alchemist3"
+                elif y == "alchemist" and npcs_for_loc["alchemist"].talked_to1:
+                    me.loc = "alchemist2"
+                else:
+                    locs.get(y).counter = 1
+                    me.loc = locs.get(me.loc).opts.get(y)
             else:
                 repr_mess(25, "p")
                 self.choose_loc(locs)
@@ -122,6 +130,8 @@ class Me:
     def talk(self):
         me_opts = repr_loc(me.loc, "opts", "r")
         repr_loc("mess", me.loc, "p")
+        if me.loc == "alchemtalk4":
+            npcs_for_loc["alchemist"].talked_to1 = True
         inpt = input(">")
         if me_opts.get(inpt) == "village":
             me.loc = "village"
@@ -240,9 +250,8 @@ def load_json():
             hostile_locs[atts["loc"]] = new_enm
     with open(r"C:\Users\Jakub\Desktop\Lizulian Salvation\locs.json") as locs_file:
         locations = json.load(locs_file)
-        a = ["mess"]
         for loc in locations:
-            if loc in a:
+            if loc == "mess":
                 pass
             else:
                 inf = locations[loc]
@@ -255,7 +264,7 @@ def load_json():
                 pass
             else:
                 quals = npcs[npc]
-                new_npc = NPC(quals["loc"])
+                new_npc = NPC(quals["loc"], quals["inv"], quals["talked_to1"], quals["talked_to2"])
                 npcs_for_loc[quals["loc"]] = new_npc
 
 def print_intro(username):
@@ -306,7 +315,7 @@ def fight_input(enemy, me, username):
         me.n = 21
 
 def user_input(Me, locs_list, username):
-    tlk = ["market", "chiefhut", "alchemist"]
+    tlk = ["market", "chiefhut", "alchemist", "alchemist2", "alchemist3"]
     if me.loc in tlk:
         me.talking = True
         while me.talking:
@@ -333,6 +342,8 @@ def main(Me, locs_list):
     username = input("\nChoose your name:\n>")
     choose_difficulty(Me)
     print_intro(username)
+    if player_inv.get("Shard of Alberimus") > 0:
+        npcs_for_loc["alchemist"].talked_to2 = True
     while me.run:
         if me.health <= 0:
             repr_mess(43, "p")
@@ -351,7 +362,7 @@ me = Me(return_char("me", "max_health"), return_char("me", "health"), return_cha
 
 hostile_locs = {"lake":[], "forest":[], "fields":[], "mine":[]}
 locs_list = {"house":[], "village":[], "lake":[], "forest":[], "fields":[], "mine":[], "market":[], "alchemist":[], "chiefhut":[]}
-npcs_for_loc = {"chiefhut":[], "market":[], "alchemist":[]}
+npcs_for_loc = {"market":[], "alchemist":[]}
 
 player_inv = return_char("me", "inventory")
 
