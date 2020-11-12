@@ -92,19 +92,6 @@ class Me:
     def exit(self):
         me.run = False
 
-    def talk(self):
-        me_opts = repr_loc(me.loc, "opts", "r")
-        repr_loc("mess", me.loc, "p")
-        inpt = input(">")
-        if me_opts.get(inpt) == "village":
-            me.loc = "village"
-            me.talking = False
-        elif inpt in me_opts:
-            me.loc = me_opts.get(inpt)
-        else:
-            repr_mess(25, "p")
-            self.talk()
-
     def choose_loc(self, locs):
         y = input("Type in the exact name of the location you want to go to: \n>")
         if not y == "mess" and y in locs_list[me.loc].opts:
@@ -131,6 +118,22 @@ class Me:
         else:
             repr_mess(42, "p")
             me.take()
+
+    def talk(self):
+        me_opts = repr_loc(me.loc, "opts", "r")
+        repr_loc("mess", me.loc, "p")
+        inpt = input(">")
+        if me_opts.get(inpt) == "village":
+            me.loc = "village"
+            me.talking = False
+        elif inpt in me_opts:
+            me.loc = me_opts.get(inpt)
+        else:
+            repr_mess(25, "p")
+            self.talk()
+
+    def trade(self):
+        pass
 
 class Enemy:
     def __init__(self, loc, loot, name, chance, harm):
