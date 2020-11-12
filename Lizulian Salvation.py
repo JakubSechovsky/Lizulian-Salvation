@@ -99,7 +99,7 @@ class Me:
         if me_opts.get(inpt) == "village":
             me.loc = "village"
             me.talking = False
-        elif not me_opts == [] and inpt in me_opts:
+        elif inpt in me_opts:
             me.loc = me_opts.get(inpt)
         else:
             repr_mess(25, "p")
