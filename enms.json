@@ -28,7 +28,7 @@
         "loot":"spider web",
         "name":"Spider",
         "fighting":false,
-        "chance":50,
+        "chance":45,
         "harm":10
     }
 }

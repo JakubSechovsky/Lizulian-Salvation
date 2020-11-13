@@ -37,7 +37,7 @@ class Items:
             repr_mess(16, "p")
 
 class Me:
-    def __init__(self, max_health, health, level, loc, diff, run, fighting, n, min_take, max_take, talking):
+    def __init__(self, max_health, health, level, loc, diff, run, fighting, n, min_take, max_take, talking, last_loc):
         self.health = health
         self.loc = loc
         self.run = run
@@ -48,6 +48,7 @@ class Me:
         self.max_take = max_take
         self.min_take = min_take
         self.talking = talking
+        self.last_loc = last_loc
 
     def print_inv(self):
         inventory = []
@@ -100,10 +101,13 @@ class Me:
         if not y == "mess" and y in locs_list[me.loc].opts:
             if y in locs:
                 if y == "alchemist" and npcs_for_loc["alchemist"].talked_to2:
+                    me.last_loc = me.loc
                     me.loc = "alchemist3"
                 elif y == "alchemist" and npcs_for_loc["alchemist"].talked_to1:
+                    me.last_loc = me.loc
                     me.loc = "alchemist2"
                 else:
+                    me.last_loc = me.loc
                     locs.get(y).counter = 1
                     me.loc = locs.get(me.loc).opts.get(y)
             else:
@@ -134,7 +138,11 @@ class Me:
             npcs_for_loc["alchemist"].talked_to1 = True
         inpt = input(">")
         if me_opts.get(inpt) == "village":
-            me.loc = "village"
+            me.loc = me.last_loc
+            me.talking = False
+        elif me_opts.get(inpt) == "trade":
+            me.trade(npcs_for_loc["alchemist"])
+            me.loc = me.last_loc
             me.talking = False
         elif inpt in me_opts:
             me.loc = me_opts.get(inpt)
@@ -142,8 +150,37 @@ class Me:
             repr_mess(25, "p")
             self.talk()
 
-    def trade(self):
-        pass
+    def trade(self, npc):               ###predelat jako funkci v classe NPC ###
+        # if me.loc == "alchemist2":
+        #     if npc.inv["wolf pelt"] == 4 and npc.inv["worm fang"] == 4 and npc.inv["snake tongue"] == 6 and npc.inv["spider web"] == 8:
+        #         player_inv["Shard of Albertimus"] += npc.inv["Shard of Albertimus"]
+        #         npc.inv["Shard of Albertimus"] -= npc.inv["Shard of Albertimus"]
+        #         print("'Thank you for your help, here you go - the Shard, as promised.' You now have the Shard, and with it, the ability to travel to another dimension.")
+        #     else:
+        #         if player_inv["wolf pelt"] > 0 and not npc.inv["wolf pelt"] == 4:
+        #             if player_inv["wolf pelt"] <= 4:
+        #                 x = player_inv["wolf pelt"]
+        #                 npc.inv["wolf pelt"] += x
+        #                 player_inv["wolf pelt"] -= x
+        #                 print("You have given away {} wolf pelt(s).".format(x))
+        #             else:
+        #                 npc.inv["wolf pelt"] += 4
+        #                 player_inv["wolf pelt"] -= 4
+        #                 print("You have given away 4 wolf pelts.")
+        #             if npc.inv["wolf pelt"] > 4: npc.inv["wolf pelt"] = 4
+        #         elif player_inv["worm fang"] > 0 and not npc.inv["wolf pelt"] == 4:
+        #             if player_inv["worm fang"] <= 4:
+        #                 x = player_inv["worm fang"]
+        #                 npc.inv["worm fang"] += x
+        #                 player_inv["worm fang"] -= x
+        #                 print("You have given away {} worm fang(s).".format(x))
+        #             else:
+        #                 npc.inv["worm fang"] += 4
+        #                 player_inv["worm fang"] -= 4
+        #                 print("You have given away 4 worm fangs.")
+        #             if npc.inv["worm fang"] > 4: npc.inv["worm fang"] = 4
+        #         else:
+        #             print("You do not currently have any of the requiered items, come back after you get them.")
 
 class Enemy:
     def __init__(self, loc, loot, name, chance, harm):
@@ -327,7 +364,7 @@ def user_input(Me, locs_list, username):
     elif me.loc in hostile_locs:
         ran = random.randint(1, 100)
         if ran < hostile_locs[me.loc].chance:
-            fight_input(hostile_locs[me.loc], me, username)
+                fight_input(hostile_locs[me.loc], me, username)
     x = input("> ")
     keys = {"avalocs":me.print_ava_locs, "combat":me.print_combat, "i":me.print_inv, "health":me.print_health, "heal":me.heal, "exit":me.exit, "h":me.print_hint}
     if x in keys and not me.fighting and not me.talking:
@@ -354,11 +391,8 @@ def main(Me, locs_list):
 
 apple = Items(1, 10, 20, 20, "apple")
 pear = Items(1, 5, 10, 10, "pear")
-goldcoin = Items(0, 1, 1, None, "gold coin")
-wolfpelt = Items(5, 25, 50, None, "wolf pelt")
-wormfang = Items(5, 25, 50, None, "worm fang")
 
-me = Me(return_char("me", "max_health"), return_char("me", "health"), return_char("me", "level"), return_char("me", "loc"), return_char("me", "diff"), return_char("me", "run"), return_char("me", "fighting"), return_char("me", "n"), return_char("me", "min_take"), return_char("me", "max_take"), return_char("me", "talking"))
+me = Me(return_char("me", "max_health"), return_char("me", "health"), return_char("me", "level"), return_char("me", "loc"), return_char("me", "diff"), return_char("me", "run"), return_char("me", "fighting"), return_char("me", "n"), return_char("me", "min_take"), return_char("me", "max_take"), return_char("me", "talking"), return_char("me", "last_loc"))
 
 hostile_locs = {"lake":[], "forest":[], "fields":[], "mine":[]}
 locs_list = {"house":[], "village":[], "lake":[], "forest":[], "fields":[], "mine":[], "market":[], "alchemist":[], "chiefhut":[]}

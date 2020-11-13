@@ -11,6 +11,7 @@
         "n":21,
         "min_take":1,
         "max_take":3,
+        "last_loc":"house",
         "inventory":{
             "gold coin":0,
             "apple":0,

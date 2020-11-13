@@ -164,14 +164,9 @@
         "place":"alchemist",
         "opts":{
             "1":"alchemtalk2",
-            "2":"alchem2talk",
+            "2":"trade",
             "3":"village"
         }
-    },
-    "alchem2talk":{
-        "counter":null,
-        "place":null,
-        "opts":null
     },
     "alchemist3":{
         "counter":2,
