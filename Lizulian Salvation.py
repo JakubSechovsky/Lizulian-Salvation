@@ -16,18 +16,48 @@ class NPC:
         self.talked_to1 = talked_to1
         self.talked_to2 = talked_to2
 
+    def trade(self):
+        if me.loc == "alchemist2":
+            if self.inv["wolf pelt"] == items_list["wolf pelt"].alchem_limit and self.inv["worm fang"] == items_list["worm fang"].alchem_limit and self.inv["snake tongue"] == items_list["snake tongue"].alchem_limit and self.inv["spider web"] == items_list["spider web"].alchem_limit:
+                me.inv["Shard of Alberimus"] += self.inv["Shard of Alberimus"]
+                self.inv["Shard of Alberimus"] -= self.inv["Shard of Alberimus"]
+                print("'Thank you for your help, here you go - the Shard, as promised.' You now have the Shard, and with it, the ability to travel to another dimension.\nTip: Enter 'use' to do so.")
+                self.talked_to2 = True
+            else:
+                for item in self.inv:
+                    if item == "Shard of Alberimus":
+                        pass
+                    elif me.inv[item] > 0 and not self.inv[item] == items_list[item].alchem_limit:
+                        if me.inv[item] <= items_list[item].alchem_limit:
+                            x = me.inv[item] - self.inv[item]
+                        else:
+                            x = items_list[item].alchem_limit - self.inv[item]
+                        self.inv[item] += x
+                        me.inv[item] -= x
+                        if not x == 0:
+                            print("You have given the alchemist {} {}(s).".format(x, items_list[item].name))
+                if self.inv["wolf pelt"] == items_list["wolf pelt"].alchem_limit and self.inv["worm fang"] == items_list["worm fang"].alchem_limit and self.inv["snake tongue"] == items_list["snake tongue"].alchem_limit and self.inv["spider web"] == items_list["spider web"].alchem_limit:
+                    me.inv["Shard of Alberimus"] += self.inv["Shard of Alberimus"]
+                    self.inv["Shard of Alberimus"] -= self.inv["Shard of Alberimus"]
+                    print("'Thank you for your help, here you go - the Shard, as promised.' You now have the Shard, and with it, the ability to travel to another dimension. Enter 'use' to do so.")
+                    self.talked_to2 = True
+        elif me.loc == "market":
+            pass
+        elif me.loc == "shrines of lizul":
+            pass
+
 class Items:
-    def __init__(self, weight, sellval, buyval, healval, name):
-        self.weight = weight
+    def __init__(self, sellval, healval, name, alchem_limit):
         self.sellval = sellval
-        self.buyval = buyval
+        self.buyval = 2*sellval
         self.healval = healval
         self.name = name
+        self.alchem_limit = alchem_limit
 
     def heal_user(self, healval, name):
-        if player_inv.get(self.name) > 0:
+        if me.inv.get(self.name) > 0:
             me.health += self.healval
-            player_inv[self.name] -= 1
+            me.inv[self.name] -= 1
             if me.health > me.max_health:
                 me.health = me.max_health
             else:
@@ -37,7 +67,7 @@ class Items:
             repr_mess(16, "p")
 
 class Me:
-    def __init__(self, max_health, health, level, loc, diff, run, fighting, n, min_take, max_take, talking, last_loc):
+    def __init__(self, max_health, health, level, loc, diff, run, fighting, n, min_take, max_take, talking, last_loc, inv):
         self.health = health
         self.loc = loc
         self.run = run
@@ -49,17 +79,18 @@ class Me:
         self.min_take = min_take
         self.talking = talking
         self.last_loc = last_loc
+        self.inv = inv
 
     def print_inv(self):
         inventory = []
-        for g in player_inv:
-            if player_inv.get(g):
+        for g in me.inv:
+            if me.inv.get(g):
                 inventory.append(g)
             else:
                 pass
         repr_mess(19, "p")
         for g in inventory:
-            print(repr_mess(18, "r").format(player_inv.get(g), g))
+            print(repr_mess(18, "r").format(me.inv.get(g), g))
         inventory = []
 
     def print_health(self):
@@ -71,13 +102,13 @@ class Me:
     def heal(self):
         if me.health < me.max_health:
             y = input("Type the exact name of the item you want to use for healing:\n>")
-            if y in player_inv:
+            if y in me.inv:
                 if y == "apple":
-                    apple.heal_user(apple.healval, apple.name)
+                    items_list["apple"].heal_user(items_list["apple"].healval, items_list["apple"].name)
                 elif y == "pear":
-                    pear.heal_user(pear.healval, apple.name)
+                    items_list["pear"].heal_user(items_list["pear"].healval, items_list["pear"].name)
             else:
-                print(repr_mess(23, "r").format(apple.name, pear.name))
+                print(repr_mess(23, "r").format(items_list["apple"].name, items_list["pear"].name))
         else:
             repr_mess(24, "p")
 
@@ -118,7 +149,7 @@ class Me:
             for i in locs_list[me.loc].opts:
                 print(i)
 
-    def rem_st(self, x, n):
+    def rem_st(self, x):
         me.n -= x
         print(repr_mess(29, "r").format(x))
 
@@ -126,7 +157,7 @@ class Me:
         y = input("How many stones do you want to remove?\n>")
         st = {"1":me.rem_st, "2":me.rem_st, "3":me.rem_st}
         if y in st:
-            st[y](int(y), me.n)
+            st[y](int(y))
         else:
             repr_mess(42, "p")
             me.take()
@@ -141,7 +172,12 @@ class Me:
             me.loc = me.last_loc
             me.talking = False
         elif me_opts.get(inpt) == "trade":
-            me.trade(npcs_for_loc["alchemist"])
+            if me.loc == "alchemist2":
+                npcs_for_loc["alchemist"].trade()
+            elif me.loc == "shrines of lizul":
+                npcs_for_loc["shrines of lizul"].trade()
+            else:
+                npcs_for_loc["market"].trade()
             me.loc = me.last_loc
             me.talking = False
         elif inpt in me_opts:
@@ -150,19 +186,19 @@ class Me:
             repr_mess(25, "p")
             self.talk()
 
-    def trade(self, npc):               ###predelat jako funkci v classe NPC ###
+    # def trade(self, npc):               ###predelat jako funkci v classe NPC ###
         # if me.loc == "alchemist2":
-        #     if npc.inv["wolf pelt"] == 4 and npc.inv["worm fang"] == 4 and npc.inv["snake tongue"] == 6 and npc.inv["spider web"] == 8:
-        #         player_inv["Shard of Albertimus"] += npc.inv["Shard of Albertimus"]
-        #         npc.inv["Shard of Albertimus"] -= npc.inv["Shard of Albertimus"]
-        #         print("'Thank you for your help, here you go - the Shard, as promised.' You now have the Shard, and with it, the ability to travel to another dimension.")
-        #     else:
-        #         if player_inv["wolf pelt"] > 0 and not npc.inv["wolf pelt"] == 4:
-        #             if player_inv["wolf pelt"] <= 4:
-        #                 x = player_inv["wolf pelt"]
-        #                 npc.inv["wolf pelt"] += x
-        #                 player_inv["wolf pelt"] -= x
-        #                 print("You have given away {} wolf pelt(s).".format(x))
+            # if npc.inv["wolf pelt"] == 4 and npc.inv["worm fang"] == 4 and npc.inv["snake tongue"] == 6 and npc.inv["spider web"] == 8:
+            #     player_inv["Shard of Albertimus"] += npc.inv["Shard of Albertimus"]
+            #     npc.inv["Shard of Albertimus"] -= npc.inv["Shard of Albertimus"]
+            #     print("'Thank you for your help, here you go - the Shard, as promised.' You now have the Shard, and with it, the ability to travel to another dimension.")
+            # else:
+            #     if player_inv["wolf pelt"] > 0 and not npc.inv["wolf pelt"] == 4:
+            #         if player_inv["wolf pelt"] <= 4:
+            #             x = player_inv["wolf pelt"]
+            #             npc.inv["wolf pelt"] += x
+            #             player_inv["wolf pelt"] -= x
+            #             print("You have given away {} wolf pelt(s).".format(x))
         #             else:
         #                 npc.inv["wolf pelt"] += 4
         #                 player_inv["wolf pelt"] -= 4
@@ -234,7 +270,7 @@ class Enemy:
         print(repr_mess(31, "r").format(trophy[0], trophy[1]))
         x = input("What do you want to do with the loot?\n1. Accept\n2.Reject\n>")
         if x == "1":
-            player_inv[self.loot] += ran
+            me.inv[self.loot] += ran
             print(repr_mess(32, "r").format(trophy[0], trophy[1]))
         elif x == "2":
             print(repr_mess(33, "r").format(trophy[0], trophy[1]))
@@ -250,7 +286,7 @@ class Enemy:
             x = self.randomAI()
         elif me.diff == "2":
             x = self.simulationAI()
-        elif me.diff == "3" and not player_inv.get("per ardua") > 0:
+        elif me.diff == "3" and not me.inv.get("per ardua") > 0:
             x = self.simulationAI()
         else:
             x = self.perfectAI()
@@ -299,10 +335,14 @@ def load_json():
         for npc in npcs:
             if npc == "me":
                 pass
-            else:
+            elif npc == "alchemist" or npc == "Alberimus":
                 quals = npcs[npc]
                 new_npc = NPC(quals["loc"], quals["inv"], quals["talked_to1"], quals["talked_to2"])
                 npcs_for_loc[quals["loc"]] = new_npc
+            else:
+                i = npcs[npc]
+                new_item = Items(i["sellval"], i["healval"], i["name"], i["alchem_limit"])
+                items_list[i["name"]] = new_item
 
 def print_intro(username):
     for i in range(1, 10):
@@ -314,13 +354,13 @@ def print_intro(username):
 def choose_difficulty(Me):
     me.diff = input("\n Choose your difficulty by typing in a number (1 - 3):\n1. Easy\n2. Medium\n3. Hard\n>")
     if me.diff == "1":
-        player_inv["gold coin"] += 10
-        player_inv["pear"] += 2
+        me.inv["gold coin"] += 10
+        me.inv["pear"] += 2
         repr_mess(39, "p")
         me.run = True
     elif me.diff == "2":
-        player_inv["gold coin"] += 5
-        player_inv["pear"] += 1
+        me.inv["gold coin"] += 5
+        me.inv["pear"] += 1
         repr_mess(40, "p")
         me.run = True
     elif me.diff == "3":
@@ -379,8 +419,6 @@ def main(Me, locs_list):
     username = input("\nChoose your name:\n>")
     choose_difficulty(Me)
     print_intro(username)
-    if player_inv.get("Shard of Alberimus") > 0:
-        npcs_for_loc["alchemist"].talked_to2 = True
     while me.run:
         if me.health <= 0:
             repr_mess(43, "p")
@@ -389,15 +427,11 @@ def main(Me, locs_list):
     if not me.run:
         repr_mess(44, "p")
 
-apple = Items(1, 10, 20, 20, "apple")
-pear = Items(1, 5, 10, 10, "pear")
-
-me = Me(return_char("me", "max_health"), return_char("me", "health"), return_char("me", "level"), return_char("me", "loc"), return_char("me", "diff"), return_char("me", "run"), return_char("me", "fighting"), return_char("me", "n"), return_char("me", "min_take"), return_char("me", "max_take"), return_char("me", "talking"), return_char("me", "last_loc"))
+me = Me(return_char("me", "max_health"), return_char("me", "health"), return_char("me", "level"), return_char("me", "loc"), return_char("me", "diff"), return_char("me", "run"), return_char("me", "fighting"), return_char("me", "n"), return_char("me", "min_take"), return_char("me", "max_take"), return_char("me", "talking"), return_char("me", "last_loc"), return_char("me", "inventory"))
 
 hostile_locs = {"lake":[], "forest":[], "fields":[], "mine":[]}
 locs_list = {"house":[], "village":[], "lake":[], "forest":[], "fields":[], "mine":[], "market":[], "alchemist":[], "chiefhut":[]}
+items_list = {"apple":[], "pear":[], "wolf pelt":[], "worm fang":[], "snake tongue":[], "spider web":[], "Shard of Alberimus":[], "Zandalar's staff":[]}
 npcs_for_loc = {"market":[], "alchemist":[]}
-
-player_inv = return_char("me", "inventory")
 
 main(Me, locs_list)
