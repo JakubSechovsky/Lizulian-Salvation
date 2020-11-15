@@ -13,11 +13,13 @@
         "alchemtalk3":"'You stand no chance against him, unless you wield Zandalar's staff. It is said that his brother Alberimus stole the Staff when he discovered Zandalar's plans\nto rule the world. Alberimus was then imprisoned by his own brother and the location of the Staff remains a mystery.'\nEnter 1 to ask what happened next",
         "alchemtalk4":"Before Alberimus got imprisoned, he left behind a shard. That shard should teleport anyone - and anything - to Alberimus. In some wierd turn of events\nI managed to obtain said Shard. I will give it to you, but you have bring me 4 wolf pelts and worm fangs, 6 snake tongues and 8 spider webs.\nYou have no idea how hard to get these items are nowadays and I need them so I can help local folk.'\nEnter 1 to ask her to repeat what she just said because you got distracted by a fly\nEnter 2 to assure her you will bring her the items and return to the village",
         "alchemist2":"'So, have you brought the items I need? Guess we're about to see...'\nEnter 1 to ask the alchemist about the local legend\nEnter 2 to offer her obtained loot\nEnter 3 to return to the village",
-        "alchemist3":"'Thank you for the ingredients I needed. Have you used the Shard yet by any chance? You can do so by entering 'use' outside of combat or while not talking nor trading.'\nEnter 1 to return to the village",
+        "alchemist3":"'Thank you for the ingredients I needed. Have you used the Shard yet by any chance?\nYou can do so by entering 'use' outside of combat or while not talking nor trading.'\nEnter 1 to return to the village",
         "chiefhut":"As soon as you open the majestic doors that lead into the chief's hut, you are greeted by the chief's friendly voice:'Hello fellow townsman.\nYou seem like a foreigner, strange... we haven't had one since... the accident...'\nEnter 1 to let him continue speaking [talk]\nEnter 2 to return to the village",
         "talkchief":"'I suppose I could tell you something useful.' he continues. 'If you venture outside the village - I would not advise you to - you will face danger,\nthe forest is full of wolves, the fields are being ravaged by the wheatworms, our lake is inhabited by venomous snakes and nearby mine is crawling with spiders.'\nEnter 1 to let him continue speaking\nEnter 2 to return to the village",
         "talkchief2":"'If you didn't know, in this land we don't fight physically. Instead, we play a game known as 'Nim': the players take turns in removing 1 - 3 stones from\none pile of 21 stones. The player, who first gets the amount of stones to 0, wins. If you win, your opponent's soul should offer you some goods.\nHowever if you lose, you will only get hurt. To read this again, while not in combat, not trading nor talking, just enter 'combat'.\nEnter 1 to ask about local legends\nEnter 2 to ask the chief to repeat what he just said because you weren't paying attention\nEnter 3 to return to the village",
-        "talkchief3":"'Ah yes, local legends, of course, I knew you would be interested. There is said to be an ancient tool of immense power,\nit is also said to be able to add one stone mid-fight, not replacing the player's turn, meaning that with enough skill and this item,\none cannot possibly loose a fight. Our alchemist might know more.'\nEnter 1 to ask the chief to repeat what he just said because you fell asleep\nEnter 2 to return to the village"
+        "talkchief3":"'Ah yes, local legends, of course, I knew you would be interested. There is said to be an ancient tool of immense power,\nit is also said to be able to add one stone mid-fight, not replacing the player's turn, meaning that with enough skill and this item,\none cannot possibly loose a fight. Our alchemist might know more.'\nEnter 1 to ask the chief to repeat what he just said because you fell asleep\nEnter 2 to return to the village",
+        "shrines":"Welcome traveler",
+        "talematros":"city ruins"
     },
     "house":{
         "counter":1,
@@ -173,6 +175,21 @@
         "place":"alchemist",
         "opts":{
             "1":"village"
+        }
+    },
+    "shrines":{
+        "counter":2,
+        "place":"shrines",
+        "opts":{
+            "village":"village",
+            "talematros":"talematros"
+        }
+    },
+    "talematros":{
+        "counter":2,
+        "place":"talematros",
+        "opts":{
+            "shrines":"shrines"
         }
     }
 }

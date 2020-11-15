@@ -46,49 +46,49 @@
     },
     "apple":{
         "sellval":0,
-        "healval":0,
+        "healval":20,
         "name":"apple",
         "alchem_limit":null
     },
     "pear":{
         "sellval":0,
-        "healval":0,
+        "healval":10,
         "name":"pear",
         "alchem_limit":null
     },
     "wolf pelt":{
         "sellval":0,
-        "healval":0,
+        "healval":null,
         "name":"wolf pelt",
         "alchem_limit":4
     },
     "worm fang":{
         "sellval":0,
-        "healval":0,
+        "healval":null,
         "name":"worm fang",
         "alchem_limit":4
     },
     "snake tongue":{
         "sellval":0,
-        "healval":0,
+        "healval":null,
         "name":"snake tongue",
         "alchem_limit":6
     },
     "spider web":{
         "sellval":0,
-        "healval":0,
+        "healval":null,
         "name":"spider web",
         "alchem_limit":8
     },
     "Shard of Alberimus":{
         "sellval":0,
-        "healval":0,
+        "healval":null,
         "name":"Shard of Alberimus",
         "alchem_limit":null
     },
     "Zandalar's staff":{
         "sellval":0,
-        "healval":0,
+        "healval":null,
         "name":"Zandalar's staff",
         "alchem_limit":null
     }

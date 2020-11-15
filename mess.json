@@ -44,5 +44,7 @@
     "43":"Unfortunately, you have died. Please try again.",
     "44":"\nThe game has ended.",
     "45":"The {} has taken {} stone(s).",
-    "46":"Invalid command."
+    "46":"Invalid command.",
+    "47":"You have given the alchemist {} {}(s).",
+    "48":"'Thank you for your help, here you go - the Shard, as promised.' You now have the Shard, and with it, the ability to travel to another dimension.\nEnter 'use' to do so."
 }
