@@ -405,8 +405,8 @@ def main(Me, locs_list):
 me = Me(return_char("me", "max_health"), return_char("me", "health"), return_char("me", "level"), return_char("me", "loc"), return_char("me", "diff"), return_char("me", "run"), return_char("me", "fighting"), return_char("me", "n"), return_char("me", "min_take"), return_char("me", "max_take"), return_char("me", "talking"), return_char("me", "last_loc"), return_char("me", "inventory"), return_char("me", "way"))
 
 hostile_locs = {"lake":[], "forest":[], "fields":[], "mine":[]}
-locs_list = {"house":[], "village":[], "lake":[], "forest":[], "fields":[], "mine":[], "market":[], "alchemist":[], "chiefhut":[]}
-items_list = {"apple":[], "pear":[], "wolf pelt":[], "worm fang":[], "snake tongue":[], "spider web":[], "Shard of Alberimus":[], "Zandalar's staff":[]}
 npcs_for_loc = {"market":[], "alchemist":[]}
+locs_list = {}
+items_list = {}
 
 main(Me, locs_list)

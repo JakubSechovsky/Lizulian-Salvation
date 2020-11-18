@@ -3,7 +3,6 @@
         "loc":"forest",
         "loot":"wolf pelt",
         "name":"Wolf",
-        "fighting":false,
         "chance":30,
         "harm":20
     },
@@ -11,7 +10,6 @@
         "loc":"fields",
         "loot":"worm fang",
         "name":"Wheatworm",
-        "fighting":false,
         "chance":35,
         "harm":10
     },
@@ -19,7 +17,6 @@
         "loc":"lake",
         "loot":"snake tongue",
         "name":"Snake",
-        "fighting":false,
         "chance":30,
         "harm":15
     },
@@ -27,8 +24,28 @@
         "loc":"mine",
         "loot":"spider web",
         "name":"Spider",
-        "fighting":false,
         "chance":45,
         "harm":10
+    },
+    "void seeker":{
+        "loc":"park",
+        "loot":"void talon",
+        "name":"Void seeker",
+        "chance":50,
+        "harm":30
+    },
+    "shadow templar":{
+        "loc":"center",
+        "loot":"shadow blade",
+        "name":"Shadow templar",
+        "chance":40,
+        "harm":45
+    },
+    "abyssal watcher":{
+        "loc":"theater",
+        "loot":"abyssal scope",
+        "name":"Abyssal watcher",
+        "chance":45,
+        "harm":35
     }
 }
