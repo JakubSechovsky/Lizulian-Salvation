@@ -40,11 +40,12 @@
     "39":"\nYou chose Easy difficulty so you will start with a significant amount of gold. Enemy actions are randomized.\n",
     "40":"\nYou chose Medium difficulty so you will start with some extra gold. Enemies will act less random\n",
     "41":"\nYou chose Hard difficulty so you will start with absolutely nothing and enemies are unbeatable withou certain items.\n",
-    "42":"The maximum amount of stones one can remove is 3, the minimum is 1.",
+    "42":"The maximum amount of stones you can remove is {}, the minimum is {}.",
     "43":"Unfortunately, you have died. Please try again.",
     "44":"\nThe game has ended.",
     "45":"The {} has taken {} stone(s).",
     "46":"Invalid command.",
     "47":"You have given the alchemist {} {}(s).",
-    "48":"'Thank you for your help, here you go - the Shard, as promised.' You now have the Shard, and with it, the ability to travel to another dimension.\nEnter 'use' to do so."
+    "48":"'Thank you for your help, here you go - the Shard, as promised.' You now have the Shard, and with it, the ability to travel to another dimension.\nEnter 'use' to do so.",
+    "49":"You are in this location already."
 }

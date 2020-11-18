@@ -12,10 +12,11 @@
         "min_take":1,
         "max_take":3,
         "last_loc":"house",
+        "way":"",
         "inventory":{
             "gold coin":0,
             "apple":0,
-            "pear":1,
+            "pear":0,
             "wolf pelt":0,
             "worm fang":0,
             "snake tongue":0,
@@ -36,6 +37,19 @@
             "Shard of Alberimus":1
         }
     },
+    "merchant":{
+        "loc":"market",
+        "talked_to1":false,
+        "talked_to2":false,
+        "inv":{
+            "wolf pelt":0,
+            "worm fang":0,
+            "snake tongue":0,
+            "spider web":0,
+            "pear":0,
+            "apple":0
+        }
+    },
     "Alberimus":{
         "loc":"shrines of lizul",
         "talked_to1":false,
@@ -45,37 +59,37 @@
         }
     },
     "apple":{
-        "sellval":0,
+        "sellval":10,
         "healval":20,
         "name":"apple",
         "alchem_limit":null
     },
     "pear":{
-        "sellval":0,
+        "sellval":5,
         "healval":10,
         "name":"pear",
         "alchem_limit":null
     },
     "wolf pelt":{
-        "sellval":0,
+        "sellval":11,
         "healval":null,
         "name":"wolf pelt",
         "alchem_limit":4
     },
     "worm fang":{
-        "sellval":0,
+        "sellval":13,
         "healval":null,
         "name":"worm fang",
         "alchem_limit":4
     },
     "snake tongue":{
-        "sellval":0,
+        "sellval":7,
         "healval":null,
         "name":"snake tongue",
         "alchem_limit":6
     },
     "spider web":{
-        "sellval":0,
+        "sellval":5,
         "healval":null,
         "name":"spider web",
         "alchem_limit":8

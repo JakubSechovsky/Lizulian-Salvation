@@ -3,7 +3,7 @@
         "house":"You find yourself in your family house in Khayda. It is a clear day, no bad weather in sight.",
         "village":"You find yourself near the chief's hut in the village of Khayda. There is a market and an alchemist's hut nearby.",
         "lake":"You find yourself in the proximity of a clear lake. Now it is ... clear to you why it is called that way.",
-        "forest":"You find yourself in a nearby forest. The sheer size of the trees make it hard for you to distinguish anything distant.",
+        "forest":"You find yourself in a nearby forest. The sheer size of the trees and thick shrubbery make it hard for you to distinguish anything distant.",
         "fields":"You find yourself in the wheat fields near Khayda. There are several huts and farmers are harvesting crops here.",
         "mine":"You crawl into an abandoned mine. You can see old equipment left behind, as if miners left in haste.",
         "market":"You stand if front of the best-looking merchant in the market. 'How can I be of service?' He asks.\nEnter 1 to trade [trade]\nEnter 2 to return to the village",
@@ -119,7 +119,8 @@
         "counter":2,
         "place":"market",
         "opts":{
-            "village":"village"
+            "1":"trade",
+            "2":"village"
         }
     },
     "alchemist":{
