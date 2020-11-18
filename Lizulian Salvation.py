@@ -31,11 +31,11 @@ class NPC:
                 self.inv["Shard of Alberimus"] -= self.inv["Shard of Alberimus"]
                 repr_mess(48, "p")
                 self.talked_to2 = True
-                load_void()
+                connect_locs()
         elif me.loc == "market":
             buy_or_sell()
             me.buy_sell()
-        elif me.loc == "shrines":
+        elif me.loc == "prison":
             pass
 
 class Items:
@@ -147,7 +147,7 @@ class Me:
             self.talking = False
         elif me_opts.get(inpt) == "trade":
             if self.loc == "alchemist2": npcs_for_loc["alchemist"].trade()
-            elif self.loc == "shrines of lizul": npcs_for_loc[self.loc].trade()
+            elif self.loc == "prison": npcs_for_loc[self.loc].trade()
             else: npcs_for_loc["market"].trade()
             self.loc = self.last_loc
             self.talking = False
@@ -322,12 +322,8 @@ def load_json():
                 new_item = Items(i["sellval"], i["healval"], i["name"], i["alchem_limit"])
                 items_list[i["name"]] = new_item
 
-def load_void():
-    void_locs = ["shrines", "talematros"]
-    for loc in locs_list:
-        if loc in void_locs: pass
-        else:
-            for i in range(0,6): locs_list[loc].opts[void_locs[i]] = void_locs[i]
+def connect_locs():
+    for loc in locs_list: locs_list.get(loc).opts["prison"] = "prison"
 
 def print_intro(username):
     for i in range(1, 10):
@@ -395,6 +391,7 @@ def user_input(Me, locs_list, username):
 
 def main(Me, locs_list):
     load_json()
+    connect_locs()
     username = input("\nChoose your name:\n>")
     choose_difficulty(Me)
     print_intro(username)
@@ -408,7 +405,7 @@ def main(Me, locs_list):
 me = Me(return_char("me", "max_health"), return_char("me", "health"), return_char("me", "level"), return_char("me", "loc"), return_char("me", "diff"), return_char("me", "run"), return_char("me", "fighting"), return_char("me", "n"), return_char("me", "min_take"), return_char("me", "max_take"), return_char("me", "talking"), return_char("me", "last_loc"), return_char("me", "inventory"), return_char("me", "way"))
 
 hostile_locs = {"lake":[], "forest":[], "fields":[], "mine":[]}
-locs_list = {"house":[], "village":[], "lake":[], "forest":[], "fields":[], "mine":[], "market":[], "alchemist":[], "chiefhut":[], "shrines":[], "talematros":[]}
+locs_list = {"house":[], "village":[], "lake":[], "forest":[], "fields":[], "mine":[], "market":[], "alchemist":[], "chiefhut":[]}
 items_list = {"apple":[], "pear":[], "wolf pelt":[], "worm fang":[], "snake tongue":[], "spider web":[], "Shard of Alberimus":[], "Zandalar's staff":[]}
 npcs_for_loc = {"market":[], "alchemist":[]}
 
