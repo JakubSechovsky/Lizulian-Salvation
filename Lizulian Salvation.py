@@ -85,9 +85,7 @@ class Me:
     def heal(self):
         if self.health < self.max_health:
             y = input("Type the exact name of the item you want to use for healing:\n>")
-            if y in self.inv:
-                if y == "apple": items_list["apple"].heal_user()
-                elif y == "pear": items_list["pear"].heal_user()
+            if y in self.inv and y in heal_list: heal_list[y].heal_user()
             else: print(repr_mess(23, "r").format(items_list["apple"].name, items_list["pear"].name))
         else: repr_mess(24, "p")
 
@@ -321,6 +319,8 @@ def load_json():
                 i = npcs[npc]
                 new_item = Items(i["sellval"], i["healval"], i["name"], i["alchem_limit"])
                 items_list[i["name"]] = new_item
+                if npc == "apple" or npc == "pear":
+                    heal_list[i["name"]] = new_item
 
 def connect_locs():
     for loc in locs_list: locs_list.get(loc).opts["prison"] = "prison"
@@ -404,9 +404,10 @@ def main(Me, locs_list):
 
 me = Me(return_char("me", "max_health"), return_char("me", "health"), return_char("me", "level"), return_char("me", "loc"), return_char("me", "diff"), return_char("me", "run"), return_char("me", "fighting"), return_char("me", "n"), return_char("me", "min_take"), return_char("me", "max_take"), return_char("me", "talking"), return_char("me", "last_loc"), return_char("me", "inventory"), return_char("me", "way"))
 
-hostile_locs = {"lake":[], "forest":[], "fields":[], "mine":[]}
-npcs_for_loc = {"market":[], "alchemist":[]}
+hostile_locs = {}
+npcs_for_loc = {}
 locs_list = {}
 items_list = {}
+heal_list = {}
 
 main(Me, locs_list)
