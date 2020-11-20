@@ -55,7 +55,7 @@ class Items:
         else: repr_mess(16, "p")
 
 class Me:
-    def __init__(self, max_health, health, level, loc, diff, run, fighting, n, min_take, max_take, talking, last_loc, inv, way):
+    def __init__(self, max_health, health, loc, diff, run, fighting, n, min_take, max_take, talking, last_loc, inv, way):
         self.health = health
         self.loc = loc
         self.run = run
@@ -74,29 +74,29 @@ class Me:
         inventory = []
         for g in self.inv:
             if self.inv.get(g): inventory.append(g)
-        repr_mess(19, "p")
-        for g in inventory: print(repr_mess(18, "r").format(self.inv.get(g), g))
+        repr_mess(8, "p")
+        for g in inventory: print(repr_mess(17, "r").format(self.inv.get(g), g))
         inventory = []
 
-    def print_health(self): print(repr_mess(20, "r").format(self.health))
+    def print_health(self): print(repr_mess(19, "r").format(self.health))
 
-    def print_loc(self): print(repr_mess(22, "r").format(self.loc))
+    def print_loc(self): print(repr_mess(20, "r").format(self.loc))
 
     def heal(self):
         if self.health < self.max_health:
             y = input("Type the exact name of the item you want to use for healing:\n>")
             if y in self.inv and y in heal_list: heal_list[y].heal_user()
-            else: print(repr_mess(23, "r").format(items_list["apple"].name, items_list["pear"].name))
-        else: repr_mess(24, "p")
+            else: print(repr_mess(21, "r").format(items_list["apple"].name, items_list["pear"].name))
+        else: repr_mess(22, "p")
 
     def print_combat(self):
         for i in range(10, 14): repr_mess(i, "p")
 
     def print_ava_locs(self):
-        repr_mess(27, "p")
+        repr_mess(24, "p")
         for i in locs_list[self.loc].opts: print(i)
 
-    def print_hint(self): repr_mess(25, "p")
+    def print_hint(self): repr_mess(51, "p")
 
     def exit(self): self.run = False
 
@@ -106,34 +106,34 @@ class Me:
         else:
             if y in locs_list[self.loc].opts:
                 if y in locs:
-                    if y == "alchemist" and npcs_for_loc["alchemist"].talked_to2:
-                        self.last_loc = self.loc
-                        self.loc = "alchemist3"
-                    elif y == "alchemist" and npcs_for_loc["alchemist"].talked_to1:
-                        self.last_loc = self.loc
-                        self.loc = "alchemist2"
+                    if y == "alchemist" and npcs_for_loc["alchemist"].talked_to2: self.loc = "alchemist3"
+                    elif y == "alchemist" and npcs_for_loc["alchemist"].talked_to1: self.loc = "alchemist2"
+                    elif me.loc == "prison" and not y == "village" and not npcs_for_loc["prison"]: self.loc = "alb"
                     else:
-                        self.last_loc = self.loc
                         locs.get(y).counter = 1
                         self.loc = locs.get(self.loc).opts.get(y)
+                    self.last_loc = self.loc
                 else:
-                    repr_mess(25, "p")
+                    repr_mess(23, "p")
                     self.choose_loc(locs)
             else:
-                repr_mess(27, "p")
+                repr_mess(24, "p")
                 for i in locs_list[self.loc].opts: print(i)
 
     def rem_st(self, x):
         self.n -= x
-        print(repr_mess(29, "r").format(x))
+        print(repr_mess(25, "r").format(x))
 
     def take(self):
         y = input("How many stones do you want to remove?\n> ")
-        st = {"1":self.rem_st, "2":self.rem_st, "3":self.rem_st}
-        if y in st and int(y) in range(me.min_take, me.max_take + 1): st[y](int(y))
-        else:
-            print(repr_mess(42, "r").format(me.max_take, me.min_take))
-            self.take()
+        try:
+            y = int(y)
+            if y in range(me.min_take, me.max_take + 1): me.rem_st(y)
+            else:
+                print(repr_mess(42, "r").format(me.max_take, me.min_take))
+                self.take()
+        except ValueError:
+            print("Enter an integer please.")
 
     def talk(self):
         me_opts = repr_loc(self.loc, "opts", "r")
@@ -151,7 +151,7 @@ class Me:
             self.talking = False
         elif inpt in me_opts: self.loc = me_opts.get(inpt)
         else:
-            repr_mess(25, "p")
+            repr_mess(23, "p")
             self.talk()
 
     def buy(self, x):
@@ -243,22 +243,22 @@ class Enemy:
             trophy = []
             trophy.append(ran)
             trophy.append(self.loot)
-            print(repr_mess(31, "r").format(trophy[0], trophy[1]))
+            print(repr_mess(27, "r").format(trophy[0], trophy[1]))
             x = input("What do you want to do with the loot?\n1. Accept\n2.Reject\n> ")
             if x == "1":
                 me.inv[self.loot] += ran
-                print(repr_mess(32, "r").format(trophy[0], trophy[1]))
-            elif x == "2": print(repr_mess(33, "r").format(trophy[0], trophy[1]))
+                print(repr_mess(28, "r").format(trophy[0], trophy[1]))
+            elif x == "2": print(repr_mess(29, "r").format(trophy[0], trophy[1]))
             else:
-                repr_mess(34, "p")
+                repr_mess(30, "p")
                 self.trophy()
             trophy.clear()
 
     def take(self):
         if self.name == "Zandalar": x = self.perfectAI()
-        elif me.diff == "1": x = self.randomAI()
-        elif me.diff == "2": x = self.simulationAI()
-        elif me.diff == "3" and not me.inv.get("Zandalar's staff") > 0: x = self.simulationAI()
+        elif not me.inv.get("Zandalar's staff") > 0:
+            ai = {"1":self.randomAI, "2":self.simulationAI, "3":self.simulationAI}
+            x = ai[me.diff]()
         else: x = self.perfectAI()
         print(repr_mess(45, "r").format(self.name, x))
         return x
@@ -314,13 +314,12 @@ def load_json():
     with open(r"C:\Users\Jakub\Desktop\Lizulian Salvation\characters.json") as npcs_file:
         npcs = json.load(npcs_file)
         for npc in npcs:
+            i = npcs[npc]
             if npc == "me": pass
             elif npc == "alchemist" or npc == "merchant" or npc == "Alberimus":
-                quals = npcs[npc]
-                new_npc = NPC(quals["loc"], quals["inv"], quals["talked_to1"], quals["talked_to2"])
-                npcs_for_loc[quals["loc"]] = new_npc
+                new_npc = NPC(i["loc"], i["inv"], i["talked_to1"], i["talked_to2"])
+                npcs_for_loc[i["loc"]] = new_npc
             else:
-                i = npcs[npc]
                 new_item = Items(i["sellval"], i["healval"], i["name"], i["alchem_limit"])
                 items_list[i["name"]] = new_item
                 if npc == "apple" or npc == "pear":
@@ -349,21 +348,26 @@ def choose_difficulty(Me):
 
 def fight_input(enemy, me, username):
     me.fighting = True
-    print(repr_mess(30, "r").format(username, enemy.name))
+    print(repr_mess(26, "r").format(username, enemy.name))
     on_turn = 1
-    me.max_take = 3
     while me.n > 0:
-        me.max_take = min(me.n, me.max_take)
         if on_turn == 1:
+            me.max_take = 3
+            me.max_take = min(me.n, me.max_take)
             me.n -= enemy.take()
-            print(repr_mess(35, "r").format(me.n))
+            print(repr_mess(31, "r").format(me.n))
             on_turn += 1
         else:
+            if me.inv.get("Zandalar's staff") > 0:
+                me.max_take = 4
+            else:
+                me.max_take = 3
+            me.max_take = min(me.n, me.max_take)
             me.take()
             on_turn = 1
     if me.n == 0:
         if on_turn == 1:
-            repr_mess(36, "p")
+            repr_mess(32, "p")
             enemy.trophy()
         else:
             print(repr_mess(37, "r").format(enemy.harm))
@@ -376,16 +380,14 @@ def user_input(Me, locs_list, username):
     if me.loc in tlk:
         me.talking = True
         while me.talking: me.talk()
-        repr_loc("mess", me.loc, "p")
-    elif locs_list.get(me.loc).counter == 1:
-        repr_loc("mess", me.loc, "p")
-        locs_list.get(me.loc).counter += 1
+    elif locs_list.get(me.loc).counter == 1: locs_list.get(me.loc).counter += 1
     elif me.loc in hostile_locs:
         ran = random.randint(1, 100)
         if ran < hostile_locs[me.loc].chance: fight_input(hostile_locs[me.loc], me, username)
+    repr_loc("mess", me.loc, "p")
     x = input("> ")
-    comms = {"avalocs":me.print_ava_locs, "combat":me.print_combat, "i":me.print_inv, "health":me.print_health, "heal":me.heal, "exit":me.exit, "h":me.print_hint}
-    if x in comms and not me.fighting and not me.talking: comms[x]()
+    commands = {"avalocs":me.print_ava_locs, "combat":me.print_combat, "i":me.print_inv, "health":me.print_health, "heal":me.heal, "exit":me.exit, "h":me.print_hint}
+    if x in commands and not me.fighting and not me.talking: commands[x]()
     elif x == "chooseloc": me.choose_loc(locs_list)
     else: repr_mess(46, "p")
 
@@ -402,12 +404,12 @@ def main(Me, locs_list):
         user_input(Me, locs_list, username)
     if not me.run: repr_mess(44, "p")
 
-me = Me(return_char("me", "max_health"), return_char("me", "health"), return_char("me", "level"), return_char("me", "loc"), return_char("me", "diff"), return_char("me", "run"), return_char("me", "fighting"), return_char("me", "n"), return_char("me", "min_take"), return_char("me", "max_take"), return_char("me", "talking"), return_char("me", "last_loc"), return_char("me", "inventory"), return_char("me", "way"))
-
 hostile_locs = {}
 npcs_for_loc = {}
 locs_list = {}
 items_list = {}
 heal_list = {}
+
+me = Me(return_char("me", "max_health"), return_char("me", "health"), return_char("me", "loc"), return_char("me", "diff"), return_char("me", "run"), return_char("me", "fighting"), return_char("me", "n"), return_char("me", "min_take"), return_char("me", "max_take"), return_char("me", "talking"), return_char("me", "last_loc"), return_char("me", "inv"), return_char("me", "way"))
 
 main(Me, locs_list)
