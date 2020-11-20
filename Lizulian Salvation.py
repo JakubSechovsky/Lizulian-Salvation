@@ -238,19 +238,21 @@ class Enemy:
 
     def trophy(self):
         ran = random.randint(self.low_limit,self.up_limit)
-        trophy = []
-        trophy.append(ran)
-        trophy.append(self.loot)
-        print(repr_mess(31, "r").format(trophy[0], trophy[1]))
-        x = input("What do you want to do with the loot?\n1. Accept\n2.Reject\n> ")
-        if x == "1":
-            me.inv[self.loot] += ran
-            print(repr_mess(32, "r").format(trophy[0], trophy[1]))
-        elif x == "2": print(repr_mess(33, "r").format(trophy[0], trophy[1]))
+        if ran == 0: repr_mess(50, "p")
         else:
-            repr_mess(34, "p")
-            self.trophy()
-        trophy.clear()
+            trophy = []
+            trophy.append(ran)
+            trophy.append(self.loot)
+            print(repr_mess(31, "r").format(trophy[0], trophy[1]))
+            x = input("What do you want to do with the loot?\n1. Accept\n2.Reject\n> ")
+            if x == "1":
+                me.inv[self.loot] += ran
+                print(repr_mess(32, "r").format(trophy[0], trophy[1]))
+            elif x == "2": print(repr_mess(33, "r").format(trophy[0], trophy[1]))
+            else:
+                repr_mess(34, "p")
+                self.trophy()
+            trophy.clear()
 
     def take(self):
         if self.name == "Zandalar": x = self.perfectAI()

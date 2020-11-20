@@ -41,8 +41,8 @@
         "name":"Void seeker",
         "chance":50,
         "harm":30,
-        "low_limit":1,
-        "up_limit":2
+        "low_limit":0,
+        "up_limit":1
     },
     "shadow templar":{
         "loc":"center",
@@ -50,8 +50,8 @@
         "name":"Shadow templar",
         "chance":40,
         "harm":45,
-        "low_limit":1,
-        "up_limit":2
+        "low_limit":0,
+        "up_limit":1
     },
     "abyssal watcher":{
         "loc":"theater",
@@ -59,7 +59,7 @@
         "name":"Abyssal watcher",
         "chance":45,
         "harm":35,
-        "low_limit":1,
-        "up_limit":2
+        "low_limit":0,
+        "up_limit":1
     }
 }

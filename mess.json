@@ -11,7 +11,7 @@
     "10":"In this strange land, your enemies will try to kill you not physically, but mentally. Instead of fighting with swords and bows,",
     "11":"they play a game known as 'Nim'. Players remove 1-3 stones on each turn from a pile of 21 stones that magically appears",
     "12":"whenever a duel starts. As you are a stranger in this land, you always go second, but you never die from a single fight.",
-    "13":"The goal is to get the pile to 0 and whoever does so, subjugates the opponents soul, gianing his strengh and recieving what he has to offer.",
+    "13":"The goal is to get the pile to 0 and whoever does so, subjugates the opponents soul, gianing it's strengh and recieving what he has to offer.",
     "14":"Your current objective is: ",
     "15":"You have healed yourself for {}, you now have {} health.",
     "16":"You do not own such item.",
@@ -47,5 +47,6 @@
     "46":"Invalid command.",
     "47":"You have given the alchemist {} {}(s).",
     "48":"'Thank you for your help, here you go - the Shard, as promised.' You now have the Shard, and with it, the ability to travel to another dimension.\nEnter 'use' to do so.",
-    "49":"You are in this location already."
+    "49":"You are in this location already.",
+    "50":"The soul of your opponent does not offer you anything."
 }
