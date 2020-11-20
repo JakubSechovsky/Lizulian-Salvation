@@ -12,6 +12,7 @@
         "max_take":3,
         "last_loc":"house",
         "way":"",
+        "name":"",
         "inv":{
             "gold coin":0,
             "apple":0,
@@ -21,7 +22,7 @@
             "snake tongue":0,
             "spider web":0,
             "Shard of Alberimus":0,
-            "Zandalar's staff":1
+            "Zandalar's staff":0
             }
         },
     "alchemist":{

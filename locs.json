@@ -22,7 +22,8 @@
         "chapel":"Wide Zandalar walking",
         "park":"Shiver runs down your spine as you walk through the worst park you have ever been to.\nTrees twisted as if tormented, grass dry and of violet color, nothing here resembles happiness.",
         "theater":"You see an old amphitheater down the street, it's walls and stairs all crumbling under the pressure of time.\n'This one's not for playing.' you whisper to yourself.",
-        "center":"The center of this so-called city is as old as humanity itself and the ancient buildings serving unknown purposes somehow make you feel uncomfortable."
+        "center":"The center of this so-called city is as old as humanity itself and the ancient buildings serving unknown purposes somehow make you feel uncomfortable.",
+        "alb":"dis staff's for ya son"
     },
     "house":{
         "counter":1,
@@ -230,6 +231,13 @@
             "chapel":"chapel",
             "park":"park",
             "center":"center"
+        }
+    },
+    "alb":{
+        "counter":2,
+        "place":"prison",
+        "opts":{
+            "1":"thank you for the staff mister old guy"
         }
     }
 }

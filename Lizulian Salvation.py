@@ -25,11 +25,11 @@ class NPC:
                     else: x = items_list[item].alchem_limit - self.inv[item]
                     self.inv[item] += x
                     me.inv[item] -= x
-                    if not x == 0: print(repr_mess(47, "r").format(x, items_list[item].name))
+                    if not x == 0: print(repr_mess(42, "r").format(x, items_list[item].name))
             if self.inv["wolf pelt"] == items_list["wolf pelt"].alchem_limit and self.inv["worm fang"] == items_list["worm fang"].alchem_limit and self.inv["snake tongue"] == items_list["snake tongue"].alchem_limit and self.inv["spider web"] == items_list["spider web"].alchem_limit:
                 me.inv["Shard of Alberimus"] += self.inv["Shard of Alberimus"]
                 self.inv["Shard of Alberimus"] -= self.inv["Shard of Alberimus"]
-                repr_mess(48, "p")
+                repr_mess(43, "p")
                 self.talked_to2 = True
                 connect_locs()
         elif me.loc == "market":
@@ -55,7 +55,7 @@ class Items:
         else: repr_mess(16, "p")
 
 class Me:
-    def __init__(self, max_health, health, loc, diff, run, fighting, n, min_take, max_take, talking, last_loc, inv, way):
+    def __init__(self, max_health, health, loc, diff, run, fighting, n, min_take, max_take, talking, last_loc, inv, way, name):
         self.health = health
         self.loc = loc
         self.run = run
@@ -69,6 +69,7 @@ class Me:
         self.last_loc = last_loc
         self.inv = inv
         self.way = way
+        self.name = name
 
     def print_inv(self):
         inventory = []
@@ -96,26 +97,30 @@ class Me:
         repr_mess(24, "p")
         for i in locs_list[self.loc].opts: print(i)
 
-    def print_hint(self): repr_mess(51, "p")
+    def print_hint(self): repr_mess(46, "p")
 
     def exit(self): self.run = False
 
-    def choose_loc(self, locs):
+    def wait(self):
+        if me.loc in hostile_locs: fight_input(hostile_locs[me.loc], me)
+        else: pass
+
+    def choose_loc(self):
         y = input("Type in the exact name of the location you want to go to: \n> ")
-        if y == self.loc: repr_mess(49, "p")
+        if y == self.loc: repr_mess(44, "p")
         else:
             if y in locs_list[self.loc].opts:
-                if y in locs:
+                if y in locs_list:
                     if y == "alchemist" and npcs_for_loc["alchemist"].talked_to2: self.loc = "alchemist3"
                     elif y == "alchemist" and npcs_for_loc["alchemist"].talked_to1: self.loc = "alchemist2"
-                    elif me.loc == "prison" and not y == "village" and not npcs_for_loc["prison"]: self.loc = "alb"
+                    elif me.loc == "prison" and not y == "village" and not npcs_for_loc["prison"].talked_to1: self.loc = "alb"
                     else:
-                        locs.get(y).counter = 1
-                        self.loc = locs.get(self.loc).opts.get(y)
+                        locs_list.get(y).counter = 1
+                        self.loc = locs_list.get(self.loc).opts.get(y)
                     self.last_loc = self.loc
                 else:
                     repr_mess(23, "p")
-                    self.choose_loc(locs)
+                    self.choose_loc()
             else:
                 repr_mess(24, "p")
                 for i in locs_list[self.loc].opts: print(i)
@@ -130,7 +135,7 @@ class Me:
             y = int(y)
             if y in range(me.min_take, me.max_take + 1): me.rem_st(y)
             else:
-                print(repr_mess(42, "r").format(me.max_take, me.min_take))
+                print(repr_mess(37, "r").format(me.max_take, me.min_take))
                 self.take()
         except ValueError:
             print("Enter an integer please.")
@@ -140,7 +145,7 @@ class Me:
         repr_loc("mess", self.loc, "p")
         if self.loc == "alchemtalk4": npcs_for_loc["alchemist"].talked_to1 = True
         inpt = input(">")
-        if me_opts.get(inpt) == "village":
+        if me_opts.get(inpt) == "village" or me_opts.get(inpt) == "prison":
             self.loc = self.last_loc
             self.talking = False
         elif me_opts.get(inpt) == "trade":
@@ -192,7 +197,7 @@ class Me:
                 if self.way == "buy": self.buy(x)
                 elif self.way == "sell" and self.inv.get(x) > 0: self.sell(x)
                 else: repr_mess(16, "p")
-        else: repr_mess(46, "p")
+        else: repr_mess(41, "p")
         cont_trading()
 
 class Enemy:
@@ -238,7 +243,7 @@ class Enemy:
 
     def trophy(self):
         ran = random.randint(self.low_limit,self.up_limit)
-        if ran == 0: repr_mess(50, "p")
+        if ran == 0: repr_mess(45, "p")
         else:
             trophy = []
             trophy.append(ran)
@@ -260,7 +265,7 @@ class Enemy:
             ai = {"1":self.randomAI, "2":self.simulationAI, "3":self.simulationAI}
             x = ai[me.diff]()
         else: x = self.perfectAI()
-        print(repr_mess(45, "r").format(self.name, x))
+        print(repr_mess(40, "r").format(self.name, x))
         return x
 
 def buy_or_sell():
@@ -268,7 +273,7 @@ def buy_or_sell():
     if x == "1": me.way = "buy"
     elif x == "2": me.way = "sell"
     else:
-        repr_mess(46, "p")
+        repr_mess(41, "p")
         buy_or_sell()
 
 def cont_trading():
@@ -328,27 +333,27 @@ def load_json():
 def connect_locs():
     for loc in locs_list: locs_list.get(loc).opts["prison"] = "prison"
 
-def print_intro(username):
+def print_intro():
     for i in range(1, 10):
-        if i == 1: print(repr_mess(i, "r").format(username))
+        if i == 1: print(repr_mess(i, "r").format(me.name))
         else: repr_mess(i, "p")
 
 def choose_difficulty(Me):
-    me.diff = input("\n Choose your difficulty by typing in a number (1 - 3):\n1. Easy\n2. Medium\n3. Hard\n>")
+    me.diff = input("\n Enter a number a number (1 - 3) to choose difficulty:\n1. Easy\n2. Medium\n3. Hard\n>")
     if me.diff == "1":
         me.inv["gold coin"] += 10
         me.inv["pear"] += 2
-        repr_mess(39, "p")
+        repr_mess(34, "p")
     elif me.diff == "2":
         me.inv["gold coin"] += 5
         me.inv["pear"] += 1
-        repr_mess(40, "p")
-    elif me.diff == "3": repr_mess(41, "p")
+        repr_mess(35, "p")
+    elif me.diff == "3": repr_mess(36, "p")
     else: choose_difficulty(Me)
 
-def fight_input(enemy, me, username):
+def fight_input(enemy, me):
     me.fighting = True
-    print(repr_mess(26, "r").format(username, enemy.name))
+    print(repr_mess(26, "r").format(me.name, enemy.name))
     on_turn = 1
     while me.n > 0:
         if on_turn == 1:
@@ -370,39 +375,38 @@ def fight_input(enemy, me, username):
             repr_mess(32, "p")
             enemy.trophy()
         else:
-            print(repr_mess(37, "r").format(enemy.harm))
+            print(repr_mess(33, "r").format(enemy.harm))
             me.health -= enemy.harm
         me.fighting = False
         me.n = 21
 
-def user_input(Me, locs_list, username):
-    tlk = ["market", "chiefhut", "alchemist", "alchemist2", "alchemist3"]
+def user_input(Me, locs_list):
+    tlk = ["market", "chiefhut", "alchemist", "alchemist2", "alchemist3", "alb", "alb2"]
     if me.loc in tlk:
         me.talking = True
         while me.talking: me.talk()
     elif locs_list.get(me.loc).counter == 1: locs_list.get(me.loc).counter += 1
     elif me.loc in hostile_locs:
         ran = random.randint(1, 100)
-        if ran < hostile_locs[me.loc].chance: fight_input(hostile_locs[me.loc], me, username)
+        if ran < hostile_locs[me.loc].chance: fight_input(hostile_locs[me.loc], me)
     repr_loc("mess", me.loc, "p")
     x = input("> ")
-    commands = {"avalocs":me.print_ava_locs, "combat":me.print_combat, "i":me.print_inv, "health":me.print_health, "heal":me.heal, "exit":me.exit, "h":me.print_hint}
+    commands = {"chooseloc": me.choose_loc, "wait":me.wait, "avalocs":me.print_ava_locs, "combat":me.print_combat, "i":me.print_inv, "health":me.print_health, "heal":me.heal, "exit":me.exit, "h":me.print_hint}
     if x in commands and not me.fighting and not me.talking: commands[x]()
-    elif x == "chooseloc": me.choose_loc(locs_list)
-    else: repr_mess(46, "p")
+    else: repr_mess(47, "p")
 
 def main(Me, locs_list):
     load_json()
     connect_locs()
-    username = input("\nChoose your name:\n>")
+    me.name = input("\nChoose your name:\n>")
     choose_difficulty(Me)
-    print_intro(username)
+    print_intro()
     while me.run:
         if me.health <= 0:
-            repr_mess(43, "p")
+            repr_mess(38, "p")
             me.run = False
-        user_input(Me, locs_list, username)
-    if not me.run: repr_mess(44, "p")
+        user_input(Me, locs_list)
+    if not me.run: repr_mess(39, "p")
 
 hostile_locs = {}
 npcs_for_loc = {}
@@ -410,6 +414,6 @@ locs_list = {}
 items_list = {}
 heal_list = {}
 
-me = Me(return_char("me", "max_health"), return_char("me", "health"), return_char("me", "loc"), return_char("me", "diff"), return_char("me", "run"), return_char("me", "fighting"), return_char("me", "n"), return_char("me", "min_take"), return_char("me", "max_take"), return_char("me", "talking"), return_char("me", "last_loc"), return_char("me", "inv"), return_char("me", "way"))
+me = Me(return_char("me", "max_health"), return_char("me", "health"), return_char("me", "loc"), return_char("me", "diff"), return_char("me", "run"), return_char("me", "fighting"), return_char("me", "n"), return_char("me", "min_take"), return_char("me", "max_take"), return_char("me", "talking"), return_char("me", "last_loc"), return_char("me", "inv"), return_char("me", "way"), return_char("me", "name"))
 
 main(Me, locs_list)
