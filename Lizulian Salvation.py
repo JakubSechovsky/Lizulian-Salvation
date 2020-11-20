@@ -196,12 +196,14 @@ class Me:
         cont_trading()
 
 class Enemy:
-    def __init__(self, loc, loot, name, chance, harm):
+    def __init__(self, loc, loot, name, chance, harm, low_limit, up_limit):
         self.loot = loot
         self.loc = loc
         self.name = name
         self.chance = chance
         self.harm = harm
+        self.low_limit = low_limit
+        self.up_limit = up_limit
 
     def simulationAI(self):
         best_act = -1
@@ -235,7 +237,7 @@ class Enemy:
     def randomAI(self): return random.randint(me.min_take, me.max_take)
 
     def trophy(self):
-        ran = random.randint(1,3)
+        ran = random.randint(self.low_limit,self.up_limit)
         trophy = []
         trophy.append(ran)
         trophy.append(self.loot)
@@ -297,7 +299,7 @@ def load_json():
         enms = json.load(enms_file)
         for enm in enms:
             atts = enms[enm]
-            new_enm = Enemy(atts["loc"], atts["loot"], atts["name"], atts["chance"], atts["harm"])
+            new_enm = Enemy(atts["loc"], atts["loot"], atts["name"], atts["chance"], atts["harm"], atts["low_limit"], atts["up_limit"])
             hostile_locs[atts["loc"]] = new_enm
     with open(r"C:\Users\Jakub\Desktop\Lizulian Salvation\locs.json") as locs_file:
         locations = json.load(locs_file)
@@ -336,15 +338,11 @@ def choose_difficulty(Me):
         me.inv["gold coin"] += 10
         me.inv["pear"] += 2
         repr_mess(39, "p")
-        me.run = True
     elif me.diff == "2":
         me.inv["gold coin"] += 5
         me.inv["pear"] += 1
         repr_mess(40, "p")
-        me.run = True
-    elif me.diff == "3":
-        repr_mess(41, "p")
-        me.run = True
+    elif me.diff == "3": repr_mess(41, "p")
     else: choose_difficulty(Me)
 
 def fight_input(enemy, me, username):
@@ -384,8 +382,8 @@ def user_input(Me, locs_list, username):
         ran = random.randint(1, 100)
         if ran < hostile_locs[me.loc].chance: fight_input(hostile_locs[me.loc], me, username)
     x = input("> ")
-    keys = {"avalocs":me.print_ava_locs, "combat":me.print_combat, "i":me.print_inv, "health":me.print_health, "heal":me.heal, "exit":me.exit, "h":me.print_hint}
-    if x in keys and not me.fighting and not me.talking: keys[x]()
+    comms = {"avalocs":me.print_ava_locs, "combat":me.print_combat, "i":me.print_inv, "health":me.print_health, "heal":me.heal, "exit":me.exit, "h":me.print_hint}
+    if x in comms and not me.fighting and not me.talking: comms[x]()
     elif x == "chooseloc": me.choose_loc(locs_list)
     else: repr_mess(46, "p")
 

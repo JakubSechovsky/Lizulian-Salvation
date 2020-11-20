@@ -5,7 +5,7 @@
         "level":1,
         "loc":"house",
         "diff":"",
-        "run":false,
+        "run":true,
         "fighting":false,
         "talking":false,
         "n":21,
