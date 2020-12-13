@@ -64,12 +64,10 @@ class Me:
 
     def print_health(self): print(repr_mess(19, "r").format(self.health))
 
-    def print_loc(self): print(repr_mess(20, "r").format(self.loc))
-
     def heal(self):
         if self.health < self.max_health:
             y = input(
-                "Type the exact name of the item you want to use for healing:\n>")
+                repr_mess(3, "r"))
             if y in self.inv and y in heal_list:
                 heal_list[y].heal_user()
             else:
@@ -78,9 +76,7 @@ class Me:
         else:
             repr_mess(22, "p")
 
-    def print_combat(self):
-        for i in range(10, 14):
-            repr_mess(i, "p")
+    def print_combat(self): repr_mess(2, "p")
 
     def print_ava_locs(self):
         repr_mess(24, "p")
@@ -113,7 +109,7 @@ class Me:
             self.choose_loc()
 
     def choose_loc(self):
-        y = input("Type in the exact name of the location you want to go to: \n> ")
+        y = input(repr_mess(6, "r"))
         if y == self.loc:
             repr_mess(44, "p")
         else:
@@ -129,7 +125,7 @@ class Me:
         print(repr_mess(25, "r").format(x))
 
     def take(self):
-        y = input("How many stones do you want to remove?\n> ")
+        y = input(repr_mess(4, "r"))
         try:
             y = int(y)
             if y in range(me.min_take, me.max_take + 1):
@@ -138,47 +134,47 @@ class Me:
                 print(repr_mess(37, "r").format(me.max_take, me.min_take))
                 self.take()
         except ValueError:
-            print("Enter a number please.")
+            repr_mess(5, "p")
             self.take()
 
     def buy(self, x):
-        y = input("How many {}s do you want to {}? (One costs {} coins)\n> ".format(
+        y = input(repr_mess(7, "r").format(
             x, self.way, items_list[x].buyval))
         try:
             y = int(y)
             z = y*items_list[x].buyval
             if z > self.inv.get("gold coin"):
-                print("You require more gold for this amount of {}s.".format(x))
+                print(repr_mess(8, "r").format(x))
             else:
                 self.inv["gold coin"] -= z
                 self.inv[x] += y
-                print("You have bought {} {}(s) for {} gold.".format(y, x, z))
+                print(repr_mess(9, "r").format(y, x, z))
         except ValueError:
-            print("Enter an integer please.")
+            repr_mess(5, "p")
             self.buy(x)
 
     def sell(self, x):
-        y = input("You have {} {}(s), how many do you want to sell? (One sells for {} coins)\n> ".format(
+        y = input(repr_mess(10, "r").format(
             self.inv.get(x), x, items_list[x].sellval))
         try:
             y = int(y)
             if y > self.inv.get(x) or y < 0:
-                print("Enter an integer please.")
+                repr_mess(5, "p")
                 self.sell(x)
             else:
                 z = y*items_list[x].sellval
                 self.inv["gold coin"] += z
                 self.inv[x] -= y
-                print("You gained {} coins by selling {} {}(s)".format(z, y, x))
+                print(repr_mess(11, "r").format(z, y, x))
         except ValueError:
-            print("Enter an integer please.")
+            repr_mess(5, "p")
             self.sell(x)
 
     def buy_sell(self):
-        x = input("What do you want to {}?\n> ".format(self.way))
+        x = input(repr_mess(12, "r").format(self.way))
         if x in self.inv:
             if x == "Shard of Alberimus" or x == "Zandalar's staff":
-                print("This item is not {}able".format(self.way))
+                print(repr_mess(13, "r").format(self.way))
             else:
                 if self.way == "buy":
                     self.buy(x)
@@ -248,7 +244,7 @@ class Enemy:
             trophy.append(self.loot)
             print(repr_mess(27, "r").format(trophy[0], trophy[1]))
             x = input(
-                "What do you want to do with the loot?\n1. Accept\n2.Reject\n> ")
+                repr_mess(14, "r"))
             if x == "1":
                 me.inv[self.loot] += ran
                 print(repr_mess(28, "r").format(trophy[0], trophy[1]))
@@ -271,7 +267,7 @@ class Enemy:
 
 
 def buy_or_sell():
-    x = input("What do you want to do?\nEnter 1 to buy\nEnter 2 to sell\n> ")
+    x = input(repr_mess(48, "r"))
     if x == "1":
         me.way = "buy"
     elif x == "2":
@@ -283,13 +279,14 @@ def buy_or_sell():
 
 def cont_trading():
     x = input(
-        "Do you want to continue trading?\nEnter 1 to keep trading\nEnter 2 to leave the merchant [exit trading]\n> ")
+        repr_mess(49, "r"))
     if x == "1":
         trade(npcs_for_loc[me.loc])
     elif x == "2":
         me.loc = "village"
         me.talking = False
     else:
+        repr_mess(5, "p")
         cont_trading()
 
 
@@ -369,17 +366,12 @@ def connect_locs():
         locs_list.get(loc).opts["prison"] = "prison"
 
 
-def print_intro():
-    for i in range(1, 10):
-        if i == 1:
-            print(repr_mess(i, "r").format(me.name))
-        else:
-            repr_mess(i, "p")
+def print_intro(): print(repr_mess(1, "r").format(me.name))
 
 
 def choose_difficulty(Me):
     me.diff = input(
-        "\n Enter a number a number (1 - 3) to choose difficulty:\n1. Easy\n2. Medium\n3. Hard\n>")
+        repr_mess(50, "r"))
     if me.diff == "1":
         me.inv["gold coin"] += 10
         me.inv["pear"] += 2
@@ -410,7 +402,7 @@ def alchem_trade(npc):
                 print(repr_mess(42, "r").format(
                     x, items_list[item].name))
             elif me.inv[item] == 0 and safe == 1:
-                print("You have nothing to give")
+                repr_mess(51, "p")
                 safe += 1
 
 
@@ -522,7 +514,7 @@ def user_input(Me, locs_list):
 
 def main(Me, locs_list):
     load_json()
-    me.name = input("\nChoose your name:\n>")
+    me.name = input(repr_mess(52, "r"))
     choose_difficulty(Me)
     print_intro()
     while me.run:
