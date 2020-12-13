@@ -138,7 +138,7 @@ class Me:
                 print(repr_mess(37, "r").format(me.max_take, me.min_take))
                 self.take()
         except ValueError:
-            print("Enter an integer please.")
+            print("Enter a number please.")
             self.take()
 
     def buy(self, x):
@@ -465,6 +465,7 @@ def fight(enemy):
     while me.n > 0:
         if not me.on_turn:
             me.max_take = 3
+            me.min_take = 1
             me.max_take = min(me.n, me.max_take)
             me.n -= enemy.take()
             print(repr_mess(31, "r").format(me.n))
@@ -472,6 +473,7 @@ def fight(enemy):
         else:
             if me.inv.get("Zandalar's staff") > 0:
                 me.max_take = 4
+                me.min_take = 0
             else:
                 me.max_take = 3
             me.max_take = min(me.n, me.max_take)
