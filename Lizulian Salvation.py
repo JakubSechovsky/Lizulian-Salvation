@@ -346,7 +346,7 @@ def cont_trading():
 
 
 def repr_mess(x, way):
-    with open(r"C:\Users\Jakub\Desktop\Lizulian Salvation\mess.json") as mess_file:
+    with open("./mess.json", "r", encoding="utf-8") as mess_file:
         mess = json.load(mess_file)
         if way == "p":
             print(mess[str(x)])
@@ -355,7 +355,7 @@ def repr_mess(x, way):
 
 
 def repr_loc(name, key, way):
-    with open(r"C:\Users\Jakub\Desktop\Lizulian Salvation\locs.json") as locs_file:
+    with open("./locs.json", "r", encoding="utf-8") as locs_file:
         locs = json.load(locs_file)
         if way == "p":
             print(locs[name][key])
@@ -364,20 +364,20 @@ def repr_loc(name, key, way):
 
 
 def return_char(name, key):
-    with open(r"C:\Users\Jakub\Desktop\Lizulian Salvation\characters.json") as chars_file:
+    with open("./characters.json", "r", encoding="utf-8") as chars_file:
         chars = json.load(chars_file)
         return chars[name][key]
 
 
 def load_json():
-    with open(r"C:\Users\Jakub\Desktop\Lizulian Salvation\enms.json") as enms_file:
+    with open("./enms.json", "r", encoding="utf-8") as enms_file:
         enms = json.load(enms_file)
         for enm in enms:
             atts = enms[enm]
             new_enm = Enemy(atts["loc"], atts["loot"], atts["name"],
                             atts["chance"], atts["harm"], atts["low_limit"], atts["up_limit"])
             hostile_locs[atts["loc"]] = new_enm
-    with open(r"C:\Users\Jakub\Desktop\Lizulian Salvation\locs.json") as locs_file:
+    with open("./locs.json", "r", encoding="utf-8") as locs_file:
         locations = json.load(locs_file)
         for loc in locations:
             if loc == "mess":
@@ -386,7 +386,7 @@ def load_json():
                 inf = locations[loc]
                 new_loc = Location(inf["counter"], inf["place"], inf["opts"])
                 locs_list[inf["place"]] = new_loc
-    with open(r"C:\Users\Jakub\Desktop\Lizulian Salvation\characters.json") as npcs_file:
+    with open("./characters.json", "r", encoding="utf-8") as npcs_file:
         npcs = json.load(npcs_file)
         for npc in npcs:
             i = npcs[npc]

@@ -1,65 +1,65 @@
 {
-    "wolf":{
-        "loc":"forest",
-        "loot":"wolf pelt",
-        "name":"Wolf",
-        "chance":30,
-        "harm":20,
-        "low_limit":1,
-        "up_limit":2
+    "wolf": {
+        "loc": "forest",
+        "loot": "wolf pelt",
+        "name": "Wolf",
+        "chance": 30,
+        "harm": 20,
+        "low_limit": 1,
+        "up_limit": 2
     },
-    "wheatworm":{
-        "loc":"fields",
-        "loot":"worm fang",
-        "name":"Wheatworm",
-        "chance":35,
-        "harm":10,
-        "low_limit":1,
-        "up_limit":3
+    "wheatworm": {
+        "loc": "fields",
+        "loot": "worm fang",
+        "name": "Wheatworm",
+        "chance": 35,
+        "harm": 10,
+        "low_limit": 1,
+        "up_limit": 3
     },
-    "snake":{
-        "loc":"lake",
-        "loot":"snake tongue",
-        "name":"Snake",
-        "chance":30,
-        "harm":15,
-        "low_limit":2,
-        "up_limit":3
+    "snake": {
+        "loc": "lake",
+        "loot": "snake tongue",
+        "name": "Snake",
+        "chance": 30,
+        "harm": 15,
+        "low_limit": 2,
+        "up_limit": 3
     },
-    "spider":{
-        "loc":"mine",
-        "loot":"spider web",
-        "name":"Spider",
-        "chance":45,
-        "harm":10,
-        "low_limit":2,
-        "up_limit":4
+    "spider": {
+        "loc": "mine",
+        "loot": "spider web",
+        "name": "Spider",
+        "chance": 45,
+        "harm": 10,
+        "low_limit": 2,
+        "up_limit": 4
     },
-    "void seeker":{
-        "loc":"park",
-        "loot":"void talon",
-        "name":"Void seeker",
-        "chance":50,
-        "harm":30,
-        "low_limit":0,
-        "up_limit":1
+    "void seeker": {
+        "loc": "park",
+        "loot": "void talon",
+        "name": "Void seeker",
+        "chance": 50,
+        "harm": 30,
+        "low_limit": 0,
+        "up_limit": 1
     },
-    "shadow templar":{
-        "loc":"center",
-        "loot":"shadow blade",
-        "name":"Shadow templar",
-        "chance":40,
-        "harm":45,
-        "low_limit":0,
-        "up_limit":1
+    "shadow templar": {
+        "loc": "center",
+        "loot": "shadow blade",
+        "name": "Shadow templar",
+        "chance": 40,
+        "harm": 45,
+        "low_limit": 0,
+        "up_limit": 1
     },
-    "abyssal watcher":{
-        "loc":"theater",
-        "loot":"abyssal scope",
-        "name":"Abyssal watcher",
-        "chance":45,
-        "harm":35,
-        "low_limit":0,
-        "up_limit":1
+    "abyssal watcher": {
+        "loc": "theater",
+        "loot": "abyssal scope",
+        "name": "Abyssal watcher",
+        "chance": 45,
+        "harm": 35,
+        "low_limit": 0,
+        "up_limit": 1
     }
 }

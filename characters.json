@@ -1,109 +1,109 @@
 {
-    "me":{
-        "max_health":100,
-        "health":100,
-        "loc":"house",
-        "diff":"",
-        "run":true,
-        "fighting":false,
-        "talking":false,
-        "n":21,
-        "min_take":1,
-        "max_take":3,
-        "last_loc":"house",
-        "way":"",
-        "name":"",
-        "inv":{
-            "gold coin":0,
-            "apple":0,
-            "pear":0,
-            "wolf pelt":0,
-            "worm fang":0,
-            "snake tongue":0,
-            "spider web":0,
-            "Shard of Alberimus":0,
-            "Zandalar's staff":0
-            }
-        },
-    "alchemist":{
-        "loc":"alchemist",
-        "talked_to1":false,
-        "talked_to2":false,
-        "inv":{
-            "wolf pelt":0,
-            "worm fang":0,
-            "snake tongue":0,
-            "spider web":0,
-            "Shard of Alberimus":1
+    "me": {
+        "max_health": 100,
+        "health": 100,
+        "loc": "house",
+        "diff": "",
+        "run": true,
+        "fighting": false,
+        "talking": false,
+        "n": 21,
+        "min_take": 1,
+        "max_take": 3,
+        "last_loc": "house",
+        "way": "",
+        "name": "",
+        "inv": {
+            "gold coin": 0,
+            "apple": 0,
+            "pear": 0,
+            "wolf pelt": 0,
+            "worm fang": 0,
+            "snake tongue": 0,
+            "spider web": 0,
+            "Shard of Alberimus": 0,
+            "Zandalar's staff": 0
         }
     },
-    "merchant":{
-        "loc":"market",
-        "talked_to1":false,
-        "talked_to2":false,
-        "inv":{
-            "wolf pelt":0,
-            "worm fang":0,
-            "snake tongue":0,
-            "spider web":0,
-            "pear":0,
-            "apple":0
+    "alchemist": {
+        "loc": "alchemist",
+        "talked_to1": false,
+        "talked_to2": false,
+        "inv": {
+            "wolf pelt": 0,
+            "worm fang": 0,
+            "snake tongue": 0,
+            "spider web": 0,
+            "Shard of Alberimus": 1
         }
     },
-    "Alberimus":{
-        "loc":"shrines of lizul",
-        "talked_to1":false,
-        "talked_to2":null,
-        "inv":{
-            "Zandalar's staff":1
+    "merchant": {
+        "loc": "market",
+        "talked_to1": false,
+        "talked_to2": false,
+        "inv": {
+            "wolf pelt": 0,
+            "worm fang": 0,
+            "snake tongue": 0,
+            "spider web": 0,
+            "pear": 0,
+            "apple": 0
         }
     },
-    "apple":{
-        "sellval":10,
-        "healval":20,
-        "name":"apple",
-        "alchem_limit":null
+    "Alberimus": {
+        "loc": "shrines of lizul",
+        "talked_to1": false,
+        "talked_to2": null,
+        "inv": {
+            "Zandalar's staff": 1
+        }
     },
-    "pear":{
-        "sellval":5,
-        "healval":10,
-        "name":"pear",
-        "alchem_limit":null
+    "apple": {
+        "sellval": 10,
+        "healval": 20,
+        "name": "apple",
+        "alchem_limit": null
     },
-    "wolf pelt":{
-        "sellval":11,
-        "healval":null,
-        "name":"wolf pelt",
-        "alchem_limit":4
+    "pear": {
+        "sellval": 5,
+        "healval": 10,
+        "name": "pear",
+        "alchem_limit": null
     },
-    "worm fang":{
-        "sellval":13,
-        "healval":null,
-        "name":"worm fang",
-        "alchem_limit":4
+    "wolf pelt": {
+        "sellval": 11,
+        "healval": null,
+        "name": "wolf pelt",
+        "alchem_limit": 4
     },
-    "snake tongue":{
-        "sellval":7,
-        "healval":null,
-        "name":"snake tongue",
-        "alchem_limit":6
+    "worm fang": {
+        "sellval": 13,
+        "healval": null,
+        "name": "worm fang",
+        "alchem_limit": 4
     },
-    "spider web":{
-        "sellval":5,
-        "healval":null,
-        "name":"spider web",
-        "alchem_limit":8
+    "snake tongue": {
+        "sellval": 7,
+        "healval": null,
+        "name": "snake tongue",
+        "alchem_limit": 6
     },
-    "Shard of Alberimus":{
-        "sellval":0,
-        "healval":null,
-        "name":"Shard of Alberimus",
-        "alchem_limit":null
+    "spider web": {
+        "sellval": 5,
+        "healval": null,
+        "name": "spider web",
+        "alchem_limit": 8
     },
-    "Zandalar's staff":{
-        "sellval":0,
-        "healval":null,
-        "name":"Zandalar's staff",
-        "alchem_limit":null
+    "Shard of Alberimus": {
+        "sellval": 0,
+        "healval": null,
+        "name": "Shard of Alberimus",
+        "alchem_limit": null
+    },
+    "Zandalar's staff": {
+        "sellval": 0,
+        "healval": null,
+        "name": "Zandalar's staff",
+        "alchem_limit": null
     }
 }
