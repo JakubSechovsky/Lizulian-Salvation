@@ -5,7 +5,7 @@
         "loc": "house",
         "diff": "",
         "run": true,
-        "fighting": false,
+        "on_turn": false,
         "talking": false,
         "n": 21,
         "min_take": 1,
@@ -21,6 +21,9 @@
             "worm fang": 0,
             "snake tongue": 0,
             "spider web": 0,
+            "void talon": 0,
+            "abyssal scope": 0,
+            "shadow blade": 0,
             "Shard of Alberimus": 0,
             "Zandalar's staff": 0
         }
@@ -51,7 +54,7 @@
         }
     },
     "Alberimus": {
-        "loc": "shrines of lizul",
+        "loc": "prison",
         "talked_to1": false,
         "talked_to2": null,
         "inv": {

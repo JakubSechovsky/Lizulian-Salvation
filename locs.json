@@ -9,31 +9,29 @@
         "market": "You stand if front of the best-looking merchant in the market. 'How can I be of service?' He asks.\nEnter 1 to trade [trade]\nEnter 2 to return to the village",
         "alchemist": "You slowly open the hut's door and immediately a strong smell of boiling liquid wolfsbane hits you. In front of you stands a mysteriously looking woman.\nEnter 1 to talk to her [talk]\nEnter 2 to return to the village",
         "alchemtalk": "'Hmm... I don't remember your face. What do you want?' she asks.\nEnter 1 to ask her about local legends\nEnter 2 to return to the village",
-        "alchemtalk2": "'Ah yes, the legend. We had to explain all the misfortune that has been happening around here. We call him Zandalar. He's voidborn and he's been terrorizing\nour village since I was a little girl. The wheatworm infestation of our fields, for example, is his doing.\nAll who tried to stop him failed as they didn't have the item needed.'\nEnter 1 to ask what is she talking about\nEnter 2 to return to the village",
+        "alchemtalk2": "'Ah yes, the legend. We had to explain all the misfortune that has been happening around here in some way. We call him Zandalar. He's voidborn and he's been terrorizing\nour village since I was a little girl. The wheatworm infestation of spreadind through our fields, for example, is his doing.\nAll who tried to stop him failed as they didn't have the item needed.'\nEnter 1 to ask what is she talking about\nEnter 2 to return to the village",
         "alchemtalk3": "'You stand no chance against him, unless you wield Zandalar's staff. It is said that his brother Alberimus stole the Staff when he discovered Zandalar's plans\nto rule the world. Alberimus was then imprisoned by his own brother and the location of the Staff remains a mystery.'\nEnter 1 to ask what happened next",
         "alchemtalk4": "Before Alberimus got imprisoned, he left behind a shard. That shard should teleport anyone - and anything - to Alberimus. In some wierd turn of events\nI managed to obtain said Shard. I will give it to you, but you have bring me 4 wolf pelts and worm fangs, 6 snake tongues and 8 spider webs.\nYou have no idea how hard to get these items are nowadays and I need them so I can help local folk.'\nEnter 1 to ask her to repeat what she just said because you got distracted by a fly\nEnter 2 to assure her you will bring her the items and return to the village",
         "alchemist2": "'So, have you brought the items I need? Guess we're about to see...'\nEnter 1 to ask the alchemist about the local legend\nEnter 2 to offer her obtained loot\nEnter 3 to return to the village",
         "alchemist3": "'Thank you for the ingredients I needed. Have you used the Shard yet by any chance?\nYou can do so by entering 'use' outside of combat or while not talking nor trading.'\nEnter 1 to return to the village",
         "chief": "As soon as you open the majestic doors that lead into the chief's hut, you are greeted by the chief's friendly voice:'Hello fellow townsman.\nYou seem like a foreigner, strange... we haven't had one since... the accident...'\nEnter 1 to let him continue speaking [talk]\nEnter 2 to return to the village",
-        "talkchief": "'I suppose I could tell you something useful.' he continues. 'If you venture outside the village - I would not advise you to - you will face danger,\nthe forest is full of wolves, the fields are being ravaged by the wheatworms, our lake is inhabited by venomous snakes and nearby mine is crawling with spiders.'\nEnter 1 to let him continue speaking\nEnter 2 to return to the village",
+        "talkchief": "'I suppose I could tell you something useful.' he continues. 'If you venture outside the village - though I would not advise you to - you will face danger,\nthe forest is full of wolves, the fields are being ravaged by the wheatworms, our lake is inhabited by venomous snakes and nearby mine is crawling with spiders.'\nEnter 1 to let him continue speaking\nEnter 2 to return to the village",
         "talkchief2": "'If you didn't know, in this land we don't fight physically. Instead, we play a game known as 'Nim': the players take turns in removing 1 - 3 stones from\none pile of 21 stones. The player, who first gets the amount of stones to 0, wins. If you win, your opponent's soul should offer you some goods.\nHowever if you lose, you will only get hurt. To read this again, while not in combat, not trading nor talking, just enter 'combat'.\nEnter 1 to ask about local legends\nEnter 2 to ask the chief to repeat what he just said because you weren't paying attention\nEnter 3 to return to the village",
         "talkchief3": "'Ah yes, local legends, of course, I knew you would be interested. There is said to be an ancient tool of immense power,\nit is also said to be able to add one stone mid-fight, not replacing the player's turn, meaning that with enough skill and this item,\none cannot possibly loose a fight. Our alchemist might know more.'\nEnter 1 to ask the chief to repeat what he just said because you fell asleep\nEnter 2 to return to the village",
-        "prison": "As your eyes adjust to the dim light, you begin to see several cells, containing mostly horrifiyng skeletons.\nThere are stairs going up, but before you are able to move, a faint voice calls to you.",
-        "chapel": "Wide Zandalar walking",
-        "park": "Shiver runs down your spine as you walk through the worst park you have ever been to.\nTrees twisted as if tormented, grass dry and of violet color, nothing here resembles happiness.",
+        "prison": "As your eyes adjust to the dim light, you begin to see several cells, containing mostly horrifiyng skeletons.\nIn one of them however, you see an old pale man with dark hair who seems very lonely. An axe is nearby.\nThere are stairs leading up onto the surface, allowing strange dark orange light into the prison.",
+        "chapel": "Wide-Zandalar-walking",
+        "park": "Shiver runs down your spine as you walk through the worst-looking park you have ever been to.\nTrees twisted as if tormented, grass dry and of violet color, nothing here resembles happiness.",
         "theater": "You see an old amphitheater down the street, it's walls and stairs all crumbling under the pressure of time.\n'This one's not for playing.' you whisper to yourself.",
         "center": "The center of this so-called city is as old as humanity itself and the ancient buildings serving unknown purposes somehow make you feel uncomfortable.",
-        "alb": "dis staff's for ya son"
+        "alb": "Before you can step on the first step of the stairs, the pale man calls you faintly: 'So... you have come. After so many years.\nI am Alberimus, the one who everyone must meet before their end. Before you continue in your journey, let me tell you your destiny.\nYou shall defeat my evil brother Zandalar with his own staff. It is hidden in a secret stash in the Chapel of Lizul, our father.\nIn order to unlock it, you need to place a void talon, an abyssal scope and a shadow blade in its proximity. All of these items you can obtain\nby slaying foes in this town called Talematros. Our family lived here, but since my brother got corrupted by the void, so did this city. Now you shall cleanse it.'\nEnter 1 to continue"
     },
     "house": {
-        "counter": 1,
         "place": "house",
         "opts": {
             "village": "village"
         }
     },
     "village": {
-        "counter": 2,
         "place": "village",
         "opts": {
             "house": "house",
@@ -43,11 +41,10 @@
             "mine": "mine",
             "market": "market",
             "alchemist": "alchemist",
-            "chiefhut": "chiefhut"
+            "chief": "chief"
         }
     },
     "lake": {
-        "counter": 2,
         "place": "lake",
         "opts": {
             "village": "village",
@@ -57,7 +54,6 @@
         }
     },
     "forest": {
-        "counter": 2,
         "place": "forest",
         "opts": {
             "village": "village",
@@ -67,7 +63,6 @@
         }
     },
     "fields": {
-        "counter": 2,
         "place": "fields",
         "opts": {
             "village": "village",
@@ -77,7 +72,6 @@
         }
     },
     "mine": {
-        "counter": 2,
         "place": "mine",
         "opts": {
             "village": "village",
@@ -87,7 +81,6 @@
         }
     },
     "chief": {
-        "counter": 2,
         "place": "chief",
         "opts": {
             "1": "talkchief",
@@ -95,7 +88,6 @@
         }
     },
     "talkchief": {
-        "counter": null,
         "place": null,
         "opts": {
             "1": "talkchief2",
@@ -103,7 +95,6 @@
         }
     },
     "talkchief2": {
-        "counter": null,
         "place": null,
         "opts": {
             "1": "talkchief3",
@@ -112,7 +103,6 @@
         }
     },
     "talkchief3": {
-        "counter": null,
         "place": null,
         "opts": {
             "1": "talkchief3",
@@ -120,7 +110,6 @@
         }
     },
     "market": {
-        "counter": 2,
         "place": "market",
         "opts": {
             "1": "trade",
@@ -128,7 +117,6 @@
         }
     },
     "alchemist": {
-        "counter": 2,
         "place": "alchemist",
         "opts": {
             "1": "alchemtalk",
@@ -136,7 +124,6 @@
         }
     },
     "alchemtalk": {
-        "counter": null,
         "place": null,
         "opts": {
             "1": "alchemtalk2",
@@ -144,7 +131,6 @@
         }
     },
     "alchemtalk2": {
-        "counter": null,
         "place": null,
         "opts": {
             "1": "alchemtalk3",
@@ -152,14 +138,12 @@
         }
     },
     "alchemtalk3": {
-        "counter": null,
         "place": null,
         "opts": {
             "1": "alchemtalk4"
         }
     },
     "alchemtalk4": {
-        "counter": null,
         "place": null,
         "opts": {
             "1": "alchemtalk4",
@@ -167,7 +151,6 @@
         }
     },
     "alchemist2": {
-        "counter": 2,
         "place": "alchemist",
         "opts": {
             "1": "alchemtalk2",
@@ -176,14 +159,12 @@
         }
     },
     "alchemist3": {
-        "counter": 2,
         "place": "alchemist",
         "opts": {
             "1": "village"
         }
     },
     "prison": {
-        "counter": 2,
         "place": "prison",
         "opts": {
             "village": "village",
@@ -194,7 +175,6 @@
         }
     },
     "chapel": {
-        "counter": 2,
         "place": "chapel",
         "opts": {
             "prison": "prison",
@@ -204,7 +184,6 @@
         }
     },
     "park": {
-        "counter": 2,
         "place": "park",
         "opts": {
             "prison": "prison",
@@ -214,7 +193,6 @@
         }
     },
     "center": {
-        "counter": 2,
         "place": "center",
         "opts": {
             "prison": "prison",
@@ -224,7 +202,6 @@
         }
     },
     "theater": {
-        "counter": 2,
         "place": "theater",
         "opts": {
             "prison": "prison",
@@ -233,11 +210,10 @@
             "center": "center"
         }
     },
-    "alb": {
-        "counter": 2,
-        "place": "prison",
+    "prisontalk": {
+        "place": null,
         "opts": {
-            "1": "thank you for the staff mister old guy"
+            "1": "prison"
         }
     }
 }
