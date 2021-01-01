@@ -47,5 +47,6 @@
     "cont_trade": "Do you want to continue trading?\nEnter 1 to keep trading\nEnter 2 to leave the merchant [exit trading]\n> ",
     "choose_diff": "\n Enter a number a number (1 - 3) to choose difficulty:\n1. Easy\n2. Medium\n3. Hard\n> ",
     "give_nothing": "You have nothing to give.",
-    "choose_name": "\nChoose your name:\n> "
+    "choose_name": "\nChoose your name:\n> ",
+    "invalid_loc":"Invalid location, locations available for you are:"
 }

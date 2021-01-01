@@ -6,7 +6,8 @@
         "chance": 30,
         "harm": 20,
         "low_limit": 1,
-        "up_limit": 2
+        "up_limit": 2,
+        "best_act":0
     },
     "wheatworm": {
         "loc": "fields",
@@ -15,7 +16,8 @@
         "chance": 35,
         "harm": 10,
         "low_limit": 1,
-        "up_limit": 3
+        "up_limit": 3,
+        "best_act":0
     },
     "snake": {
         "loc": "lake",
@@ -24,7 +26,8 @@
         "chance": 30,
         "harm": 15,
         "low_limit": 2,
-        "up_limit": 3
+        "up_limit": 3,
+        "best_act":0
     },
     "spider": {
         "loc": "mine",
@@ -33,7 +36,8 @@
         "chance": 45,
         "harm": 10,
         "low_limit": 2,
-        "up_limit": 4
+        "up_limit": 4,
+        "best_act":0
     },
     "void seeker": {
         "loc": "park",
@@ -42,7 +46,8 @@
         "chance": 50,
         "harm": 30,
         "low_limit": 0,
-        "up_limit": 1
+        "up_limit": 1,
+        "best_act":0
     },
     "shadow templar": {
         "loc": "center",
@@ -51,7 +56,8 @@
         "chance": 40,
         "harm": 45,
         "low_limit": 0,
-        "up_limit": 1
+        "up_limit": 1,
+        "best_act":0
     },
     "abyssal watcher": {
         "loc": "theater",
@@ -60,6 +66,7 @@
         "chance": 45,
         "harm": 35,
         "low_limit": 0,
-        "up_limit": 1
+        "up_limit": 1,
+        "best_act":0
     }
 }
