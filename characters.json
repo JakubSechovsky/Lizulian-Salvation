@@ -1,7 +1,7 @@
 {
     "me": {
         "max_health": 100,
-        "health": 1,
+        "health": 10,
         "loc": "house",
         "diff": "",
         "run": true,
@@ -17,11 +17,12 @@
         "inv": {
             "gold coin": 0,
             "apple": 0,
-            "pear": 80,
+            "pear": 0,
             "wolf pelt": 0,
             "worm fang": 0,
             "snake tongue": 0,
             "spider web": 0,
+            "saliva":1,
             "void talon": 0,
             "abyssal scope": 0,
             "shadow blade": 0,
@@ -34,10 +35,7 @@
         "talked_to1": false,
         "talked_to2": false,
         "inv": {
-            "wolf pelt": 0,
-            "worm fang": 0,
-            "snake tongue": 0,
-            "spider web": 0,
+            "saliva":0,
             "Shard of Alberimus": 1
         }
     },
@@ -78,25 +76,31 @@
         "sellval": 11,
         "healval": null,
         "name": "wolf pelt",
-        "alchem_limit": 4
+        "alchem_limit": null
     },
     "worm fang": {
         "sellval": 13,
         "healval": null,
         "name": "worm fang",
-        "alchem_limit": 4
+        "alchem_limit": null
     },
     "snake tongue": {
         "sellval": 7,
         "healval": null,
         "name": "snake tongue",
-        "alchem_limit": 6
+        "alchem_limit": null
     },
     "spider web": {
         "sellval": 5,
         "healval": null,
         "name": "spider web",
-        "alchem_limit": 8
+        "alchem_limit": null
+    },
+    "saliva":{
+        "sellval":0,
+        "healval":null,
+        "name":"saliva",
+        "alchem_limit":1
     },
     "Shard of Alberimus": {
         "sellval": 0,

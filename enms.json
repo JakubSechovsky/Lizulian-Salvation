@@ -3,7 +3,7 @@
         "loc": "forest",
         "loot": "wolf pelt",
         "name": "Wolf",
-        "chance": 30,
+        "chance": 50,
         "harm": 20,
         "low_limit": 1,
         "up_limit": 2,
@@ -13,7 +13,7 @@
         "loc": "fields",
         "loot": "worm fang",
         "name": "Wheatworm",
-        "chance": 35,
+        "chance": 45,
         "harm": 10,
         "low_limit": 1,
         "up_limit": 3,
@@ -23,7 +23,7 @@
         "loc": "lake",
         "loot": "snake tongue",
         "name": "Snake",
-        "chance": 30,
+        "chance": 50,
         "harm": 15,
         "low_limit": 2,
         "up_limit": 3,
@@ -37,6 +37,16 @@
         "harm": 10,
         "low_limit": 2,
         "up_limit": 4,
+        "best_act":0
+    },
+    "beast":{
+        "loc":"lair",
+        "loot":"saliva",
+        "name":"Sargelaz",
+        "chance":100,
+        "harm":40,
+        "low_limit":1,
+        "up_limit":1,
         "best_act":0
     },
     "void seeker": {

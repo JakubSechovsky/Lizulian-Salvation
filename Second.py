@@ -95,7 +95,7 @@ class Me:
             elif y == "alchemist" and npcs_for_loc["alchemist"].talked_to1:
                 self.loc = "alchemist2"
             elif self.loc == "prison" and not y == "village" and not npcs_for_loc["prison"].talked_to1:
-                self.loc = "prisontalk"
+                self.loc = "alb"
             else:
                 self.loc = locs_list.get(self.loc).opts.get(y)
         else:
@@ -179,6 +179,11 @@ class Me:
         elif self.diff == "3":
             repr_mess("hard", "p")
         else:
+            try:
+                int(self.diff)
+                repr_mess("invalid_opt", "p")
+            except ValueError:
+                repr_mess("int_error", "p")
             self.choose_difficulty()
 
     def print_intro(self): print(repr_mess("intro", "r").format(self.name))

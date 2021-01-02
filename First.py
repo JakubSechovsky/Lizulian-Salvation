@@ -78,7 +78,9 @@ class Enemy:
             self.trophy()
 
     def take(self):
-        if not me.inv.get("Zandalar's staff") > 0:
+        if self.name == "Sargelaz":
+            x = self.simulationAI()
+        elif not me.inv.get("Zandalar's staff") > 0:
             ai = {"1": self.randomAI, "2": self.simulationAI,
                   "3": self.simulationAI}
             x = ai[me.diff]()
@@ -96,7 +98,7 @@ def wait():
 def buy_sell():
     x = input(sec.repr_mess("market_item", "r").format(me.way))
     if x in me.inv:
-        if x == "Shard of Alberimus" or x == "Zandalar's staff":
+        if sec.items_list[x].sellval == 0:
             print(sec.repr_mess("no_market", "r").format(me.way))
         else:
             if me.way == "buy":
@@ -104,7 +106,10 @@ def buy_sell():
             elif me.way == "sell" and me.inv.get(x) > 0:
                 me.sell(x)
     else:
-        sec.repr_mess("no_item", "p")
+        if me.way == "sell":
+            sec.repr_mess("no_item", "p")
+        else:
+            sec.repr_mess("no_buy", "p")
     cont_trading()
 
 
@@ -115,7 +120,11 @@ def buy_or_sell():
     elif x == "2":
         me.way = "sell"
     else:
-        sec.repr_mess("int_error", "p")
+        try:
+            int(x)
+            sec.repr_mess("invalid_opt", "p")
+        except ValueError:
+            sec.repr_mess("int_error", "p")
         buy_or_sell()
     buy_sell()
 
@@ -129,7 +138,11 @@ def cont_trading():
         me.loc = "village"
         me.talking = False
     else:
-        sec.repr_mess("int_error", "p")
+        try:
+            int(x)
+            sec.repr_mess("invalid_opt", "p")
+        except ValueError:
+            sec.repr_mess("int_error", "p")
         cont_trading()
 
 
@@ -169,7 +182,7 @@ def alchem_trade2(npc, item):
     me.inv[item] -= x
     if not x == 0:
         print(sec.repr_mess("alchem_give", "r").format(
-            x, sec.items_list[item].name))
+            sec.items_list[item].name))
     elif me.inv[item] == 0 and me.safe == 1:
         sec.repr_mess("give_nothing", "p")
         me.safe += 1
@@ -178,9 +191,7 @@ def alchem_trade2(npc, item):
 def trade(npc):
     if me.loc == "alchemist2":
         alchem_trade(npc)
-        if npc.inv["wolf pelt"] == sec.items_list["wolf pelt"].alchem_limit and npc.inv["worm fang"] == sec.items_list["worm fang"].alchem_limit and npc.inv["snake tongue"] == sec.items_list["snake tongue"].alchem_limit and npc.inv["spider web"] == sec.items_list["spider web"].alchem_limit:
-            me.inv["Shard of Alberimus"] += npc.inv["Shard of Alberimus"]
-            npc.inv["Shard of Alberimus"] -= npc.inv["Shard of Alberimus"]
+        if npc.inv["saliva"] == sec.items_list["saliva"].alchem_limit:
             sec.repr_mess("alchem_shard", "p")
             npc.talked_to2 = True
             sec.connect_locs()
@@ -192,7 +203,7 @@ def talked_to():
     sec.repr_loc("mess", me.loc, "p")
     if me.loc == "alchemtalk4":
         sec.npcs_for_loc["alchemist"].talked_to1 = True
-    elif me.loc == "prisontalk":
+    elif me.loc == "alb":
         sec.npcs_for_loc["prison"].talked_to1 = True
 
 
@@ -217,7 +228,11 @@ def talk():
     elif inpt in me_opts:
         me.loc = me_opts.get(inpt)
     else:
-        sec.repr_mess("invalid_opt", "p")
+        try:
+            int(inpt)
+            sec.repr_mess("invalid_opt", "p")
+        except ValueError:
+            sec.repr_mess("int_error", "p")
         talk()
 
 
@@ -244,32 +259,41 @@ def fight_input(enemy, me):
     print(sec.repr_mess("under_att", "r").format(me.name, enemy.name))
     fight(enemy)
     if me.n == 0:
-        if me.on_turn == False:
-            sec.repr_mess("fight_won", "p")
-            enemy.trophy()
-        else:
-            print(sec.repr_mess("fight_lost", "r").format(enemy.harm))
-            me.health -= enemy.harm
-        me.n = 21
-        me.on_turn = False
+        end_fight(enemy, me)
 
 
-def loc_check():
+def end_fight(enemy, me):
+    if me.on_turn == False:
+        sec.repr_mess("fight_won", "p")
+        enemy.trophy()
+        if enemy.name == "Sargelaz":
+            sec.hostile_locs.pop("lair")
+    else:
+        print(sec.repr_mess("fight_lost", "r").format(enemy.harm))
+        me.health -= enemy.harm
+    me.n = 21
+    me.on_turn = False
+
+
+def talk_check():
     tlk = ["market", "chief", "alchemist",
-           "alchemist2", "alchemist3", "prisontalk"]
+           "alchemist2", "alchemist3", "alb"]
     if me.loc in tlk:
         me.talking = True
         while me.talking:
             talk()
-    elif me.loc in sec.hostile_locs:
+
+def fight_check():
+    if me.loc in sec.hostile_locs:
         ran = random.randint(1, 100)
         if ran < sec.hostile_locs[me.loc].chance:
             fight_input(sec.hostile_locs[me.loc], me)
 
 
 def user_input(Me, locs_list):
-    loc_check()
+    talk_check()
     sec.repr_loc("mess", me.loc, "p")
+    fight_check()
     x = input("> ")
     commands = {"chooseloc": me.choose_loc, "wait": wait, "avalocs": me.print_ava_locs, "combat": me.print_combat,
                 "i": me.print_inv, "health": me.print_health, "heal": me.heal, "exit": me.exit, "h": me.print_hint}

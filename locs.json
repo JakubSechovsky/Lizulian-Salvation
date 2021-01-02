@@ -1,23 +1,24 @@
 {
     "mess": {
-        "house": "You are in the living room in your family house in Khayda. It is a clear day, no bad weather in sight.",
+        "house": "You are in the living room in your family house in Khayda. It is a clear as a day because it is, in fact, a day and there are no clouds on the horizon.",
         "village": "You find yourself near the chief's hut in the village of Khayda. There is also a market and an alchemist's hut nearby.",
         "lake": "You walk along a clear lake. Now it is ... clear to you why it is called that way.",
         "forest": "You find yourself in a nearby forest. The sheer size of the trees and thick shrubbery make it hard for you to distinguish anything distant.",
         "fields": "You wonder through the wheat fields near Khayda. There are several huts and farmers are harvesting crops here.",
         "mine": "You are in an abandoned mine. You can see old equipment left behind, as if miners left in haste. You wonder what has happened to the people working here.",
+        "lair":"You hear something crunching underneath your feet. As you look down, you see a trail of skulls and bones leading towards a nest-like structure on the ground.\nYou hear a voice whispering from the shadows 'We are all one in the void.' and then a huge hairy body of a massive spider descends upon you.",
         "market": "You stand if front of the best-looking merchant in the market. 'How can I be of service?' He asks.\nEnter 1 to trade [trade]\nEnter 2 to return to the village",
         "alchemist": "You slowly open the hut's door and immediately a strong smell of boiling liquid wolfsbane hits you. In front of you stands a mysteriously looking woman.\nEnter 1 to talk to her [talk]\nEnter 2 to return to the village",
         "alchemtalk": "'Hmm... I don't remember your face. What do you want?' she asks.\nEnter 1 to ask her about local legends\nEnter 2 to return to the village",
-        "alchemtalk2": "'Ah yes, the legend. We had to explain all the misfortune that has been happening around here in some way. We call him Zandalar. He's voidborn and he's been terrorizing\nour village since I was a little girl. The wheatworm infestation of spreadind through our fields, for example, is his doing.\nAll who tried to stop him failed as they didn't have the item needed.'\nEnter 1 to ask what is she talking about\nEnter 2 to return to the village",
+        "alchemtalk2": "'Ah yes, the legend. We had to explain all the misfortune that has been happening around here in some way. We call him Zandalar.\nHe's voidborn and he's been terrorizing our village since I was a little girl. The wheatworm infestation of spreadind through our fields, for example, is his doing.\nAll who tried to stop him failed as they didn't have the item needed.'\nEnter 1 to ask what is she talking about\nEnter 2 to return to the village",
         "alchemtalk3": "'You stand no chance against him, unless you wield Zandalar's staff. It is said that his brother Alberimus stole the Staff when he discovered Zandalar's plans\nto rule the world. Alberimus was then imprisoned by his own brother and the location of the Staff remains a mystery.'\nEnter 1 to ask what happened next",
-        "alchemtalk4": "Before Alberimus got imprisoned, he left behind a shard. That shard should teleport anyone - and anything - to Alberimus. In some wierd turn of events\nI managed to obtain said Shard. I will give it to you, but you have bring me 4 wolf pelts and worm fangs, 6 snake tongues and 8 spider webs.\nYou have no idea how hard to get these items are nowadays and I need them so I can help local folk.'\nEnter 1 to ask her to repeat what she just said because you got distracted by a fly\nEnter 2 to assure her you will bring her the items and return to the village",
+        "alchemtalk4": "Before Alberimus got imprisoned, he left behind a shard. That shard should teleport anyone - and anything - to Alberimus. In some wierd turn of events\nI managed to obtain said Shard. I will give it to you, but you have bring me saliva from a monster we call Sargelaz.\nIt has made it's lair on a lake's shore, near the forest there. I can't give it to you for free and this beast has been blocking the only trade route here.'\nEnter 1 to ask her to repeat what she just said because you got distracted by a fly\nEnter 2 to assure her you will bring her the items and return to the village",
         "alchemist2": "'So, have you brought the items I need? Guess we're about to see...'\nEnter 1 to ask the alchemist about the local legend\nEnter 2 to offer her obtained loot\nEnter 3 to return to the village",
         "alchemist3": "'Thank you for the ingredients I needed. Have you used the Shard yet by any chance?\nYou can do so by entering 'use' outside of combat or while not talking nor trading.'\nEnter 1 to return to the village",
         "chief": "As soon as you open the majestic doors that lead into the chief's hut, you are greeted by the chief's friendly voice:'Hello fellow townsman.\nYou seem like a foreigner, strange... we haven't had one since... the accident...'\nEnter 1 to let him continue speaking [talk]\nEnter 2 to return to the village",
         "talkchief": "'I suppose I could tell you something useful.' he continues. 'If you venture outside the village - though I would not advise you to - you will face danger,\nthe forest is full of wolves, the fields are being ravaged by the wheatworms, our lake is inhabited by venomous snakes and nearby mine is crawling with spiders.'\nEnter 1 to let him continue speaking\nEnter 2 to return to the village",
         "talkchief2": "'If you didn't know, in this land we don't fight physically. Instead, we play a game known as 'Nim': the players take turns in removing 1 - 3 stones from\none pile of 21 stones. The player, who first gets the amount of stones to 0, wins. If you win, your opponent's soul should offer you some goods.\nHowever if you lose, you will only get hurt. To read this again, while not in combat, not trading nor talking, just enter 'combat'.\nEnter 1 to ask about local legends\nEnter 2 to ask the chief to repeat what he just said because you weren't paying attention\nEnter 3 to return to the village",
-        "talkchief3": "'Ah yes, local legends, of course, I knew you would be interested. There is said to be an ancient tool of immense power,\nit is also said to be able to add one stone mid-fight, not replacing the player's turn, meaning that with enough skill and this item,\none cannot possibly loose a fight. Our alchemist might know more.'\nEnter 1 to ask the chief to repeat what he just said because you fell asleep\nEnter 2 to return to the village",
+        "talkchief3": "'Ah yes, local legends, of course, I knew you would be interested. There is said to be an ancient tool of immense power,\nit is also said to be able to add one stone mid-fight, not replacing the player's turn, meaning that with enough skill and this item,\none cannot possibly loose a fight. Ask our alchemist, she might know more.'\nEnter 1 to ask the chief to repeat what he just said because you fell asleep\nEnter 2 to return to the village",
         "prison": "As your eyes adjust to the dim light, you begin to see several cells, containing mostly horrifiyng skeletons.\nIn one of them however, you see an old pale man with dark hair who seems very lonely. An axe is nearby.\nThere are stairs leading up onto the surface, allowing strange dark orange light into the prison.",
         "chapel": "Wide-Zandalar-walking",
         "park": "Shiver runs down your spine as you walk through the worst-looking park you have ever been to.\nTrees twisted as if tormented, grass dry and of violet color, nothing here resembles happiness.",
@@ -35,10 +36,8 @@
         "place": "village",
         "opts": {
             "house": "house",
-            "lake": "lake",
-            "forest": "forest",
-            "fields": "fields",
             "mine": "mine",
+            "fields": "fields",
             "market": "market",
             "alchemist": "alchemist",
             "chief": "chief"
@@ -47,37 +46,36 @@
     "lake": {
         "place": "lake",
         "opts": {
-            "village": "village",
-            "forest": "forest",
             "fields": "fields",
-            "mine": "mine"
+            "lair":"lair"
         }
     },
     "forest": {
         "place": "forest",
         "opts": {
-            "village": "village",
-            "lake": "lake",
-            "fields": "fields",
-            "mine": "mine"
+            "mine": "mine",
+            "lair":"lair"
         }
     },
     "fields": {
         "place": "fields",
         "opts": {
             "village": "village",
-            "lake": "lake",
-            "forest": "forest",
-            "mine": "mine"
+            "lake": "lake"
         }
     },
     "mine": {
         "place": "mine",
         "opts": {
             "village": "village",
-            "lake": "lake",
-            "forest": "forest",
-            "fields": "fields"
+            "forest": "forest"
+        }
+    },
+    "lair":{
+        "place":"lair",
+        "opts":{
+            "forest":"forest",
+            "lake":"lake"
         }
     },
     "chief": {
@@ -168,34 +166,26 @@
         "place": "prison",
         "opts": {
             "village": "village",
-            "chapel": "chapel",
             "park": "park",
-            "center": "center",
             "theater": "theater"
         }
     },
     "chapel": {
         "place": "chapel",
         "opts": {
-            "prison": "prison",
-            "park": "park",
-            "center": "center",
-            "theater": "theater"
+            "center": "center"
         }
     },
     "park": {
         "place": "park",
         "opts": {
             "prison": "prison",
-            "chapel": "chapel",
-            "center": "center",
-            "theater": "theater"
+            "center": "center"
         }
     },
     "center": {
         "place": "center",
         "opts": {
-            "prison": "prison",
             "chapel": "chapel",
             "park": "park",
             "theater": "theater"
@@ -205,12 +195,10 @@
         "place": "theater",
         "opts": {
             "prison": "prison",
-            "chapel": "chapel",
-            "park": "park",
             "center": "center"
         }
     },
-    "prisontalk": {
+    "alb": {
         "place": null,
         "opts": {
             "1": "prison"
