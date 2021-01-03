@@ -4,7 +4,7 @@ import Second as sec
 
 
 class Enemy:
-    def __init__(self, loc, loot, name, chance, harm, low_limit, up_limit, best_act):
+    def __init__(self, loc, loot, name, chance, harm, low_limit, up_limit, best_act, defeated):
         self.loot = loot
         self.loc = loc
         self.name = name
@@ -13,6 +13,7 @@ class Enemy:
         self.low_limit = low_limit
         self.up_limit = up_limit
         self.best_act = best_act
+        self.defeated = defeated
 
     def simulationAI(self):
         self.best_act = -1
@@ -25,12 +26,12 @@ class Enemy:
     def simulationAI2(self, x, best_score, act_score):
         for _ in range(1000):
             stone_count = me.n - x
-            i_play = False
+            ai_turn = False
             while stone_count > 0:
                 stone_count -= min(stone_count,
                                    random.randint(me.min_take, me.max_take + 1))
-                i_play = not i_play
-            if i_play:
+                ai_turn = not ai_turn
+            if ai_turn:
                 act_score -= 1
             else:
                 act_score += 1
@@ -76,10 +77,10 @@ class Enemy:
         if x == "1":
             me.inv[self.loot] += ran
             print(sec.repr_mess("received", "r").format(
-                    ran, self.loot))
+                ran, self.loot))
         elif x == "2":
             print(sec.repr_mess("rejected", "r").format(
-                    ran, self.loot))
+                ran, self.loot))
         else:
             sec.repr_mess("int_error", "p")
             self.trophy()
@@ -163,7 +164,7 @@ def load_enms():
         for enm in enms:
             atts = enms[enm]
             new_enm = Enemy(atts["loc"], atts["loot"], atts["name"],
-                            atts["chance"], atts["harm"], atts["low_limit"], atts["up_limit"], atts["best_act"])
+                            atts["chance"], atts["harm"], atts["low_limit"], atts["up_limit"], atts["best_act"], atts["defeated"])
             sec.hostile_locs[atts["loc"]] = new_enm
 
 
@@ -199,6 +200,30 @@ def alchem_trade2(npc, item):
         me.safe += 1
 
 
+def chapel_trade(npc):
+    me.safe = 1
+    for item in npc.inv:
+        if not item == "Zandalar's staff":
+            if me.inv[item] > 0 and not npc.inv[item] == sec.items_list[item].alchem_limit:
+                chapel_trade2(npc, item)
+            elif me.inv[item] == 0 and me.safe == 1 and not npc.inv[item] == sec.items_list[item].chapel_limit:
+                sec.repr_mess("give_nothing", "p")
+                me.safe += 1
+
+def chapel_trade2(npc, item):
+    if me.inv[item] <= sec.items_list[item].chapel_limit:
+        x = me.inv[item] - npc.inv[item]
+    else:
+        x = sec.items_list[item].chapel_limit - npc.inv[item]
+    npc.inv[item] += x
+    me.inv[item] -= x
+    if not x == 0:
+        print(sec.repr_mess("chapel_give", "r").format(
+            sec.items_list[item].name))
+    elif me.inv[item] == 0 and me.safe == 1:
+        sec.repr_mess("give_nothing", "p")
+        me.safe += 1
+
 def trade(npc):
     if me.loc == "alchemist2":
         alchem_trade(npc)
@@ -206,6 +231,13 @@ def trade(npc):
             sec.repr_mess("alchem_shard", "p")
             npc.talked_to2 = True
             sec.connect_locs()
+    elif me.loc == "altar":
+        chapel_trade(npc)
+        if npc.inv["void talon"] == sec.items_list["void talon"].chapel_limit and npc.inv["abyssal scope"] == sec.items_list["abyssal scope"].chapel_limit and npc.inv["shadow blade"] == sec.items_list["shadow blade"].chapel_limit:
+            me.inv["Zandalar's staff"] += 1
+            sec.repr_mess("staff_obt", "p")
+            npc.talked_to1 = True
+        me.loc = "chapel"
     else:
         buy_or_sell()
 
@@ -223,7 +255,8 @@ def talk_trade():
         trade(sec.npcs_for_loc["alchemist"])
     else:
         trade(sec.npcs_for_loc[me.loc])
-    me.loc = me.last_loc
+    if not me.loc == "altar":
+        me.loc = me.last_loc
     me.talking = False
 
 
@@ -231,7 +264,8 @@ def talk():
     me_opts = sec.repr_loc(me.loc, "opts", "r")
     talked_to()
     inpt = input(">")
-    if me_opts.get(inpt) == "village" or me_opts.get(inpt) == "prison":
+    back_locs = ["village", "prison", "chapel"]
+    if me_opts.get(inpt) in back_locs:
         me.loc = me.last_loc
         me.talking = False
     elif me_opts.get(inpt) == "trade":
@@ -283,6 +317,10 @@ def end_fight(enemy, me):
         enemy.trophy()
         if enemy.name == "Sargelaz":
             sec.hostile_locs.pop("lair")
+        elif enemy.name == "Zandalar":
+            sec.hostile_locs["bossfight"].defeated = True
+            sec.repr_mess("boss_def", "p")
+            me.loc = "village"
     else:
         print(sec.repr_mess("fight_lost", "r").format(enemy.harm))
         me.health -= enemy.harm
@@ -292,7 +330,7 @@ def end_fight(enemy, me):
 
 def talk_check():
     tlk = ["market", "chief", "alchemist",
-           "alchemist2", "alchemist3", "alb"]
+           "alchemist2", "alchemist3", "alb", "altar"]
     if me.loc in tlk:
         me.talking = True
         while me.talking:
@@ -300,6 +338,9 @@ def talk_check():
 
 
 def fight_check():
+    if me.loc == "chapel" and me.inv.get("Zandalar's staff") == 1 and not sec.hostile_locs["bossfight"].defeated:
+        sec.repr_mess("pre_boss", "p")
+        me.loc = "bossfight"
     if me.loc in sec.hostile_locs:
         ran = random.randint(1, 100)
         if ran < sec.hostile_locs[me.loc].chance:
@@ -321,6 +362,7 @@ def user_input(Me, locs_list):
 
 def main(Me, locs_list):
     load_json()
+    sec.connect_locs()
     me.name = input(sec.repr_mess("choose_name", "r"))
     me.choose_difficulty()
     me.print_intro()

@@ -23,7 +23,7 @@
     "invalid_opt": "Invalid option.",
     "loc_opts": "Your only available location(s) are: ",
     "stones_removed": "You have removed {} stone(s)",
-    "under_att": "{}, you are being attacked by {}.",
+    "under_att": "\n{}, you are being attacked by {}.",
     "offer": "The soul of your opponent offers you {} {}(s).",
     "received": "You have recieved {} {}(s).",
     "rejected": "You have rejected {} {}(s).",
@@ -46,11 +46,15 @@
     "buy_or_sell": "What do you want to do?\nEnter 1 to buy\nEnter 2 to sell\n> ",
     "cont_trade": "Do you want to continue trading?\nEnter 1 to keep trading\nEnter 2 to leave the merchant [exit trading]\n> ",
     "choose_diff": "Enter a number a number (1 - 3) to choose difficulty:\n1. Easy\n2. Medium\n3. Hard\n> ",
-    "give_nothing": "You do not have the required item.",
+    "give_nothing": "You do not have the required item(s).",
     "choose_name": "\nChoose your name:\n> ",
     "invalid_loc": "Invalid location, locations available for you are:",
     "no_buy": "There is no such item for sale here.",
-    "sarg_loot":"As you remove the last remaining stones, the monster withers in front of your eyes, as if it's soul was being drained, leaving only the disgusting body behind.\nYou obtain Sargelaz's head.",
-    "no_items":"You do not have this amount of {}s.",
-    "enter_comm":"Enter a command:\n> "
+    "sarg_loot": "As you remove the last remaining stones, the monster withers in front of your eyes, as if it's soul was being drained, leaving only the disgusting body behind.\nYou obtain Sargelaz's head.",
+    "no_items": "You do not have this amount of {}s.",
+    "enter_comm": "Enter a command:\n> ",
+    "chapel_give": "You have deposited {}.",
+    "staff_obt": "As you put the final piece of the puzzle onto the altar, a cache hidden underneath reveals itself.\nYou open it and obtain Zandalars's staff, just as Alberimus foretold.",
+    "pre_boss": "'So we meet again.' you hear in your head. 'I am Zandalar, The Unseen, Leader of the Void and... your father.\nNow you shall succumb to the corruption or die, trying to resist it.'",
+    "boss_def": "'Thank you son, for freeing me from the corruption. You have done well, I am proud of you.' With these final words, Zandalar's soul leaves his body.\nThe Shard from alchemist starts to shake and teleports you to her village. The crown you gained (if you accepted the offer) can be sold for 1000 coins.\nYou have finished the game!\nYou can continue playing the game for as long as you like, but there will be no more story. You can always leave the game using the 'exit' command.\n\nYou find yourself near the chief's hut in the village of Khayda. There is also a market and an alchemist's hut nearby."
 }

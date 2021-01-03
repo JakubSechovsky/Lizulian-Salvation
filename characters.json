@@ -20,14 +20,15 @@
             "pear": 0,
             "wolf pelt": 0,
             "worm fang": 0,
-            "snake tongue": 1,
+            "snake tongue": 0,
             "spider web": 0,
             "Sargelaz's head": 0,
             "void talon": 0,
             "abyssal scope": 0,
             "shadow blade": 0,
             "Shard of Alberimus": 0,
-            "Zandalar's staff": 0
+            "Zandalar's staff": 0,
+            "Void crown": 0
         }
     },
     "alchemist": {
@@ -51,58 +52,105 @@
         "talked_to2": null,
         "inv": {}
     },
+    "altar": {
+        "loc": "altar",
+        "talked_to1": false,
+        "talked_to2": null,
+        "inv": {
+            "void talon": 0,
+            "abyssal scope": 0,
+            "shadow blade": 0
+        }
+    },
     "apple": {
         "sellval": 10,
         "healval": 20,
         "name": "apple",
-        "alchem_limit": null
+        "alchem_limit": null,
+        "chapel_limit": null
     },
     "pear": {
         "sellval": 5,
         "healval": 10,
         "name": "pear",
-        "alchem_limit": null
+        "alchem_limit": null,
+        "chapel_limit": null
     },
     "wolf pelt": {
         "sellval": 11,
         "healval": null,
         "name": "wolf pelt",
-        "alchem_limit": null
+        "alchem_limit": null,
+        "chapel_limit": null
     },
     "worm fang": {
         "sellval": 13,
         "healval": null,
         "name": "worm fang",
-        "alchem_limit": null
+        "alchem_limit": null,
+        "chapel_limit": null
     },
     "snake tongue": {
         "sellval": 7,
         "healval": null,
         "name": "snake tongue",
-        "alchem_limit": null
+        "alchem_limit": null,
+        "chapel_limit": null
     },
     "spider web": {
         "sellval": 5,
         "healval": null,
         "name": "spider web",
-        "alchem_limit": null
+        "alchem_limit": null,
+        "chapel_limit": null
     },
-    "Sargelaz's head":{
-        "sellval":0,
-        "healval":null,
-        "name":"Sargelaz's head",
-        "alchem_limit":1
+    "Sargelaz's head": {
+        "sellval": 0,
+        "healval": null,
+        "name": "Sargelaz's head",
+        "alchem_limit": 1,
+        "chapel_limit": null
     },
     "Shard of Alberimus": {
         "sellval": 0,
         "healval": null,
         "name": "Shard of Alberimus",
-        "alchem_limit": null
+        "alchem_limit": null,
+        "chapel_limit": null
+    },
+    "void talon": {
+        "sellval": 50,
+        "healval": null,
+        "name": "void talon",
+        "alchem_limit": null,
+        "chapel_limit": 1
+    },
+    "abyssal scope": {
+        "sellval": 50,
+        "healval": null,
+        "name": "abyssal scope",
+        "alchem_limit": null,
+        "chapel_limit": 1
+    },
+    "shadow blade": {
+        "sellval": 50,
+        "healval": null,
+        "name": "shadow blade",
+        "alchem_limit": null,
+        "chapel_limit": 1
     },
     "Zandalar's staff": {
         "sellval": 0,
         "healval": null,
         "name": "Zandalar's staff",
-        "alchem_limit": null
+        "alchem_limit": null,
+        "chapel_limit": null
+    },
+    "Void crown": {
+        "sellval": 1000,
+        "healval": null,
+        "name": "Void crown",
+        "alchem_limit": null,
+        "chapel_limit": null
     }
 }

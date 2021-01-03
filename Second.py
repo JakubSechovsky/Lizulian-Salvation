@@ -97,6 +97,8 @@ class Me:
                 self.loc = "alchemist2"
             elif self.loc == "prison" and not y == "village" and not npcs_for_loc["prison"].talked_to1:
                 self.loc = "alb"
+            elif y == "altar" and npcs_for_loc["altar"].talked_to1:
+                self.loc = "altar2"
             else:
                 self.loc = locs_list.get(self.loc).opts.get(y)
         else:
@@ -215,8 +217,10 @@ def return_char(name, key):
 
 
 def connect_locs():
+    void_locs = ["prison", "park", "theater", "center", "chapel", "altar"]
     for loc in locs_list:
-        locs_list.get(loc).opts["prison"] = "prison"
+        if not loc in void_locs:
+            locs_list.get(loc).opts["prison"] = "prison"
 
 
 def load_locs():
@@ -238,8 +242,9 @@ def load_npcs():
 
 def npc_check(npcs, npc):
     i = npcs[npc]
+    npcs = ["alchemist", "merchant", "Alberimus", "altar"]
     if not npc == "me":
-        if npc == "alchemist" or npc == "merchant" or npc == "Alberimus":
+        if npc in npcs:
             new_npc = NPC(i["loc"], i["inv"],
                           i["talked_to1"], i["talked_to2"])
             npcs_for_loc[i["loc"]] = new_npc

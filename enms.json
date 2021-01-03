@@ -7,7 +7,8 @@
         "harm": 20,
         "low_limit": 1,
         "up_limit": 2,
-        "best_act": 0
+        "best_act": 0,
+        "defeated": false
     },
     "wheatworm": {
         "loc": "fields",
@@ -17,7 +18,8 @@
         "harm": 10,
         "low_limit": 1,
         "up_limit": 3,
-        "best_act": 0
+        "best_act": 0,
+        "defeated": false
     },
     "snake": {
         "loc": "lake",
@@ -27,7 +29,8 @@
         "harm": 15,
         "low_limit": 2,
         "up_limit": 3,
-        "best_act": 0
+        "best_act": 0,
+        "defeated": false
     },
     "spider": {
         "loc": "mine",
@@ -37,7 +40,8 @@
         "harm": 10,
         "low_limit": 2,
         "up_limit": 4,
-        "best_act": 0
+        "best_act": 0,
+        "defeated": false
     },
     "beast": {
         "loc": "lair",
@@ -47,36 +51,51 @@
         "harm": 40,
         "low_limit": 1,
         "up_limit": 1,
-        "best_act": 0
+        "best_act": 0,
+        "defeated": false
     },
     "void seeker": {
         "loc": "park",
         "loot": "void talon",
         "name": "Void seeker",
-        "chance": 50,
+        "chance": 33,
         "harm": 30,
         "low_limit": 0,
         "up_limit": 1,
-        "best_act": 0
+        "best_act": 0,
+        "defeated": false
     },
     "shadow templar": {
         "loc": "center",
         "loot": "shadow blade",
         "name": "Shadow templar",
-        "chance": 40,
+        "chance": 33,
         "harm": 45,
         "low_limit": 0,
         "up_limit": 1,
-        "best_act": 0
+        "best_act": 0,
+        "defeated": false
     },
     "abyssal watcher": {
         "loc": "theater",
         "loot": "abyssal scope",
         "name": "Abyssal watcher",
-        "chance": 45,
+        "chance": 33,
         "harm": 35,
         "low_limit": 0,
         "up_limit": 1,
-        "best_act": 0
+        "best_act": 0,
+        "defeated": false
+    },
+    "Zandalar": {
+        "loc": "bossfight",
+        "loot": "Void crown",
+        "name": "Zandalar",
+        "chance": 100,
+        "harm": 70,
+        "low_limit": 1,
+        "up_limit": 1,
+        "best_act": 0,
+        "defeated": false
     }
 }
