@@ -263,7 +263,7 @@ def talk_trade():
 def talk():
     me_opts = sec.repr_loc(me.loc, "opts", "r")
     talked_to()
-    inpt = input(">")
+    inpt = input("> ")
     back_locs = ["village", "prison", "chapel"]
     if me_opts.get(inpt) in back_locs:
         me.loc = me.last_loc
@@ -362,7 +362,6 @@ def user_input(Me, locs_list):
 
 def main(Me, locs_list):
     load_json()
-    sec.connect_locs()
     me.name = input(sec.repr_mess("choose_name", "r"))
     me.choose_difficulty()
     me.print_intro()
