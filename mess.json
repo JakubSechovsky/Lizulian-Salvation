@@ -52,5 +52,5 @@
     "no_buy": "There is no such item for sale here.",
     "sarg_loot":"As you remove the last remaining stones, the monster withers in front of your eyes, as if it's soul was being drained, leaving only the disgusting body behind.\nYou obtain Sargelaz's head.",
     "no_items":"You do not have this amount of {}s.",
-    "enter_comm":"Enter a command:\n>"
+    "enter_comm":"Enter a command:\n> "
 }
