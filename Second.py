@@ -16,12 +16,13 @@ class NPC:
 
 
 class Items:
-    def __init__(self, sellval, healval, name, alchem_limit):
+    def __init__(self, sellval, healval, name, alchem_limit, chapel_limit):
         self.sellval = sellval
         self.buyval = 2*sellval
         self.healval = healval
         self.name = name
         self.alchem_limit = alchem_limit
+        self.chapel_limit = chapel_limit
 
     def heal_user(self):
         if me.inv.get(self.name) > 0:
@@ -244,7 +245,7 @@ def npc_check(npcs, npc):
             npcs_for_loc[i["loc"]] = new_npc
         else:
             new_item = Items(i["sellval"], i["healval"],
-                             i["name"], i["alchem_limit"])
+                             i["name"], i["alchem_limit"], i["chapel_limit"])
             items_list[i["name"]] = new_item
             if npc == "apple" or npc == "pear":
                 heal_list[i["name"]] = new_item

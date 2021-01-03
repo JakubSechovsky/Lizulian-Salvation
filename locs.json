@@ -20,7 +20,7 @@
         "talkchief2": "'If you didn't know, in this land we don't fight physically. Instead, we play a game known as 'Nim': the players take turns in removing 1 - 3 stones from\none pile of 21 stones. The player, who first gets the amount of stones to 0, wins. If you win, your opponent's soul should offer you some goods.\nHowever if you lose, you will only get hurt. To read this again, while not in combat, not trading nor talking, just enter 'combat'.\nEnter 1 to ask about local legends\nEnter 2 to ask the chief to repeat what he just said because you were not paying attention\nEnter 3 to return to the village",
         "talkchief3": "'Ah yes, local legends, of course, I knew you would be interested. There is said to be an ancient tool of immense power,\nit is also said to be able to add one stone mid-fight, not replacing the player's turn, meaning that with enough skill and this item,\none cannot possibly loose a fight. Ask our alchemist, she might know more.'\nEnter 1 to ask the chief to repeat what he just said because you fell asleep\nEnter 2 to return to the village",
         "prison": "As your eyes adjust to the dim light, you begin to see several cells, containing mostly horrifiyng skeletons.\nIn one of them however, you see an old pale man with dark hair who seems very lonely. An axe is nearby.\nThere are stairs leading up onto the surface, allowing strange dark orange light into the prison.",
-        "chapel": "Wide-Zandalar-walking",
+        "chapel": "You enter a majestic building, probably the only one left untouched by the Void. You aproach the altar and see that several pieces are missing. Those must be the things that Alberimus mentioned.",
         "park": "Shiver runs down your spine as you walk through the worst-looking park you have ever been to.\nTrees twisted as if tormented, grass dry and of violet color, nothing here resembles happiness.",
         "theater": "You see an old amphitheater down the street, it's walls and stairs all crumbling under the pressure of time.\n'This one's not for playing.' you whisper to yourself.",
         "center": "The center of this so-called city is as old as humanity itself and the ancient buildings serving unknown purposes somehow make you feel uncomfortable.",
@@ -170,12 +170,6 @@
             "theater": "theater"
         }
     },
-    "chapel": {
-        "place": "chapel",
-        "opts": {
-            "center": "center"
-        }
-    },
     "park": {
         "place": "park",
         "opts": {
@@ -202,6 +196,12 @@
         "place": null,
         "opts": {
             "1": "prison"
+        }
+    },
+    "chapel": {
+        "place": "chapel",
+        "opts": {
+            "center": "center"
         }
     }
 }
