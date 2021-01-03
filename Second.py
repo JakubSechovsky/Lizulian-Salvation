@@ -154,7 +154,7 @@ class Me:
         try:
             y = int(y)
             if y > self.inv.get(x) or y < 0:
-                repr_mess("int_error", "p")
+                print(repr_mess("no_items", "r").format(x))
                 self.sell(x)
             else:
                 z = y*items_list[x].sellval

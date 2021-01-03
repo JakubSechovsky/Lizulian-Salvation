@@ -63,16 +63,23 @@ class Enemy:
             self.trophy2(ran)
 
     def trophy2(self, ran):
-        print(sec.repr_mess("offer", "r").format(ran, self.loot))
+        if not self.name == "Sargelaz":
+            print(sec.repr_mess("offer", "r").format(ran, self.loot))
+            self.trophy_input(ran)
+        else:
+            sec.repr_mess("sarg_loot", "p")
+            me.inv[self.loot] += ran
+
+    def trophy_input(self, ran):
         x = input(
             sec.repr_mess("loot", "r"))
         if x == "1":
             me.inv[self.loot] += ran
             print(sec.repr_mess("received", "r").format(
-                ran, self.loot))
+                    ran, self.loot))
         elif x == "2":
             print(sec.repr_mess("rejected", "r").format(
-                ran, self.loot))
+                    ran, self.loot))
         else:
             sec.repr_mess("int_error", "p")
             self.trophy()
@@ -98,19 +105,23 @@ def wait():
 def buy_sell():
     x = input(sec.repr_mess("market_item", "r").format(me.way))
     if x in me.inv:
-        if sec.items_list[x].sellval == 0:
-            print(sec.repr_mess("no_market", "r").format(me.way))
-        else:
-            if me.way == "buy":
-                me.buy(x)
-            elif me.way == "sell" and me.inv.get(x) > 0:
-                me.sell(x)
+        buy_sell2(x)
     else:
         if me.way == "sell":
             sec.repr_mess("no_item", "p")
         else:
             sec.repr_mess("no_buy", "p")
     cont_trading()
+
+
+def buy_sell2(x):
+    if sec.items_list[x].sellval == 0:
+        print(sec.repr_mess("no_market", "r").format(me.way))
+    else:
+        if me.way == "buy":
+            me.buy(x)
+        elif me.way == "sell" and me.inv.get(x) > 0:
+            me.sell(x)
 
 
 def buy_or_sell():
@@ -191,7 +202,7 @@ def alchem_trade2(npc, item):
 def trade(npc):
     if me.loc == "alchemist2":
         alchem_trade(npc)
-        if npc.inv["saliva"] == sec.items_list["saliva"].alchem_limit:
+        if npc.inv["Sargelaz's head"] == sec.items_list["Sargelaz's head"].alchem_limit:
             sec.repr_mess("alchem_shard", "p")
             npc.talked_to2 = True
             sec.connect_locs()
@@ -245,14 +256,18 @@ def fight(enemy):
             print(sec.repr_mess("stones_on_board", "r").format(me.n))
             me.on_turn = True
         else:
-            if me.inv.get("Zandalar's staff") > 0:
-                me.max_take = 4
-                me.min_take = 0
-            else:
-                me.max_take = 3
-            me.max_take = min(me.n, me.max_take)
-            me.take()
-            me.on_turn = False
+            user_turn()
+
+
+def user_turn():
+    if me.inv.get("Zandalar's staff") > 0:
+        me.max_take = 4
+        me.min_take = 0
+    else:
+        me.max_take = 3
+    me.max_take = min(me.n, me.max_take)
+    me.take()
+    me.on_turn = False
 
 
 def fight_input(enemy, me):
@@ -283,6 +298,7 @@ def talk_check():
         while me.talking:
             talk()
 
+
 def fight_check():
     if me.loc in sec.hostile_locs:
         ran = random.randint(1, 100)
@@ -294,7 +310,7 @@ def user_input(Me, locs_list):
     talk_check()
     sec.repr_loc("mess", me.loc, "p")
     fight_check()
-    x = input("> ")
+    x = input(sec.repr_mess("enter_comm", "r"))
     commands = {"chooseloc": me.choose_loc, "wait": wait, "avalocs": me.print_ava_locs, "combat": me.print_combat,
                 "i": me.print_inv, "health": me.print_health, "heal": me.heal, "exit": me.exit, "h": me.print_hint}
     if x in commands:
@@ -312,9 +328,10 @@ def main(Me, locs_list):
         if me.health <= 0:
             sec.repr_mess("dead", "p")
             me.run = False
-        user_input(Me, locs_list)
-    if not me.run:
-        sec.repr_mess("end", "p")
+        if me.run:
+            user_input(Me, locs_list)
+        else:
+            sec.repr_mess("end", "p")
 
 
 me = sec.me

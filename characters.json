@@ -1,7 +1,7 @@
 {
     "me": {
         "max_health": 100,
-        "health": 10,
+        "health": 100,
         "loc": "house",
         "diff": "",
         "run": true,
@@ -13,7 +13,7 @@
         "last_loc": "house",
         "way": "",
         "name": "",
-        "safe":1,
+        "safe": 1,
         "inv": {
             "gold coin": 0,
             "apple": 0,
@@ -22,7 +22,7 @@
             "worm fang": 0,
             "snake tongue": 0,
             "spider web": 0,
-            "saliva":1,
+            "Sargelaz's head": 0,
             "void talon": 0,
             "abyssal scope": 0,
             "shadow blade": 0,
@@ -35,7 +35,7 @@
         "talked_to1": false,
         "talked_to2": false,
         "inv": {
-            "saliva":0,
+            "Sargelaz's head": 0,
             "Shard of Alberimus": 1
         }
     },
@@ -43,22 +43,13 @@
         "loc": "market",
         "talked_to1": false,
         "talked_to2": false,
-        "inv": {
-            "wolf pelt": 0,
-            "worm fang": 0,
-            "snake tongue": 0,
-            "spider web": 0,
-            "pear": 0,
-            "apple": 0
-        }
+        "inv": {}
     },
     "Alberimus": {
         "loc": "prison",
         "talked_to1": false,
         "talked_to2": null,
-        "inv": {
-            "Zandalar's staff": 1
-        }
+        "inv": {}
     },
     "apple": {
         "sellval": 10,
@@ -96,10 +87,10 @@
         "name": "spider web",
         "alchem_limit": null
     },
-    "saliva":{
+    "Sargelaz's head":{
         "sellval":0,
         "healval":null,
-        "name":"saliva",
+        "name":"Sargelaz's head",
         "alchem_limit":1
     },
     "Shard of Alberimus": {

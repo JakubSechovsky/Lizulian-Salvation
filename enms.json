@@ -7,7 +7,7 @@
         "harm": 20,
         "low_limit": 1,
         "up_limit": 2,
-        "best_act":0
+        "best_act": 0
     },
     "wheatworm": {
         "loc": "fields",
@@ -17,7 +17,7 @@
         "harm": 10,
         "low_limit": 1,
         "up_limit": 3,
-        "best_act":0
+        "best_act": 0
     },
     "snake": {
         "loc": "lake",
@@ -27,7 +27,7 @@
         "harm": 15,
         "low_limit": 2,
         "up_limit": 3,
-        "best_act":0
+        "best_act": 0
     },
     "spider": {
         "loc": "mine",
@@ -37,17 +37,17 @@
         "harm": 10,
         "low_limit": 2,
         "up_limit": 4,
-        "best_act":0
+        "best_act": 0
     },
-    "beast":{
-        "loc":"lair",
-        "loot":"saliva",
-        "name":"Sargelaz",
-        "chance":100,
-        "harm":40,
-        "low_limit":1,
-        "up_limit":1,
-        "best_act":0
+    "beast": {
+        "loc": "lair",
+        "loot": "Sargelaz's head",
+        "name": "Sargelaz",
+        "chance": 100,
+        "harm": 40,
+        "low_limit": 1,
+        "up_limit": 1,
+        "best_act": 0
     },
     "void seeker": {
         "loc": "park",
@@ -57,7 +57,7 @@
         "harm": 30,
         "low_limit": 0,
         "up_limit": 1,
-        "best_act":0
+        "best_act": 0
     },
     "shadow templar": {
         "loc": "center",
@@ -67,7 +67,7 @@
         "harm": 45,
         "low_limit": 0,
         "up_limit": 1,
-        "best_act":0
+        "best_act": 0
     },
     "abyssal watcher": {
         "loc": "theater",
@@ -77,6 +77,6 @@
         "harm": 35,
         "low_limit": 0,
         "up_limit": 1,
-        "best_act":0
+        "best_act": 0
     }
 }
