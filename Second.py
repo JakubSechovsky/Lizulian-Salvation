@@ -217,10 +217,7 @@ def return_char(name, key):
 
 
 def connect_locs():
-    void_locs = ["prison", "park", "theater", "center", "chapel", "altar"]
-    for loc in locs_list:
-        if not loc in void_locs:
-            locs_list.get(loc).opts["prison"] = "prison"
+    locs_list.get("village").opts["prison"] = "prison"
 
 
 def load_locs():

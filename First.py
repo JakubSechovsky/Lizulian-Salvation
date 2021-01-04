@@ -228,6 +228,7 @@ def trade(npc):
     if me.loc == "alchemist2":
         alchem_trade(npc)
         if npc.inv["Sargelaz's head"] == sec.items_list["Sargelaz's head"].alchem_limit:
+            me.inv["Shard of Alberimus"] += 1
             sec.repr_mess("alchem_shard", "p")
             npc.talked_to2 = True
             sec.connect_locs()
