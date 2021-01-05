@@ -14,7 +14,7 @@
         "alchemtalk3": "\n'You stand no chance against him, unless you wield Zandalar's staff. It is said that his brother Alberimus stole the Staff when he discovered Zandalar's plans\nto rule the world. Alberimus was then imprisoned by his own brother and the location of the Staff remains a mystery.'\nEnter 1 to ask her how can you find it",
         "alchemtalk4": "\nBefore Alberimus got imprisoned, he left behind a shard. That shard should teleport anyone - and anything - to Alberimus. In some wierd turn of events\nI managed to obtain said Shard. I will give it to you, but you have to slay a monster we call Sargelaz and bring me it's head as a proof.\nIt has made it's lair on a lake's shore, near the forest there. I can't give it to you for free and this beast has been blocking the only trade route here.'\nEnter 1 to ask her to repeat what she just said because you got distracted by a fly\nEnter 2 to assure her you will bring her the head and return to the village",
         "alchemist2": "\n'So, have you brought it's head? I guess we're about to see...'\nEnter 1 to ask the alchemist about the local legend\nEnter 2 to offer her Sargelaz's head\nEnter 3 to return to the village",
-        "alchemist3": "\n'Thank you for the ingredients I needed. Have you used the Shard yet by any chance?\nYou can do so by entering 'use' outside of combat or while not talking nor trading.'\nEnter 1 to return to the village",
+        "alchemist3": "\n'Thank you for defeating the monster. Have you used the Shard yet by any chance?\nYou can do so by typing 'prison' after entering the command 'chooseloc'.'\nEnter 1 to return to the village",
         "chief": "\nAs soon as you open the majestic doors that lead into the chief's home, you are greeted by the chief's friendly voice:'Hello fellow townsman.\nYou seem like a foreigner, strange... we haven't had one since... the accident...'\nEnter 1 to let him continue speaking [talk]\nEnter 2 to return to the village",
         "talkchief": "\n'I suppose I could tell you something useful.' he continues. 'If you venture outside the village - though I would not advise you to - you will face danger,\nthe forest is full of wolves, the fields are being ravaged by the wheatworms, our lake is inhabited by venomous snakes and nearby mine is crawling with spiders.'\nEnter 1 to let him continue speaking\nEnter 2 to return to the village",
         "talkchief2": "\n'If you didn't know, in this land we don't fight physically. Instead, we play a game known as 'Nim': the players take turns in removing 1 - 3 stones from\none pile of 21 stones. The player, who first gets the amount of stones to 0, wins. If you win, your opponent's soul should offer you some goods.\nAs a foreigner, you will never go first, however if you lose, you will only get hurt.\nTo read this again, while not in combat, not trading nor talking, just enter 'combat'.\nEnter 1 to ask about local legends\nEnter 2 to ask the chief to repeat what he just said because you were not paying attention\nEnter 3 to return to the village",
@@ -26,9 +26,8 @@
         "center": "\nThe center of this so-called city is as old as humanity itself and the ancient buildings serving unknown purposes somehow make you feel uncomfortable.",
         "alb": "\nBefore you can step on the first step of the stairs, the pale man calls you faintly: 'So... you have come. After so many years.\nI am Alberimus, the one who everyone must meet before their end. Before you continue in your journey, let me tell you your destiny.\nYou shall defeat my evil brother Zandalar with his own staff. It is hidden in a secret stash in the Chapel of Lizul, our father.\nIn order to unlock it, you need to place a void talon, an abyssal scope and a shadow blade in its proximity. All of these items you can obtain\nby slaying foes in this town called Talematros. Our family lived here, but when my brother got corrupted by the Void, so did this city. Now, you shall cleanse it.'\nEnter 1 to continue",
         "altar": "\nYou see several empty spaces on the altar, as if there was something missing. 'Those must be the things Alberimus spoke of.' you say to yourself.\nEnter 1 to deposit what is needed (a void talon, an abyssal scope, a shadow blade)\nEnter 2 to return to the chapel",
-        "altar2":"You see an altar on top of which is an opened cache which used to hold Zandalar's staff. Nothing else to see here.",
+        "altar2": "You see an altar on top of which is an opened cache which used to hold Zandalar's staff. Nothing else to see here.",
         "bossfight": null
-
     },
     "house": {
         "place": "house",
@@ -216,10 +215,10 @@
             "2": "chapel"
         }
     },
-    "altar2":{
-        "place":"altar2",
-        "opts":{
-            "chapel":"chapel"
+    "altar2": {
+        "place": "altar2",
+        "opts": {
+            "chapel": "chapel"
         }
     },
     "bossfight": {
