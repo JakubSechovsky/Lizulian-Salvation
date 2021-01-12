@@ -1,6 +1,6 @@
 # importuje knihovny random a json a druhý soubor (Second.py) pod zkratkou sec
-import random
-import json
+from random import randint
+from json import load
 import Second as sec
 
 
@@ -34,7 +34,7 @@ class Enemy:  # definuje třídu Enemy (nepřítel) a její atributy
         print(sec.repr_mess("enemy_take", "r").format(self.name, x))
         return x
 
-    def randomAI(self): return random.randint(  # "nejlehčí" AI, dělá náhodný tah ze všech možných tahů
+    def randomAI(self): return randint(  # "nejlehčí" AI, dělá náhodný tah ze všech možných tahů
         sec.me.min_take, sec.me.max_take)
 
     # vrátí číslo vybrané na základě simulace tahů hráče (metoda Monte Carlo), pro každý možný tah, kdy je AI na řadě
@@ -54,7 +54,7 @@ class Enemy:  # definuje třídu Enemy (nepřítel) a její atributy
             ai_turn = False
             while stone_count > 0:
                 stone_count -= min(stone_count,
-                                   random.randint(sec.me.min_take, sec.me.max_take + 1))
+                                   randint(sec.me.min_take, sec.me.max_take + 1))
                 # simulace střídání hráče a AI
                 ai_turn = not ai_turn
             # act_score určuje, zda jednu danou simulaci (jednu iteraci for cyklu) AI vyhrála (+1), či ne (-1)
@@ -88,7 +88,7 @@ class Enemy:  # definuje třídu Enemy (nepřítel) a její atributy
 
     # pokud hráč vyhraje nad oponentem, zavolá se tato metoda, která vygeneruje náhodné číslo (ran) z intervalu čísel, která jsou daná v enms.json souboru
     def trophy(self):
-        ran = random.randint(self.low_limit, self.up_limit)
+        ran = randint(self.low_limit, self.up_limit)
         # pokud je vygenerované číslo (ran) 0, vypíše zprávu, že hráč za výhru nic nedostal, pro jakékoliv jiné číslo zavolá metodu trophy2(ran)
         if ran == 0:
             sec.repr_mess("no_offer", "p")
@@ -157,7 +157,7 @@ def load_json():  # dává dohromady funkce na načítání dat z .json souborů
 
 def load_enms():  # načítá oponenty z enms.json a ukládá je jako instance třídy Enemy do slovníku hostile_locs v souboru Second.py podle lokace, ve které se nacházejí
     with open("./enms.json", "r", encoding="utf-8") as enms_file:
-        enms = json.load(enms_file)
+        enms = load(enms_file)
         for enm in enms:
             atts = enms[enm]
             new_enm = Enemy(atts["loc"], atts["loot"], atts["name"],
@@ -386,7 +386,7 @@ def fight_check():  # iniciuje případný souboj
         sec.me.loc = "bossfight"
     # pokud se hráč nachází v lokaci, kde může potkat oponenta, načte náhodné číslo od 1 do 100 a pokud je toto číslo menší, než číslo pro šanci na potkání oponenta (proměnná chance) iniciuje souboj s daným oponentem v hráčově lokaci
     if sec.me.loc in sec.hostile_locs:
-        ran = random.randint(1, 100)
+        ran = randint(1, 100)
         if ran < sec.hostile_locs[sec.me.loc].chance:
             fight_input(sec.hostile_locs[sec.me.loc])
 

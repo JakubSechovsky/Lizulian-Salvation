@@ -1,5 +1,5 @@
 # importuje json knihovnu
-import json
+from json import load
 
 
 class Location:  # definuje třídu Location a její atributy
@@ -214,7 +214,7 @@ class Me:  # definuje třídu Me a její atributy a metody
 
 def repr_mess(x, way):  # načítá zprávy ze souboru mess.json v závislosti na jejím kódu (x) a způsobu načtení (way), podle x najde danou zprávu a podle way ji buď vytiskne, nebo vrátí
     with open("./mess.json", "r", encoding="utf-8") as mess_file:
-        mess = json.load(mess_file)
+        mess = load(mess_file)
         if way == "p":
             print(mess[x])
         else:
@@ -225,7 +225,7 @@ def repr_loc(name, key, way):  # načítá informace o lokacích ze souboru locs
     with open("./locs.json", "r", encoding="utf-8") as locs_file:
         # podle argumentů určuje co se bude dít - name určuje zda se otevře lokace, nebo zpráva pro lokaci, key určuje informaci pro lokaci určenou v name, případně označuje zprávu pro lokaci
         # way, stejně jako u funkce repr_mess() určuje způsob načtení - buď se informace/ zpráva vytiskne, nebo vrátí
-        locs = json.load(locs_file)
+        locs = load(locs_file)
         if way == "p":
             print(locs[name][key])
         else:
@@ -234,7 +234,7 @@ def repr_loc(name, key, way):  # načítá informace o lokacích ze souboru locs
 
 def return_char(key):  # načítá informace o postavě hráče podle argumentu key
     with open("./characters.json", "r", encoding="utf-8") as chars_file:
-        chars = json.load(chars_file)
+        chars = load(chars_file)
         return chars["me"][key]
 
 
@@ -244,7 +244,7 @@ def connect_locs():  # umožňoje hráči jít z lokace "village" do lokace "pri
 
 def load_locs():  # načítá lokace ze souboru locs.json a ukládá je do slovníku locs_list jakožto instanci třídy Location pod jménem jejich místa "place"
     with open("./locs.json", "r", encoding="utf-8") as locs_file:
-        locations = json.load(locs_file)
+        locations = load(locs_file)
         for loc in locations:
             if not loc == "mess":
                 inf = locations[loc]
@@ -254,7 +254,7 @@ def load_locs():  # načítá lokace ze souboru locs.json a ukládá je do slovn
 
 def load_npcs():  # načítá vedlejší postavy a předměty
     with open("./characters.json", "r", encoding="utf-8") as npcs_file:
-        npcs = json.load(npcs_file)
+        npcs = load(npcs_file)
         for npc in npcs:
             npc_check(npcs, npc)
 
