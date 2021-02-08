@@ -197,10 +197,6 @@ class Me:  # definuje třídu Me a její atributy a metody
             self.inv["apple"] += 1
             repr_mess("easy", "p")
         elif self.diff == "2":
-            self.inv["gold coin"] += 5
-            self.inv["pear"] += 1
-            repr_mess("medium", "p")
-        elif self.diff == "3":
             repr_mess("hard", "p")
         # pokud hráč zadá jiné číslo, požádá o správný vstup a pokud hráč zadá něco jiného, než číslo, požádá ho o číslo, v obou případech se rekurzivně zavolá zpátky
         else:

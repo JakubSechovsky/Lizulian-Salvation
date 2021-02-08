@@ -24,8 +24,7 @@ class Enemy:  # definuje třídu Enemy (nepřítel) a její atributy
             x = self.simulationAI()
         # pokud hráč nevlastní věc jménem "Zandalar's staff", metoda je určena obtížností, jakou si hráč na začátku hry navolil (1 / lehká - randomAI(); 2 / střední, 3 / těžká - simulationAI())
         elif not sec.me.inv.get("Zandalar's staff") > 0:
-            ai = {"1": self.randomAI, "2": self.simulationAI,
-                  "3": self.simulationAI}
+            ai = {"1": self.randomAI, "2": self.simulationAI}
             x = ai[sec.me.diff]()
         # pokud hráč vlastní věc jménem "Zandalar's staff" každý jeho oponent bude brát kameny podle metody perfectAI() (oponenta jménem "Sargelaz" hráč po získání "Zandalar's staff" nepotká)
         else:
@@ -431,7 +430,7 @@ def user_turn():
 
 def end_fight(enemy):  # zavolá se, pokud je aktuální počet kamenů na nule
     # pokud hráč není na tahu na konci hry, vypíše zprávu, že vyhrál a zavolá metodu trophy() třídy Enemy
-    if sec.me.on_turn == False:
+    if not sec.me.on_turn:
         sec.repr_mess("fight_won", "p")
         enemy.trophy()
         # pokud je jméno oponenta "Sargelaz" odstraní jeho lokaci ("lair") z listu lokací, kde hráč může narazit na nepřátele
