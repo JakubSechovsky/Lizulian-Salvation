@@ -260,7 +260,7 @@ def repr_mess(x, way):
 
 def repr_loc(name, key, way):
     """
-    Načítá informace o lokací ze souboru locs.json
+    Načítá zprávu pro danou lokaci ze souboru locs.json
     """
     with open("./locs.json", "r", encoding="utf-8") as locs_file:
         locs = load(locs_file)
@@ -279,7 +279,7 @@ def connect_locs():
 
 def load_locs():
     """
-    Načítá loka
+    Načítá data o lokacích ze souboru locs.json
     """
     with open("./locs.json", "r", encoding="utf-8") as locs_file:
         locations = load(locs_file)
@@ -290,7 +290,10 @@ def load_locs():
                 locs_list[info["place"]] = new_loc
 
 
-def load_npcs():  # načítá vedlejší postavy a předměty
+def load_npcs():
+    """
+    Načítá data o předmětech a postavách ze souboru characters.json
+    """
     with open("./characters.json", "r", encoding="utf-8") as npcs_file:
         npcs = load(npcs_file)
         for npc in npcs:
@@ -298,6 +301,10 @@ def load_npcs():  # načítá vedlejší postavy a předměty
 
 
 def npc_check(npcs, npc):
+    """
+    Ukládá načtená data jako instance třídy,
+    které následné uloží do seznamu
+    """
     atts = npcs[npc]
     npcs = ["alchemist", "merchant", "Alberimus", "altar"]
     if npc == "me":
@@ -315,6 +322,7 @@ def npc_check(npcs, npc):
                 heal_list[atts["name"]] = new_item
 
 
+# seznamy, do kterých se ukládají instance jednotlivých tříd
 hostile_locs = {}
 npcs_for_loc = {}
 locs_list = {}

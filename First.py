@@ -188,7 +188,7 @@ def load_json():
 def load_enms():
     """
     Ze souboru enms.json načte data o potenciálních hráčových oponentech,
-    které uloží jako instanci třídy a do listu,
+    které uloží jako instanci třídy a ty zase do seznamu,
     podle kterého jsou pak oponenti voláni
     """
     with open("./enms.json", "r", encoding="utf-8") as enms_file:
@@ -250,7 +250,7 @@ def talk():
     Umožňuje hráči vstup podle výstupu z funkce talked_to()
     Rozhoduje, co se bude dít na základě hodnoty hráčova vstupu
     """
-    me_opts = sec.locs_list[sec.me["diff"].loc].opts
+    me_opts = sec.repr_loc(sec.me["diff"].loc, "opts", "r")
     talked_to()
     inpt = input(sec.repr_mess("talk_inpt", "r"))
     back_locs = ["village", "prison", "chapel"]
