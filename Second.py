@@ -17,6 +17,8 @@ class Items:
     def __init__(self, atts):
         for key in atts:
             setattr(self, key, atts[key])
+            
+        self.buyval = 2*self.sellval
 
     def heal_user(self):
         """
@@ -62,10 +64,10 @@ class Me:
         Kontroluje hráčovy životy, případně iniciuje léčení hráče
         """
         if self.health < self.max_health:
-            y = input(repr_mess("heal_item", "r"))
+            heal_item = input(repr_mess("heal_item", "r"))
 
-            if y in self.inv and y in heal_list:
-                heal_list[y].heal_user()
+            if heal_item in self.inv and heal_item in heal_list:
+                heal_list[heal_item].heal_user()
             else:
                 print(
                     repr_mess("heal_opts", "r").format(
@@ -93,8 +95,8 @@ class Me:
         """
         repr_mess("loc_opts", "p")
 
-        for i in locs_list[self.loc].opts:
-            print(i)
+        for option in locs_list[self.loc].opts:
+            print(option)
 
     def print_hint(self):
         """
@@ -113,6 +115,7 @@ class Me:
         Ptá se hráče, do které lokace se chce přesunout a jedná podle vstupu
         """
         inpt_loc = input(repr_mess("loc", "r"))
+
         if inpt_loc == self.loc:
             repr_mess("in_loc", "p")
         else:
@@ -120,6 +123,7 @@ class Me:
                 self.choose_loc_check(inpt_loc)
             else:
                 repr_mess("invalid_loc", "p")
+
                 for loc in locs_list[self.loc].opts:
                     print(loc)
 
@@ -231,6 +235,7 @@ class Me:
         Zprostředkovává výběr obtížnosti
         """
         self.diff = input(repr_mess("choose_diff", "r"))
+
         if self.diff == "1":
             self.inv["gold coin"] += 10
             self.inv["apple"] += 1
@@ -243,6 +248,7 @@ class Me:
                 repr_mess("invalid_opt", "p")
             except ValueError:
                 repr_mess("int_error", "p")
+
             self.choose_difficulty()
 
 
@@ -252,6 +258,7 @@ def repr_mess(x, way):
     """
     with open("./mess.json", "r", encoding="utf-8") as mess_file:
         mess = load(mess_file)
+
         if way == "p":
             print(mess[x])
         else:
@@ -264,6 +271,7 @@ def repr_loc(name, key, way):
     """
     with open("./locs.json", "r", encoding="utf-8") as locs_file:
         locs = load(locs_file)
+
         if way == "p":
             print(locs[name][key])
         else:
@@ -283,6 +291,7 @@ def load_locs():
     """
     with open("./locs.json", "r", encoding="utf-8") as locs_file:
         locations = load(locs_file)
+
         for loc in locations:
             if not loc == "mess":
                 info = locations[loc]
@@ -296,6 +305,7 @@ def load_npcs():
     """
     with open("./characters.json", "r", encoding="utf-8") as npcs_file:
         npcs = load(npcs_file)
+
         for npc in npcs:
             npc_check(npcs, npc)
 
@@ -307,6 +317,7 @@ def npc_check(npcs, npc):
     """
     atts = npcs[npc]
     npcs = ["alchemist", "merchant", "Alberimus", "altar"]
+
     if npc == "me":
         new_player = Me(atts)
         me["diff"] = new_player
