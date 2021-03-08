@@ -2,5 +2,8 @@
     "python.pythonPath": "C:\\Users\\Jakub\\AppData\\Local\\Programs\\Python\\Python39\\python.exe",
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "python.linting.pylintArgs": [
+        "--extension-pkg-whitelist=lxml"
+    ]
 }
