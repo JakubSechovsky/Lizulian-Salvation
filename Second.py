@@ -310,7 +310,7 @@ def load_npcs():
 def npc_check(npcs, npc):
     """
     Ukládá načtená data jako instance třídy,
-    které následné uloží do seznamu
+    které následné uloží do příslušného seznamu
     """
     atts = npcs[npc]
     npcs = ["alchemist", "merchant", "Alberimus", "altar"]
