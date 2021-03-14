@@ -22,7 +22,8 @@ class Enemy:
             ai = {"1": self.randomAI, "2": self.simulationAI}
             remove_num = ai[sec.me["diff"].diff]()
 
-        print(sec.repr_mess("enemy_take", "r").format(self.name, remove_num))
+        message = sec.repr_mess("enemy_take", "r", sec.mess)
+        print(message.format(self.name, remove_num))
         return remove_num
 
     def randomAI(self):
@@ -120,7 +121,7 @@ class Enemy:
         rand_num = randint(self.low_limit, self.up_limit)
 
         if rand_num == 0:
-            sec.repr_mess("no_offer", "p")
+            sec.repr_mess("no_offer", "p", sec.mess)
         else:
             self.trophy2(rand_num)
 
@@ -130,29 +131,32 @@ class Enemy:
         V ostatních případech hráče upozorní, že má možnost kořist získat
         """
         if self.name == "Sargelaz":
-            sec.repr_mess("sarg_loot", "p")
+            sec.repr_mess("sarg_loot", "p", sec.mess)
             sec.me["diff"].inv[self.loot] += rand_num
         else:
-            print(sec.repr_mess("offer", "r").format(rand_num, self.loot))
+            message = sec.repr_mess("offer", "r", sec.mess)
+            print(message.format(rand_num, self.loot))
             self.trophy_input(rand_num)
 
     def trophy_input(self, rand_num):
         """
         Zeptá se hráče, zda kořist chce a podle odpovědi jedná
         """
-        trophy_inpt = input(sec.repr_mess("loot", "r"))
+        trophy_inpt = input(sec.repr_mess("loot", "r", sec.mess))
 
         if trophy_inpt == "1":
             sec.me["diff"].inv[self.loot] += rand_num
-            print(sec.repr_mess("received", "r").format(rand_num, self.loot))
+            message = sec.repr_mess("received", "r", sec.mess)
+            print(message.format(rand_num, self.loot))
         elif trophy_inpt == "2":
-            print(sec.repr_mess("rejected", "r").format(rand_num, self.loot))
+            message = sec.repr_mess("rejected", "r", sec.mess)
+            print(message.format(rand_num, self.loot))
         else:
             try:
                 int(trophy_inpt)
-                sec.repr_mess("invalid_opt", "p")
+                sec.repr_mess("invalid_opt", "p", sec.mess)
             except ValueError:
-                sec.repr_mess("int_error", "p")
+                sec.repr_mess("int_error", "p", sec.mess)
             self.trophy()
 
 
@@ -162,18 +166,18 @@ def main(Me, locs_list):
     Kontroluje stav hráče
     """
     load_json()
-    sec.me["diff"].name = input(sec.repr_mess("choose_name", "r"))
+    sec.me["diff"].name = input(sec.repr_mess("choose_name", "r", sec.mess))
     sec.me["diff"].choose_difficulty()
     sec.me["diff"].print_intro()
 
     while sec.me["diff"].run:
         if sec.me["diff"].health <= 0:
-            sec.repr_mess("dead", "p")
+            sec.repr_mess("dead", "p", sec.mess)
             sec.me["diff"].run = False
         if sec.me["diff"].run:
             user_input(Me, locs_list)
         else:
-            sec.repr_mess("end", "p")
+            sec.repr_mess("end", "p", sec.mess)
 
 
 def load_json():
@@ -205,9 +209,9 @@ def user_input(Me, locs_list):
     Píše zprávu, která je dána hráčovou aktuální lokací
     """
     talk_check()
-    sec.repr_loc("mess", sec.me["diff"].loc, "p")
+    sec.repr_loc("mess", sec.me["diff"].loc, "p", sec.locs)
     fight_check()
-    user_inpt = input(sec.repr_mess("enter_comm", "r"))
+    user_inpt = input(sec.repr_mess("enter_comm", "r", sec.mess))
     commands = {
         "chooseloc": sec.me["diff"].choose_loc,
         "wait": wait,
@@ -222,7 +226,7 @@ def user_input(Me, locs_list):
     if user_inpt in commands:
         commands[user_inpt]()
     else:
-        sec.repr_mess("invalid_comm", "p")
+        sec.repr_mess("invalid_comm", "p", sec.mess)
 
 
 def talk_check():
@@ -250,9 +254,9 @@ def talk():
     Umožňuje hráči vstup podle výstupu z funkce talked_to()
     Rozhoduje, co se bude dít na základě hodnoty hráčova vstupu
     """
-    me_opts = sec.repr_loc(sec.me["diff"].loc, "opts", "r")
+    me_opts = sec.repr_loc(sec.me["diff"].loc, "opts", "r", sec.locs)
     talked_to()
-    talk_inpt = input(sec.repr_mess("talk_inpt", "r"))
+    talk_inpt = input(sec.repr_mess("talk_inpt", "r", sec.mess))
     back_locs = ["village", "prison", "chapel"]
 
     if me_opts.get(talk_inpt) in back_locs:
@@ -265,9 +269,9 @@ def talk():
     else:
         try:
             int(talk_inpt)
-            sec.repr_mess("invalid_opt", "p")
+            sec.repr_mess("invalid_opt", "p", sec.mess)
         except ValueError:
-            sec.repr_mess("int_error", "p")
+            sec.repr_mess("int_error", "p", sec.mess)
         talk()
 
 
@@ -278,7 +282,7 @@ def talked_to():
     zda se hráč dostal do potřebných částí rozhovoru
     (na základě kterých se volá jiný rozhovor ze stejné lokace)
     """
-    sec.repr_loc("mess", sec.me["diff"].loc, "p")
+    sec.repr_loc("mess", sec.me["diff"].loc, "p", sec.locs)
 
     if sec.me["diff"].loc == "alchemtalk4":
         sec.npcs_for_loc["alchemist"].talked_to1 = True
@@ -312,7 +316,7 @@ def trade(npc):
 
         if npc.inv[item] == sec.items_list[item].alchem_limit:
             sec.me["diff"].inv["Shard of Alberimus"] += 1
-            sec.repr_mess("alchem_shard", "p")
+            sec.repr_mess("alchem_shard", "p", sec.mess)
             npc.talked_to2 = True
             sec.connect_locs()
 
@@ -328,7 +332,7 @@ def trade(npc):
             and npc.inv[item3] == sec.items_list[item3].chapel_limit
         ):
             sec.me["diff"].inv["Zandalar's staff"] += 1
-            sec.repr_mess("staff_obt", "p")
+            sec.repr_mess("staff_obt", "p", sec.mess)
             npc.talked_to1 = True
         sec.me["diff"].loc = "chapel"
     else:
@@ -346,18 +350,18 @@ def alchem_chapel_trade(npc):
         if sec.me["diff"].loc == "alchemist2":
             invalid_item = "Shard of Alberimus"
             limit = sec.items_list[item].alchem_limit
-            mess = sec.repr_mess("alchem_give", "r")
+            mess = sec.repr_mess("alchem_give", "r", sec.mess)
         else:
             invalid_item = "Zandalar's staff"
             limit = sec.items_list[item].chapel_limit
-            mess = sec.repr_mess("chapel_give", "r")
+            mess = sec.repr_mess("chapel_give", "r", sec.mess)
 
         if not item == invalid_item:
             if sec.me["diff"].inv[item] > 0 and not npc.inv[item] == limit:
                 alchem_chapel_trade2(npc, item, limit, mess)
 
             elif sec.me["diff"].inv[item] == 0 and sec.me["diff"].safe == 1:
-                sec.repr_mess("give_nothing", "p")
+                sec.repr_mess("give_nothing", "p", sec.mess)
                 sec.me["diff"].safe += 1
 
 
@@ -379,7 +383,7 @@ def buy_or_sell():
     """
     Ptá se hráče, zda chce nakupovat, či prodávat
     """
-    b_or_s = input(sec.repr_mess("buy_or_sell", "r"))
+    b_or_s = input(sec.repr_mess("buy_or_sell", "r", sec.mess))
 
     if b_or_s == "1":
         sec.me["diff"].way = "buy"
@@ -388,9 +392,9 @@ def buy_or_sell():
     else:
         try:
             int(b_or_s)
-            sec.repr_mess("invalid_opt", "p")
+            sec.repr_mess("invalid_opt", "p", sec.mess)
         except ValueError:
-            sec.repr_mess("int_error", "p")
+            sec.repr_mess("int_error", "p", sec.mess)
         buy_or_sell()
 
     buy_sell()
@@ -400,15 +404,16 @@ def buy_sell():
     """
     Ptá se hráče co chce nakoupit, či prodat
     """
-    item = input(sec.repr_mess("market_item", "r").format(sec.me["diff"].way))
+    input_message = sec.repr_mess("market_item", "r", sec.mess)
+    item = input(input_message.format(sec.me["diff"].way))
 
     if item in sec.me["diff"].inv:
         buy_sell2(item)
     else:
         if sec.me["diff"].way == "sell":
-            sec.repr_mess("no_item", "p")
+            sec.repr_mess("no_item", "p", sec.mess)
         else:
-            sec.repr_mess("no_buy", "p")
+            sec.repr_mess("no_buy", "p", sec.mess)
         buy_sell()
 
     cont_trading()
@@ -419,7 +424,8 @@ def buy_sell2(item):
     Kontroluje, zda je hráčův výběr možný
     """
     if sec.items_list[item].sellval == 0:
-        print(sec.repr_mess("no_market", "r").format(sec.me["diff"].way))
+        message = sec.repr_mess("no_market", "r", sec.mess)
+        print(message.format(sec.me["diff"].way))
     else:
         if sec.me["diff"].way == "buy":
             sec.me["diff"].buy(item)
@@ -431,7 +437,7 @@ def cont_trading():
     """
     Ptá se hráče, zda chce pokračovat v obchodování
     """
-    cont_trade = input(sec.repr_mess("cont_trade", "r"))
+    cont_trade = input(sec.repr_mess("cont_trade", "r", sec.mess))
 
     if cont_trade == "1":
         trade(sec.npcs_for_loc[sec.me["diff"].loc])
@@ -441,9 +447,9 @@ def cont_trading():
     else:
         try:
             int(cont_trade)
-            sec.repr_mess("invalid_opt", "p")
+            sec.repr_mess("invalid_opt", "p", sec.mess)
         except ValueError:
-            sec.repr_mess("int_error", "p")
+            sec.repr_mess("int_error", "p", sec.mess)
 
         cont_trading()
 
@@ -458,7 +464,7 @@ def fight_check():
         and sec.me["diff"].inv.get("Zandalar's staff") == 1
         and not sec.hostile_locs["bossfight"].defeated
     ):
-        sec.repr_mess("pre_boss", "p")
+        sec.repr_mess("pre_boss", "p", sec.mess)
         sec.me["diff"].loc = "bossfight"
 
     if sec.me["diff"].loc in sec.hostile_locs:
@@ -480,7 +486,7 @@ def fight_input(enemy):
     """
     Umožňuje hráči reagovat na situace souboje
     """
-    mess = sec.repr_mess("under_att", "r")
+    mess = sec.repr_mess("under_att", "r", sec.mess)
     print(mess.format(sec.me["diff"].name, enemy.name))
     fight(enemy)
     end_fight(enemy)
@@ -499,7 +505,7 @@ def fight(enemy):
             sec.me["diff"].max_take = min(sec.me["diff"].n, 3)
             sec.me["diff"].n -= enemy.take()
 
-            mess = sec.repr_mess("stones_on_board", "r")
+            mess = sec.repr_mess("stones_on_board", "r", sec.mess)
             print(mess.format(sec.me["diff"].n))
             sec.me["diff"].on_turn = True
         else:
@@ -527,17 +533,17 @@ def end_fight(enemy):
     Resetuje počet kamenů a zvolí AI jako prvního hráče v dalším souboji
     """
     if not sec.me["diff"].on_turn:
-        sec.repr_mess("fight_won", "p")
+        sec.repr_mess("fight_won", "p", sec.mess)
         enemy.trophy()
 
         if enemy.name == "Sargelaz":
             sec.hostile_locs.pop("lair")
         elif enemy.name == "Zandalar":
             sec.hostile_locs["bossfight"].defeated = True
-            sec.repr_mess("boss_def", "p")
+            sec.repr_mess("boss_def", "p", sec.mess)
             sec.me["diff"].loc = "village"
     else:
-        print(sec.repr_mess("fight_lost", "r").format(enemy.harm))
+        print(sec.repr_mess("fight_lost", "r", sec.mess).format(enemy.harm))
         sec.me["diff"].health -= enemy.harm
 
     sec.me["diff"].n = 21

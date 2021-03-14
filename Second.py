@@ -32,9 +32,10 @@ class Items:
             if me.health > me.max_health:
                 me.health = me.max_health
 
-            print(repr_mess("heal_succ", "r").format(self.healval, me.health))
+            message = repr_mess("heal_succ", "r", mess)
+            print(message.format(self.healval, me.health))
         else:
-            repr_mess("no_item", "p")
+            repr_mess("no_item", "p", mess)
 
 
 class Me:
@@ -46,54 +47,54 @@ class Me:
         """
         Vypisuje seznam předmětů v hráčově inventáři spolu s jejich počtem
         """
-        repr_mess("print_inv", "p")
-        mess = repr_mess("inv_items", "r")
+        repr_mess("print_inv", "p", mess)
+        message = repr_mess("inv_items", "r", mess)
 
         for item in self.inv:
             if self.inv.get(item) > 0:
-                print(mess.format(self.inv.get(item), item))
+                print(message.format(self.inv.get(item), item))
 
     def print_health(self):
         """
         Vypisuje aktuální počet hráčových životů
         """
-        print(repr_mess("health", "r").format(self.health))
+        print(repr_mess("health", "r", mess).format(self.health))
 
     def heal(self):
         """
         Kontroluje hráčovy životy, případně iniciuje léčení hráče
         """
         if self.health < self.max_health:
-            heal_item = input(repr_mess("heal_item", "r"))
+            heal_item = input(repr_mess("heal_item", "r", mess))
 
             if heal_item in self.inv and heal_item in heal_list:
                 heal_list[heal_item].heal_user()
             else:
                 print(
-                    repr_mess("heal_opts", "r").format(
+                    repr_mess("heal_opts", "r", mess).format(
                         items_list["apple"].name, items_list["pear"].name
                     )
                 )
         else:
-            repr_mess("full_health", "p")
+            repr_mess("full_health", "p", mess)
 
     def print_combat(self):
         """
         Vypisuje zprávu o soubojovém systému
         """
-        repr_mess("combat", "p")
+        repr_mess("combat", "p", mess)
 
     def print_intro(self):
         """
         Vypisuje úvod do hry
         """
-        print(repr_mess("intro", "r").format(self.name))
+        print(repr_mess("intro", "r", mess).format(self.name))
 
     def print_ava_locs(self):
         """
         Vypisuje seznam lokací, do kterých hráč ze své aktuální lokace může
         """
-        repr_mess("loc_opts", "p")
+        repr_mess("loc_opts", "p", mess)
 
         for option in locs_list[self.loc].opts:
             print(option)
@@ -102,7 +103,7 @@ class Me:
         """
         Vypisuje všechny možné příkazy ve hře
         """
-        repr_mess("hint", "p")
+        repr_mess("hint", "p", mess)
 
     def exit(self):
         """
@@ -114,15 +115,15 @@ class Me:
         """
         Ptá se hráče, do které lokace se chce přesunout a jedná podle vstupu
         """
-        inpt_loc = input(repr_mess("loc", "r"))
+        inpt_loc = input(repr_mess("loc", "r", mess))
 
         if inpt_loc == self.loc:
-            repr_mess("in_loc", "p")
+            repr_mess("in_loc", "p", mess)
         else:
             if inpt_loc in locs_list[self.loc].opts:
                 self.choose_loc_check(inpt_loc)
             else:
-                repr_mess("invalid_loc", "p")
+                repr_mess("invalid_loc", "p", mess)
 
                 for loc in locs_list[self.loc].opts:
                     print(loc)
@@ -163,19 +164,19 @@ class Me:
         Ptá se hráče na počet kamenů, které chce odebrat
         Jedná podle vstupu
         """
-        take_num = input(repr_mess("stone_number", "r"))
+        take_num = input(repr_mess("stone_number", "r", mess))
         try:
             take_num = int(take_num)
 
             if take_num in range(self.min_take, self.max_take + 1):
                 self.n -= take_num
-                print(repr_mess("stones_removed", "r").format(take_num))
+                print(repr_mess("stones_removed", "r", mess).format(take_num))
             else:
-                mess = repr_mess("stone_limit", "r")
-                print(mess.format(self.max_take, self.min_take))
+                message = repr_mess("stone_limit", "r", mess)
+                print(message.format(self.max_take, self.min_take))
                 self.take()
         except ValueError:
-            repr_mess("int_error", "p")
+            repr_mess("int_error", "p", mess)
             self.take()
 
     def buy(self, item):
@@ -184,8 +185,8 @@ class Me:
         Pokud je to možné, provede jejich nákup
         """
         amount = input(
-            repr_mess("buy", "r").format(
-                item, items_list[item].buyval, self.inv.get("gold coin")
+            repr_mess("buy", "r", mess).format(
+                item, items_list[item].buyval, self.inv.get("gold coin"), mess
             )
         )
         try:
@@ -193,13 +194,14 @@ class Me:
             cost = amount * items_list[item].buyval
 
             if cost > self.inv.get("gold coin"):
-                print(repr_mess("need_gold", "r").format(item))
+                print(repr_mess("need_gold", "r", mess).format(item))
             else:
                 self.inv["gold coin"] -= cost
                 self.inv[item] += amount
-                print(repr_mess("buy_succ", "r").format(amount, item, cost))
+                message = repr_mess("buy_succ", "r", mess)
+                print(message.format(amount, item, cost))
         except ValueError:
-            repr_mess("int_error", "p")
+            repr_mess("int_error", "p", mess)
             self.buy(item)
 
     def sell(self, item):
@@ -208,7 +210,7 @@ class Me:
         Pokud je to možné, provede jejich prodej
         """
         amount = input(
-            repr_mess("sell", "r").format(
+            repr_mess("sell", "r", mess).format(
                 self.inv.get(item),
                 item,
                 items_list[item].sellval,
@@ -219,63 +221,58 @@ class Me:
             amount = int(amount)
 
             if amount > self.inv.get(item) or amount < 0:
-                print(repr_mess("no_items", "r").format(item))
+                print(repr_mess("no_items", "r", mess).format(item))
                 self.sell(item)
             else:
                 cost = amount * items_list[item].sellval
+                message = repr_mess("sell_succ", "r", mess)
                 self.inv["gold coin"] += cost
                 self.inv[item] -= amount
-                print(repr_mess("sell_succ", "r").format(cost, amount, item))
+                print(message.format(cost, amount, item))
         except ValueError:
-            repr_mess("int_error", "p")
+            repr_mess("int_error", "p", mess)
             self.sell(item)
 
     def choose_difficulty(self):
         """
         Zprostředkovává výběr obtížnosti
         """
-        self.diff = input(repr_mess("choose_diff", "r"))
+        self.diff = input(repr_mess("choose_diff", "r", mess))
 
         if self.diff == "1":
             self.inv["gold coin"] += 10
             self.inv["apple"] += 1
-            repr_mess("easy", "p")
+            repr_mess("easy", "p", mess)
         elif self.diff == "2":
-            repr_mess("hard", "p")
+            repr_mess("hard", "p", mess)
         else:
             try:
                 int(self.diff)
-                repr_mess("invalid_opt", "p")
+                repr_mess("invalid_opt", "p", mess)
             except ValueError:
-                repr_mess("int_error", "p")
+                repr_mess("int_error", "p", mess)
 
             self.choose_difficulty()
 
 
-def repr_mess(x, way):
+def repr_mess(x, way, mess):
     """
-    Načítá zprávy ze souboru mees.json podle jejich kódu
+    Vypíše, případně vrátí zprávu ze slovníku mess
     """
-    with open("./mess.json", "r", encoding="utf-8") as mess_file:
-        mess = load(mess_file)
-
-        if way == "p":
-            print(mess[x])
-        else:
-            return mess[x]
+    if way == "p":
+        print(mess[x])
+    else:
+        return mess[x]
 
 
-def repr_loc(name, key, way):
+def repr_loc(name, key, way, locs):
     """
-    Načítá zprávu pro danou lokaci ze souboru locs.json
+    Vypíše, případně vrátí informaci / zprávu ze slovníku locs
     """
-    with open("./locs.json", "r", encoding="utf-8") as locs_file:
-        locs = load(locs_file)
-
-        if way == "p":
-            print(locs[name][key])
-        else:
-            return locs[name][key]
+    if way == "p":
+        print(locs[name][key])
+    else:
+        return locs[name][key]
 
 
 def connect_locs():
@@ -332,6 +329,12 @@ def npc_check(npcs, npc):
             if npc == "apple" or npc == "pear":
                 heal_list[atts["name"]] = new_item
 
+
+with open("./mess.json", "r", encoding="utf-8") as mess_file:
+    mess = load(mess_file)
+
+with open("./locs.json", "r", encoding="utf-8") as locs_file:
+    locs = load(locs_file)
 
 # seznamy, do kterých se ukládají instance jednotlivých tříd
 hostile_locs = {}
