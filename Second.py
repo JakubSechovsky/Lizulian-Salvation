@@ -17,8 +17,8 @@ class Items:
     def __init__(self, atts):
         for key in atts:
             setattr(self, key, atts[key])
-            
-        self.buyval = 2*self.sellval
+
+        self.buyval = 2 * self.sellval
 
     def heal_user(self):
         """
