@@ -221,7 +221,7 @@ def user_input(Me, locs_list):
         "health": sec.me["diff"].print_health,
         "heal": sec.me["diff"].heal,
         "exit": sec.me["diff"].exit,
-        "h": sec.me["diff"].print_hint,
+        "hint": sec.me["diff"].print_hint,
     }
     if user_inpt in commands:
         commands[user_inpt]()
