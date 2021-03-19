@@ -41,7 +41,7 @@
     "in_loc": "You are in this location already.",
     "no_offer": "The soul of your opponent does not offer you anything.",
     "hint": "Enter:\n'i'\t\tto view the contents of your inventory and their amount\n'health'\tto view your current amount of hitpoints\n'heal'\t\tto heal yourself (amount healed is based on the item used for healing)\n'combat'\tto view how combat works in Lizulian Salvation\n'wait'\t\tto force encounter with local enemy, in non-hostile locations this will do nothing\n'chooseloc'\tto choose location you want to travel to\n'avalocs'\tto view the list of available locations based on your location\n'hint'\t\tto see this message\n'exit'\t\tto exit the game (without saving)",
-    "invalid_comm": "Invalid command. Enter 'h' to view the full list of possible commands.",
+    "invalid_comm": "Invalid command. Enter 'hint' to view the full list of possible commands.",
     "buy_or_sell": "What do you want to do?\nEnter 1 to buy\nEnter 2 to sell\n> ",
     "cont_trade": "Do you want to continue trading?\nEnter 1 to keep trading\nEnter 2 to leave the merchant [exit trading]\n> ",
     "choose_diff": "Enter a number a number (1 - 3) to choose difficulty:\n1. Normal\n2. Harder\n> ",
