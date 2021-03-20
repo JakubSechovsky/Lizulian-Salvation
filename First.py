@@ -152,11 +152,7 @@ class Enemy:
             message = sec.repr_mess("rejected", "r", sec.mess)
             print(message.format(rand_num, self.loot))
         else:
-            try:
-                int(trophy_inpt)
-                sec.repr_mess("invalid_opt", "p", sec.mess)
-            except ValueError:
-                sec.repr_mess("int_error", "p", sec.mess)
+            sec.try_int(trophy_inpt)
             self.trophy()
 
 
@@ -267,11 +263,7 @@ def talk():
     elif talk_inpt in me_opts:
         sec.me["diff"].loc = me_opts.get(talk_inpt)
     else:
-        try:
-            int(talk_inpt)
-            sec.repr_mess("invalid_opt", "p", sec.mess)
-        except ValueError:
-            sec.repr_mess("int_error", "p", sec.mess)
+        sec.try_int(talk_inpt)
         talk()
 
 
@@ -390,11 +382,7 @@ def buy_or_sell():
     elif b_or_s == "2":
         sec.me["diff"].way = "sell"
     else:
-        try:
-            int(b_or_s)
-            sec.repr_mess("invalid_opt", "p", sec.mess)
-        except ValueError:
-            sec.repr_mess("int_error", "p", sec.mess)
+        sec.try_int(b_or_s)
         buy_or_sell()
 
     buy_sell()
@@ -445,11 +433,7 @@ def cont_trading():
         sec.me["diff"].loc = "village"
         sec.me["diff"].talking = False
     else:
-        try:
-            int(cont_trade)
-            sec.repr_mess("invalid_opt", "p", sec.mess)
-        except ValueError:
-            sec.repr_mess("int_error", "p", sec.mess)
+        sec.try_int(cont_trade)
 
         cont_trading()
 

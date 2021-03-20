@@ -246,12 +246,7 @@ class Me:
         elif self.diff == "2":
             repr_mess("hard", "p", mess)
         else:
-            try:
-                int(self.diff)
-                repr_mess("invalid_opt", "p", mess)
-            except ValueError:
-                repr_mess("int_error", "p", mess)
-
+            try_int(self.diff)
             self.choose_difficulty()
 
 
@@ -328,6 +323,17 @@ def npc_check(npcs, npc):
 
             if npc == "apple" or npc == "pear":
                 heal_list[atts["name"]] = new_item
+
+
+def try_int(user_input):
+    """
+    Testuje, zda uživatel zadal platný vstup
+    """
+    try:
+        int(user_input)
+        repr_mess("invalid_opt", "p", mess)
+    except ValueError:
+        repr_mess("int_error", "p", mess)
 
 
 with open("./mess.json", "r", encoding="utf-8") as mess_file:

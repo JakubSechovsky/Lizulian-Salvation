@@ -44,7 +44,7 @@
     "invalid_comm": "Invalid command. Enter 'hint' to view the full list of possible commands.",
     "buy_or_sell": "What do you want to do?\nEnter 1 to buy\nEnter 2 to sell\n> ",
     "cont_trade": "Do you want to continue trading?\nEnter 1 to keep trading\nEnter 2 to leave the merchant [exit trading]\n> ",
-    "choose_diff": "Enter a number a number (1 - 3) to choose difficulty:\n1. Normal\n2. Harder\n> ",
+    "choose_diff": "Enter a number (1 - 3) to choose difficulty:\n1. Normal\n2. Harder\n> ",
     "give_nothing": "You do not have the required item(s).",
     "choose_name": "\nChoose your name:\n> ",
     "invalid_loc": "Invalid location, locations available for you are:",
