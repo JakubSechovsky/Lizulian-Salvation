@@ -132,29 +132,29 @@ class Me:
         """
         Podle booleanů, které určují, jaké rozohovory hráč již vedl
         """
-        cnd1 = inpt_loc == "alchemist" and npcs_for_loc["alchemist"].talked_to2
-        cnd2 = inpt_loc == "alchemist" and npcs_for_loc["alchemist"].talked_to1
-        cnd3 = (
+        tlk1 = inpt_loc == "alchemist" and npcs_for_loc["alchemist"].talked_to2
+        tlk2 = inpt_loc == "alchemist" and npcs_for_loc["alchemist"].talked_to1
+        tlk3 = (
             self.loc == "prison"
             and not inpt_loc == "village"
             and not npcs_for_loc["prison"].talked_to1
         )
-        cnd4 = inpt_loc == "altar" and npcs_for_loc["altar"].talked_to1
+        tlk4 = inpt_loc == "altar" and npcs_for_loc["altar"].talked_to1
         self.last_loc = self.loc
 
-        self.choose_loc_assing(inpt_loc, cnd1, cnd2, cnd3, cnd4)
+        self.choose_loc_assign(inpt_loc, tlk1, tlk2, tlk3, tlk4)
 
-    def choose_loc_assing(self, inpt_loc, cnd1, cnd2, cnd3, cnd4):
+    def choose_loc_assign(self, inpt_loc, tlk1, tlk2, tlk3, tlk4):
         """
         Přiřazuje hráči lokaci podle booleanů
         """
-        if cnd1:
+        if tlk1:
             self.loc = "alchemist3"
-        elif cnd2:
+        elif tlk2:
             self.loc = "alchemist2"
-        elif cnd3:
+        elif tlk3:
             self.loc = "alb"
-        elif cnd4:
+        elif tlk4:
             self.loc = "altar2"
         else:
             self.loc = locs_list.get(self.loc).opts.get(inpt_loc)
