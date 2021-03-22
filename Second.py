@@ -130,7 +130,7 @@ class Me:
 
     def choose_loc_check(self, inpt_loc):
         """
-        Podle booleanů, které určují, jaké rozohovory hráč již vedl
+        Podle booleanů, které určují, jaké rozhovory hráč již vedl
         """
         tlk1 = inpt_loc == "alchemist" and npcs_for_loc["alchemist"].talked_to2
         tlk2 = inpt_loc == "alchemist" and npcs_for_loc["alchemist"].talked_to1
