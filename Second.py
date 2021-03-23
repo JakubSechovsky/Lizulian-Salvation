@@ -25,15 +25,15 @@ class Items:
         Kontroluje, zda hráč vybraný předmět vlastní
         Pokud ano, hráče vyléčí
         """
-        if me.inv.get(self.name) > 0:
-            me.health += self.healval
-            me.inv[self.name] -= 1
+        if me["diff"].inv.get(self.name) > 0:
+            me["diff"].health += self.healval
+            me["diff"].inv[self.name] -= 1
 
-            if me.health > me.max_health:
-                me.health = me.max_health
+            if me["diff"].health > me["diff"].max_health:
+                me["diff"].health = me["diff"].max_health
 
             message = repr_mess("heal_succ", "r", mess)
-            print(message.format(self.healval, me.health))
+            print(message.format(self.healval, me["diff"].health))
         else:
             repr_mess("no_item", "p", mess)
 
@@ -47,12 +47,20 @@ class Me:
         """
         Vypisuje seznam předmětů v hráčově inventáři spolu s jejich počtem
         """
-        repr_mess("print_inv", "p", mess)
-        message = repr_mess("inv_items", "r", mess)
+        amount_in_inv = 0
 
         for item in self.inv:
-            if self.inv.get(item) > 0:
-                print(message.format(self.inv.get(item), item))
+            amount_in_inv += self.inv.get(item)
+
+        if amount_in_inv > 0:
+            repr_mess("print_inv", "p", mess)
+            message = repr_mess("inv_items", "r", mess)
+
+            for item in self.inv:
+                if self.inv.get(item) > 0:
+                    print(message.format(self.inv.get(item), item))
+        else:
+            repr_mess("empty_inv", "p", mess)
 
     def print_health(self):
         """
@@ -130,7 +138,7 @@ class Me:
 
     def choose_loc_check(self, inpt_loc):
         """
-        Podle booleanů, které určují, jaké rozhovory hráč již vedl
+        Nastavuje booleany a mění hráčovu poslední lokaci
         """
         tlk1 = inpt_loc == "alchemist" and npcs_for_loc["alchemist"].talked_to2
         tlk2 = inpt_loc == "alchemist" and npcs_for_loc["alchemist"].talked_to1
@@ -146,7 +154,7 @@ class Me:
 
     def choose_loc_assign(self, inpt_loc, tlk1, tlk2, tlk3, tlk4):
         """
-        Přiřazuje hráči lokaci podle booleanů
+        Podle booleanů nastavuje hráčovu novou lokaci
         """
         if tlk1:
             self.loc = "alchemist3"
@@ -182,7 +190,7 @@ class Me:
     def buy(self, item):
         """
         Ptá se hráče na počet předmětů, které chce nakoupit
-        Pokud je to možné, provede jejich nákup
+        Pokud je to možné, zprostředkuje jejich nákup
         """
         amount = input(
             repr_mess("buy", "r", mess).format(
@@ -191,6 +199,17 @@ class Me:
         )
         try:
             amount = int(amount)
+            self.buy2(item, amount)
+
+        except ValueError:
+            repr_mess("int_error", "p", mess)
+            self.buy(item)
+
+    def buy2(self, item, amount):
+        """
+        Počítá cenu nákupu, provádí předání předmětů
+        """
+        if amount >= 0:
             cost = amount * items_list[item].buyval
 
             if cost > self.inv.get("gold coin"):
@@ -200,14 +219,13 @@ class Me:
                 self.inv[item] += amount
                 message = repr_mess("buy_succ", "r", mess)
                 print(message.format(amount, item, cost))
-        except ValueError:
-            repr_mess("int_error", "p", mess)
-            self.buy(item)
+        else:
+            repr_mess("positive_num", "p", mess)
 
     def sell(self, item):
         """
         Ptá se hráče na počet předmětů, které chce prodat
-        Pokud je to možné, provede jejich prodej
+        Pokud je to možné, zprostředkovává jejich prodej
         """
         amount = input(
             repr_mess("sell", "r", mess).format(
@@ -219,7 +237,17 @@ class Me:
         )
         try:
             amount = int(amount)
+            self.sell2(item, amount)
 
+        except ValueError:
+            repr_mess("int_error", "p", mess)
+            self.sell(item)
+
+    def sell2(self, item, amount):
+        """
+        Počítá cenu prodeje, provádí předání předmětů
+        """
+        if amount >= 0:
             if amount > self.inv.get(item) or amount < 0:
                 print(repr_mess("no_items", "r", mess).format(item))
                 self.sell(item)
@@ -229,9 +257,8 @@ class Me:
                 self.inv["gold coin"] += cost
                 self.inv[item] -= amount
                 print(message.format(cost, amount, item))
-        except ValueError:
-            repr_mess("int_error", "p", mess)
-            self.sell(item)
+        else:
+            repr_mess("positive_num", "p", mess)
 
     def choose_difficulty(self):
         """

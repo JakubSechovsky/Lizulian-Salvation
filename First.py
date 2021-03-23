@@ -178,7 +178,7 @@ def main(Me, locs_list):
 
 def load_json():
     """
-    Dává dohromady funkce na načítání dat z .json souborů
+    Dává dohromady funkce na načítání dat z JSON souborů
     """
     load_enms()
     sec.load_locs()
@@ -246,7 +246,7 @@ def talk_check():
 
 def talk():
     """
-    Ukládá hráčovi možnosti pokračování v rozhovoru do proměnné 'me_opts'
+    Ukládá hráčovy možnosti pokračování v rozhovoru do proměnné 'me_opts'
     Umožňuje hráči vstup podle výstupu z funkce talked_to()
     Rozhoduje, co se bude dít na základě hodnoty hráčova vstupu
     """
@@ -390,7 +390,7 @@ def buy_or_sell():
 
 def buy_sell():
     """
-    Ptá se hráče co chce nakoupit, či prodat
+    Ptá se hráče co chce nakoupit, či prodávat
     """
     input_message = sec.repr_mess("market_item", "r", sec.mess)
     item = input(input_message.format(sec.me["diff"].way))
@@ -419,6 +419,8 @@ def buy_sell2(item):
             sec.me["diff"].buy(item)
         elif sec.me["diff"].way == "sell" and sec.me["diff"].inv.get(item) > 0:
             sec.me["diff"].sell(item)
+        else:
+            sec.repr_mess("no_itm_in_inv", "p", sec.mess)
 
 
 def cont_trading():
