@@ -18,7 +18,6 @@ class Enemy:
         if sec.me["diff"].inv.get("Zandalar's staff") > 0:
             remove_num = self.perfectAI()
         else:
-            remove_num = self.perfectAI()
             ai = {"1": self.randomAI, "2": self.simulationAI}
             remove_num = ai[sec.me["diff"].diff]()
 
@@ -29,7 +28,7 @@ class Enemy:
     def randomAI(self):
         """
         'Lehká obtížnost'
-        Vybírá náhodné číslo z množiny možných
+        Vrací náhodné číslo z množiny možných
         """
         return randint(sec.me["diff"].min_take, sec.me["diff"].max_take)
 
@@ -40,14 +39,13 @@ class Enemy:
         self.best_act = -1
         self.best_score = -float("inf")
         min_take = sec.me["diff"].min_take
-        max_take = sec.me["diff"].max_take + 1
+        max_take = sec.me["diff"].max_take
 
-        for x in range(min_take, max_take):
-            act_score = 0
-            self.simulationAI2(x, act_score, min_take, max_take)
+        for opt in range(min_take, max_take + 1):
+            self.simulationAI2(opt, 0, min_take, max_take)
         return self.best_act
 
-    def simulationAI2(self, x, act_score, min_take, max_take):
+    def simulationAI2(self, opt, act_score, min_take, max_take):
         """
         Provádí simulaci jako takovou
         S větší proměnnou num je simulace přesnější, ale výrazně pomalejší
@@ -56,12 +54,12 @@ class Enemy:
         zda jednu danou simulaci (jednu iteraci for cyklu)
         AI vyhrála (+1), či ne (-1)
 
-        Každá možnost AI (proměnná x) má jiné act_score,
-        funkce vrátí x s největším act_score (proměnná self.best_score)
+        Každá možnost AI (proměnná opt) má jiné act_score,
+        funkce vrátí opt s největším act_score (proměnná self.best_score)
         """
-        num = 1000
+        num = 1_000
         for _ in range(num):
-            stone_count = sec.me["diff"].n - x
+            stone_count = sec.me["diff"].n - opt
             ai_turn = False
 
             while stone_count > 0:
@@ -76,7 +74,7 @@ class Enemy:
 
         if act_score > self.best_score:
             self.best_score = act_score
-            self.best_act = x
+            self.best_act = opt
 
     def perfectAI(self):
         """
@@ -94,16 +92,16 @@ class Enemy:
         l_nums = set([])
         w_nums = set([])
         min_take = sec.me["diff"].min_take
-        max_take = sec.me["diff"].max_take + 1
+        max_take = sec.me["diff"].max_take
 
         for x in range(0, sec.me["diff"].n + 1):
-            for i in range(min_take, max_take):
+            for i in range(min_take, max_take + 1):
                 if x - i in l_nums:
                     w_nums.add(x)
             if x not in w_nums:
                 l_nums.add(x)
 
-        for i in range(min_take, max_take):
+        for i in range(min_take, max_take + 1):
 
             if sec.me["diff"].n - i in l_nums:
 
