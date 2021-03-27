@@ -89,22 +89,20 @@ class Enemy:
         a AI je na tahu, vrátí hodnotu vygenerovanou pomocí simulationAI(),
         čímž nechává hráči nejvíce místa k udělání chyby
         """
-        l_nums = set([])
-        w_nums = set([])
+        lose_nums = set([])
+        win_nums = set([])
         min_take = sec.me["diff"].min_take
         max_take = sec.me["diff"].max_take
 
-        for x in range(0, sec.me["diff"].n + 1):
-            for i in range(min_take, max_take + 1):
-                if x - i in l_nums:
-                    w_nums.add(x)
-            if x not in w_nums:
-                l_nums.add(x)
+        for n in range(0, sec.me["diff"].n + 1):
+            for opt in range(min_take, max_take + 1):
+                if n - opt in lose_nums:
+                    win_nums.add(n)
+            if n not in win_nums:
+                lose_nums.add(n)
 
         for i in range(min_take, max_take + 1):
-
-            if sec.me["diff"].n - i in l_nums:
-
+            if sec.me["diff"].n - i in lose_nums:
                 return i
 
         return self.simulationAI()
@@ -388,8 +386,9 @@ def buy_or_sell():
 
 def buy_sell():
     """
-    Ptá se hráče co chce nakoupit, či prodávat
+    Ptá se hráče co chce nakoupit, či prodat
     """
+    sec.me["diff"].print_inv()
     input_message = sec.repr_mess("market_item", "r", sec.mess)
     item = input(input_message.format(sec.me["diff"].way))
 

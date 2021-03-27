@@ -92,7 +92,7 @@
         "loot": "Void crown",
         "name": "Zandalar",
         "chance": 100,
-        "harm": 70,
+        "harm": 85,
         "low_limit": 1,
         "up_limit": 1,
         "best_act": 0,

@@ -62,6 +62,13 @@
             "shadow blade": 0
         }
     },
+    "gold coin": {
+        "sellval": 0,
+        "healval": null,
+        "name": "gold coin",
+        "alchem_limit": null,
+        "chapel_limit": null
+    },
     "apple": {
         "sellval": 10,
         "healval": 20,
