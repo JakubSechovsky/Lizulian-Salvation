@@ -172,6 +172,8 @@ class Me:
         Ptá se hráče na počet kamenů, které chce odebrat
         Jedná podle vstupu
         """
+        message = repr_mess("stones_on_board", "r", mess).format(me["diff"].n)
+        print(message)
         take_num = input(repr_mess("stone_number", "r", mess))
         try:
             take_num = int(take_num)
@@ -271,6 +273,9 @@ class Me:
             self.inv["apple"] += 1
             repr_mess("easy", "p", mess)
         elif self.diff == "2":
+            self.inv["pear"] += 1
+            repr_mess("medium", "p", mess)
+        elif self.diff == "3":
             repr_mess("hard", "p", mess)
         else:
             try_int(self.diff)

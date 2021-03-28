@@ -5,7 +5,7 @@
         "loc": "house",
         "diff": "",
         "run": true,
-        "on_turn": false,
+        "on_turn": true,
         "talking": false,
         "n": 21,
         "min_take": 1,

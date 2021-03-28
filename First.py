@@ -18,7 +18,11 @@ class Enemy:
         if sec.me["diff"].inv.get("Zandalar's staff") > 0:
             remove_num = self.perfectAI()
         else:
-            ai = {"1": self.randomAI, "2": self.simulationAI}
+            ai = {
+                "1": self.randomAI,
+                "2": self.simulationAI,
+                "3": self.perfectAI
+                }
             remove_num = ai[sec.me["diff"].diff]()
 
         message = sec.repr_mess("enemy_take", "r", sec.mess)
@@ -487,9 +491,6 @@ def fight(enemy):
             sec.me["diff"].min_take = 1
             sec.me["diff"].max_take = min(sec.me["diff"].n, 3)
             sec.me["diff"].n -= enemy.take()
-
-            mess = sec.repr_mess("stones_on_board", "r", sec.mess)
-            print(mess.format(sec.me["diff"].n))
             sec.me["diff"].on_turn = True
         else:
             user_turn()
